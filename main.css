@@ -1,1 +1,151 @@
+/* Сброс стандартных стилей */
+body {
+    margin: 0;
+    font-family: sans-serif; /* Выберите шрифт, который вам нравится */
+    line-height: 1.6;
+    background-color: #f4f4f4; /* Светлый фон */
+    color: #333; /* Темный текст */
+}
 
+header {
+    background-color: #333; /* Темный фон для хедера */
+    color: #fff; /* Белый текст */
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Круглое фото */
+    margin-top: 1rem;
+    object-fit: cover; /* Обрезка фото, чтобы оно было круглым */
+    border: 3px solid #fff; /* Белая рамка вокруг фото */
+}
+
+section {
+    padding: 2rem 1rem;
+    max-width: 800px; /* Ограничиваем ширину контента */
+    margin: 2rem auto; /* Центрируем блоки и добавляем отступы сверху/снизу */
+    background-color: #fff; /* Белый фон для секций */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    border-radius: 8px; /* Скругленные углы */
+}
+
+section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+#skills ul {
+    list-style: none; /* Убираем стандартные маркеры списка */
+    padding: 0;
+    display: flex; /* Используем Flexbox для расположения навыков */
+    flex-wrap: wrap; /* Перенос элементов на новую строку при необходимости */
+    justify-content: center; /* Центрируем навыки */
+}
+
+#skills li {
+    background-color: #eee;
+    color: #333;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Адаптивная сетка для проектов */
+    gap: 1.5rem; /* Расстояние между проектами */
+}
+
+.project-item {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.project-item h3 {
+    margin-top: 0;
+    color: #007bff; /* Синий цвет для заголовков проектов */
+}
+
+.project-item a {
+    display: inline-block;
+    margin-top: 0.8rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.project-item a:hover {
+    text-decoration: underline;
+}
+
+/* Стиль для скриншотов проектов */
+.project-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+
+#contact ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+#contact li {
+    margin-bottom: 0.8rem;
+}
+
+#contact a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #333;
+    color: #fff;
+    margin-top: 2rem;
+}
+
+/* Медиа-запросы для адаптивности (пример) */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    section {
+        padding: 1.5rem 0.8rem;
+        margin: 1.5rem auto;
+    }
+
+    .projects {
+        grid-template-columns: 1fr; /* В одну колонку на маленьких экранах */
+    }
+}
