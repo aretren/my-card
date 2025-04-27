@@ -2,6 +2,8 @@
 
 // Пример: Обновление текущего года в футере
 document.addEventListener('DOMContentLoaded', (event) => {
+    console.log("DOMContentLoaded fired"); // Лог для отладки
+
     const yearSpan = document.getElementById('current-year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
@@ -23,6 +25,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Функция для применения текущего выбранного стиля и режима к примеру страницы
     function applyCurrentTheme() {
+        console.log(`Applying theme: ${currentBaseTheme}, mode: ${currentMode}`); // Лог
+
         // Удаляем все классы тем и режимов у примера страницы
         samplePage.className = 'sample-page';
 
@@ -31,18 +35,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             samplePage.classList.add('theme-' + currentBaseTheme);
         }
 
-        // Добавляем класс режима (только если это не режим по умолчанию, который обрабатывается базовым стилем)
+        // Добавляем класс режима (только если это не режим по умолчанию 'light')
         if (currentMode && currentMode !== 'light') {
-             // Для Gaming, основной стиль уже темный, добавим mode-dark только если это нужно для переопределения
-             if (!(currentBaseTheme === 'gaming' && currentMode === 'dark')) {
-                 samplePage.classList.add('mode-' + currentMode);
-             } else if (currentBaseTheme === 'gaming' && currentMode === 'dark') {
-                 // Для Gaming Dark явно добавляем mode-dark, даже если базовый стиль уже темный,
-                 // чтобы CSS селекторы .theme-gaming.mode-dark работали
-                 samplePage.classList.add('mode-' + currentMode);
-             }
+             samplePage.classList.add('mode-' + currentMode);
         }
-
 
         // Обновляем активные состояния кнопок управления
         baseThemeSwitches.forEach(button => {
@@ -68,6 +64,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Функция для показа секции дизайнов
     function showDesigns() {
+        console.log("showDesigns function called"); // Лог
+
         // Скрываем кнопку "Показать Дизайны", показываем кнопку "Вернуться"
         if (toggleDesignsButton && toggleMainHeaderButton) {
             toggleDesignsButton.classList.add('hidden');
@@ -75,21 +73,43 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
 
         // Перед показом секции, применяем текущий выбранный стиль и режим
-        applyCurrentTheme();
+        // Убедимся, что тема по умолчанию выбрана, если нет активных кнопок
+        const activeBaseThemeButton = document.querySelector('.base-theme-switch.active');
+         if (activeBaseThemeButton) {
+              currentBaseTheme = activeBaseThemeButton.getAttribute('data-base-theme');
+         } else if (baseThemeSwitches.length > 0) {
+             // Если нет активных, выберем первую как активную по умолчанию
+             currentBaseTheme = baseThemeSwitches[0].getAttribute('data-base-theme');
+         } else {
+             currentBaseTheme = 'aero'; // Fallback
+         }
+
+         const activeModeButton = document.querySelector('.mode-switch.active');
+         if (activeModeButton) {
+             currentMode = activeModeButton.getAttribute('data-mode');
+         } else if (modeSwitches.length > 0) {
+             currentMode = modeSwitches[0].getAttribute('data-mode');
+         } else {
+             currentMode = 'light'; // Fallback
+         }
+
+        applyCurrentTheme(); // Применяем текущий стиль и режим
+
 
         // Используем opacity и затем display none после перехода
         mainContent.style.opacity = 0;
         setTimeout(() => {
              mainContent.classList.add('hidden'); // Скрываем основной контент
              designShowcase.classList.remove('hidden'); // Показываем секцию дизайнов
-             // Убедимся, что opacity корректно установлено для плавного перехода
-             designShowcase.style.opacity = 1;
+             designShowcase.style.opacity = 1; // Показываем с плавным переходом
              window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокручиваем вверх
         }, 500); // Время должно совпадать с transition opacity в CSS
     }
 
     // Функция для показа основного контента
     function showMainContent() {
+        console.log("showMainContent function called"); // Лог
+
          // Скрываем кнопку "Вернуться", показываем кнопку "Показать Дизайны"
          if (toggleDesignsButton && toggleMainHeaderButton) {
             toggleMainHeaderButton.classList.add('hidden');
@@ -101,8 +121,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         setTimeout(() => {
             designShowcase.classList.add('hidden'); // Скрываем секцию дизайнов
             mainContent.classList.remove('hidden'); // Показываем основной контент
-            // Убедимся, что opacity корректно установлено для плавного перехода
-            mainContent.style.opacity = 1;
+            mainContent.style.opacity = 1; // Показываем с плавным переходом
             window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокручиваем вверх
         }, 500); // Время должно совпадать с transition opacity в CSS
     }
@@ -143,118 +162,133 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             // Активируем первую вкладку по умолчанию при инициализации
             if (updatedTabButtons.length > 0 && tabPanes.length > 0) {
-                updatedTabButtons[0].classList.add('active');
-                tabPanes[0].classList.add('active');
-            }
-        }
-    }
-
-    // --- Логика для виджета погоды ---
-    const weatherToggle = document.getElementById('weather-toggle');
-    const weatherWidget = document.getElementById('weather-widget');
-    const weatherCloseButton = weatherWidget ? weatherWidget.querySelector('.close-button') : null;
-    const weatherInfoDiv = weatherWidget ? weatherWidget.querySelector('.weather-info') : null;
-
-
-    // Функция для получения погоды (используем placeholder)
-    function getWeatherData(latitude, longitude) {
-        console.log(`Получены координаты: ${latitude}, ${longitude}. Загрузка погоды...`);
-        // Здесь нужно интегрировать ваш реальный API погоды (например, OpenWeatherMap)
-        // Вам понадобится API ключ.
-        // Пример fetch запроса (замените URL и KEY):
-        /*
-        const API_KEY = 'ВАШ_API_КЛЮЧ';
-        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=ru`;
-
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Данные погоды:", data);
-                // Отобразить данные в виджете
-                if (weatherInfoDiv) {
-                    weatherInfoDiv.innerHTML = `
-                        <p>Местоположение: <strong>${data.name}</strong></p>
-                        <p>Температура: <strong>${data.main.temp}°C</strong></p>
-                        <p>Описание: <strong>${data.weather[0].description}</strong></p>
-                        <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="${data.weather[0].description}" id="weather-icon">
-                    `;
-                }
-            })
-            .catch(error => {
-                console.error("Ошибка при получении погоды:", error);
-                if (weatherInfoDiv) {
-                     weatherInfoDiv.innerHTML = "<p>Не удалось загрузить данные погоды.</p>";
-                }
-            });
-        */
-
-        // Placeholder: Имитация загрузки
-        if (weatherInfoDiv) {
-             weatherInfoDiv.innerHTML = `<p>Ваши координаты: ${latitude.toFixed(2)}, ${longitude.toFixed(2)}</p><p>Загрузка данных погоды...</p>`;
-
-             // Через пару секунд покажем фейковые данные
-             setTimeout(() => {
-                 if (weatherInfoDiv) {
-                     weatherInfoDiv.innerHTML = `
-                        <p>Местоположение: <strong>Ваш город</strong></p>
-                        <p>Температура: <strong>+15°C</strong></p>
-                        <p>Описание: <strong>Ясно</strong></p>
-                        <img src="http://openweathermap.org/img/wn/01d.png" alt="Ясно" id="weather-icon">
-                     `;
+                 // Проверяем, есть ли уже активная вкладка (например, если сменили тему, находясь на 2 вкладке)
+                 const activeTabButton = sampleTabs.querySelector('.tab-button.active');
+                 if (activeTabButton) {
+                      const targetTab = activeTabButton.getAttribute('data-tab');
+                      const activePane = document.getElementById(targetTab + '-content');
+                      if (activePane) {
+                           activePane.classList.add('active');
+                      }
+                 } else {
+                    // Если активной вкладки нет, активируем первую
+                    updatedTabButtons[0].classList.add('active');
+                    tabPanes[0].classList.add('active');
                  }
-             }, 2000);
+            }
         }
     }
 
+    // --- Логика для виджета калькулятора ---
+    const calculatorToggle = document.getElementById('calculator-toggle');
+    const calculatorWidget = document.getElementById('calculator-widget');
+    const calculatorCloseButton = calculatorWidget ? calculatorWidget.querySelector('.close-button') : null;
+    const calculatorDisplay = calculatorWidget ? calculatorWidget.querySelector('.calculator-display') : null;
+    const calculatorButtons = calculatorWidget ? calculatorWidget.querySelectorAll('.calculator-buttons .btn') : null;
 
-    // Функция для получения местоположения пользователя
-    function getUserLocation() {
-        if (!navigator.geolocation) {
-            if (weatherInfoDiv) {
-                weatherInfoDiv.innerHTML = "<p>Геолокация не поддерживается вашим браузером.</p>";
-            }
-            console.error("Геолокация не поддерживается");
+    let currentInput = '0';
+    let operator = null;
+    let firstOperand = null;
+    let waitingForSecondOperand = false;
+
+    // Обновление дисплея калькулятора
+    function updateDisplay() {
+        if (calculatorDisplay) {
+            calculatorDisplay.textContent = currentInput;
+        }
+    }
+
+    // Обработка ввода числа
+    function inputDigit(digit) {
+        if (waitingForSecondOperand === true) {
+            currentInput = digit;
+            waitingForSecondOperand = false;
+        } else {
+            currentInput = currentInput === '0' ? digit : currentInput + digit;
+        }
+        updateDisplay();
+    }
+
+     // Обработка ввода десятичной точки
+    function inputDecimal(dot) {
+         // Если в текущем вводе уже есть точка, ничего не делаем
+         if (currentInput.includes(dot)) {
+             return;
+         }
+         // Если ждем второй операнд, начинаем новый ввод с "0."
+         if (waitingForSecondOperand === true) {
+             currentInput = "0.";
+             waitingForSecondOperand = false;
+             updateDisplay();
+             return;
+         }
+
+         currentInput += dot;
+         updateDisplay();
+     }
+
+
+    // Обработка операторов
+    function handleOperator(nextOperator) {
+        const inputValue = parseFloat(currentInput);
+
+        if (operator && waitingForSecondOperand) {
+            operator = nextOperator;
             return;
         }
 
-        if (weatherInfoDiv) {
-             weatherInfoDiv.innerHTML = "<p>Определение местоположения...</p>";
+        if (firstOperand === null) {
+            firstOperand = inputValue;
+        } else if (operator) {
+            const result = performCalculation[operator](firstOperand, inputValue);
+            currentInput = String(result);
+            firstOperand = result;
         }
 
+        waitingForSecondOperand = true;
+        operator = nextOperator;
+        updateDisplay(); // Обновим дисплей после выбора оператора
+    }
 
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-                getWeatherData(latitude, longitude); // Получаем погоду по координатам
-            },
-            (error) => {
-                let errorMessage = "Не удалось определить местоположение.";
-                switch(error.code) {
-                    case error.PERMISSION_DENIED:
-                        errorMessage = "Доступ к местоположению запрещен пользователем.";
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        errorMessage = "Информация о местоположении недоступна.";
-                        break;
-                    case error.TIMEOUT:
-                        errorMessage = "Истекло время ожидания запроса местоположения.";
-                        break;
-                    case error.UNKNOWN_ERROR:
-                        errorMessage = "Произошла неизвестная ошибка геолокации.";
-                        break;
-                }
-                 if (weatherInfoDiv) {
-                     weatherInfoDiv.innerHTML = `<p>${errorMessage}</p>`;
-                 }
-                console.error("Ошибка геолокации:", errorMessage);
-            }
-        );
+    // Выполнение вычисления
+    const performCalculation = {
+        '/': (firstOperand, secondOperand) => firstOperand / secondOperand,
+        '*': (firstOperand, secondOperand) => firstOperand * secondOperand,
+        '+': (firstOperand, secondOperand) => firstOperand + secondOperand,
+        '-': (firstOperand, secondOperand) => firstOperand - secondOperand,
+        '=': (firstOperand, secondOperand) => secondOperand // При нажатии равно, просто используем второй операнд если нет оператора
+                                                           // или результат последней операции
+    };
+
+    // Обработка нажатия кнопки равно
+    function handleEquals() {
+         if (operator && !waitingForSecondOperand) {
+              const inputValue = parseFloat(currentInput);
+              const result = performCalculation[operator](firstOperand, inputValue);
+
+              currentInput = String(result);
+              firstOperand = null; // Сбрасываем для новой цепочки вычислений
+              operator = null;
+              waitingForSecondOperand = true; // Ждем новый ввод
+
+              updateDisplay();
+         } else if (!operator && firstOperand !== null) {
+             // Если нет оператора, но есть первый операнд (например, после предыдущего "=")
+             // Просто показываем текущий ввод как результат
+             waitingForSecondOperand = true;
+             updateDisplay();
+         }
+          // Если нет ни оператора, ни первого операнда, ничего не делаем
+    }
+
+
+    // Сброс калькулятора
+    function resetCalculator() {
+        currentInput = '0';
+        operator = null;
+        firstOperand = null;
+        waitingForSecondOperand = false;
+        updateDisplay();
     }
 
 
@@ -283,25 +317,63 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
 
-    // Обработчик клика для плавающей кнопки погоды
-    if (weatherToggle && weatherWidget) {
-        weatherToggle.addEventListener('click', () => {
+    // Обработчик клика для плавающей кнопки калькулятора
+    if (calculatorToggle && calculatorWidget) {
+        calculatorToggle.addEventListener('click', () => {
             // Переключаем видимость виджета
-            weatherWidget.classList.toggle('visible');
-            // Если виджет становится видимым, пытаемся получить погоду
-            if (weatherWidget.classList.contains('visible')) {
-                 getUserLocation();
+            calculatorWidget.classList.toggle('visible');
+            // Если виджет становится видимым, убедимся, что дисплей сброшен
+            if (calculatorWidget.classList.contains('visible')) {
+                 resetCalculator();
             }
         });
     } else {
-         console.warn("Кнопка или виджет погоды не найдены.");
+         console.warn("Кнопка или виджет калькулятора не найдены.");
     }
 
-     // Обработчик клика для кнопки закрытия виджета погоды
-    if (weatherCloseButton && weatherWidget) {
-         weatherCloseButton.addEventListener('click', () => {
-             weatherWidget.classList.remove('visible');
+     // Обработчик клика для кнопки закрытия виджета калькулятора
+    if (calculatorCloseButton && calculatorWidget) {
+         calculatorCloseButton.addEventListener('click', () => {
+             calculatorWidget.classList.remove('visible');
          });
+    }
+
+     // Обработчики кликов для кнопок калькулятора
+    if (calculatorButtons && calculatorDisplay) {
+         calculatorButtons.forEach(button => {
+              button.addEventListener('click', (event) => {
+                   const { target } = event;
+                   const value = target.getAttribute('data-value');
+
+                   if (!target.matches('button')) {
+                       return; // Игнорируем клики не по кнопкам
+                   }
+
+                   if (target.classList.contains('operator')) {
+                       if (value === '=') {
+                            handleEquals();
+                       } else {
+                           handleOperator(value);
+                       }
+                       return;
+                   }
+
+                    if (target.classList.contains('decimal')) {
+                       inputDecimal(value);
+                       return;
+                   }
+
+                    if (target.classList.contains('clear')) {
+                       resetCalculator();
+                       return;
+                   }
+
+                   // По умолчанию обрабатываем числа
+                   inputDigit(value);
+              });
+         });
+    } else {
+         console.warn("Кнопки калькулятора или дисплей не найдены.");
     }
 
 
@@ -324,8 +396,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
              const firstBaseThemeButton = document.querySelector('.base-theme-switch');
              if (firstBaseThemeButton) {
                  currentBaseTheme = firstBaseThemeButton.getAttribute('data-base-theme');
-                 currentMode = 'light'; // По умолчанию светлый режим
-                 applyCurrentTheme();
+                 // Найдем активную кнопку режима, если есть, иначе используем light
+                 const activeModeButton = document.querySelector('.mode-switch.active');
+                 currentMode = activeModeButton ? activeModeButton.getAttribute('data-mode') : 'light';
+
+                 applyCurrentTheme(); // Применяем текущий стиль и режим
              } else {
                  // Если нет кнопок тем, просто инициализируем вкладки
                  initializeSampleTabs();
@@ -344,9 +419,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
         console.error("Не найдены все необходимые элементы DOM для переключения секций!");
     }
 
-     // При загрузке страницы убедимся, что виджет погоды скрыт
-    if (weatherWidget) {
-         weatherWidget.classList.remove('visible');
+     // При загрузке страницы убедимся, что виджет калькулятора скрыт
+    if (calculatorWidget) {
+         calculatorWidget.classList.remove('visible');
+         // Инициализируем калькулятор в начальное состояние
+         resetCalculator();
     }
+
+    // Изначально применяем стиль по умолчанию (Aero Light), если секция дизайнов скрыта
+    // Это нужно, чтобы initializeSampleTabs корректно сработала для базового состояния
+    if (designShowcase.classList.contains('hidden')) {
+        samplePage.className = 'sample-page'; // Убедимся, что базовый стиль применен
+        // Активируем первую кнопку стиля и светлого режима при загрузке, если секция скрыта
+         const firstBaseThemeButton = document.querySelector('.base-theme-switch');
+         const firstModeButton = document.querySelector('.mode-switch');
+         if(firstBaseThemeButton) firstBaseThemeButton.classList.add('active');
+         if(firstModeButton) firstModeButton.classList.add('active');
+         initializeSampleTabs(); // Инициализируем вкладки
+    }
+
 
 });
