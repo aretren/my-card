@@ -21,6 +21,7 @@ header {
     position: relative; /* Для позиционирования кнопки переключения */
     z-index: 10; /* Чтобы хедер был поверх других элементов, если нужно */
     transition: background-color 0.5s ease, color 0.5s ease;
+    margin-bottom: 0; /* Сброс нижнего margin у хедера */
 }
 
 header h1 {
@@ -47,6 +48,7 @@ header p {
 .header-buttons {
     margin-top: 1.5rem; /* Отступ сверху, чтобы отделить от заголовков хедера */
     text-align: center;
+    margin-bottom: 0; /* Сброс нижнего margin у контейнера кнопок */
 }
 
 
@@ -224,10 +226,22 @@ footer {
 
 /* Стили для секции дизайнов */
 #design-showcase {
-    /* УБИРАЕМ ВЕРХНИЕ ОТСТУПЫ ИЗ СЕКЦИИ */
-    padding-top: 0;
-    margin-top: 0;
+    margin-top: 0; /* Сброс верхнего margin */
+    /* Добавляем padding-top, чтобы контролировать отступ от верха секции до ее содержимого */
+    padding-top: 2rem;
+    padding-bottom: 2rem; /* Добавляем нижний padding как у других секций */
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    opacity: 1;
+    transition: opacity 0.5s ease, background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
 }
+
 
 /* Секция дизайнов, когда скрыта */
 #design-showcase.hidden {
@@ -236,8 +250,8 @@ footer {
 
 /* Исправляем отступ заголовка внутри секции дизайнов */
 #design-showcase h2 {
-     margin-top: 1.5rem; /* Добавляем верхний margin для отступа от верха секции */
-     padding-top: 0; /* Убеждаемся, что padding-top равен 0 */
+     margin-top: 0; /* Убираем верхний margin, т.к. padding секции уже есть */
+     padding-top: 0;
      margin-bottom: 1rem; /* Уменьшаем нижний отступ */
      text-align: center;
      color: #333;
@@ -284,7 +298,7 @@ footer {
 }
 
 
-/* Базовые стили для примера страницы */
+/* Базовые стили для примера страницы (это и есть "Стандартный" дизайн теперь) */
 .sample-page {
     border: 1px solid #ddd;
     padding: 2rem; /* Увеличиваем padding */
