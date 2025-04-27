@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // --- Логика для переключения секций и тем дизайнов ---
 
     const toggleDesignsButton = document.getElementById('toggle-designs');
-    const toggleMainButton = document.getElementById('toggle-main');
+    const toggleMainHeaderButton = document.getElementById('toggle-main-header'); // Получаем новую кнопку в хедере
     const mainContent = document.getElementById('main-content');
     const designShowcase = document.getElementById('design-showcase');
     const themeSwitches = document.querySelectorAll('.theme-switch');
@@ -18,24 +18,38 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Функция для показа секции дизайнов
     function showDesigns() {
+        // Скрываем кнопку "Показать Дизайны", показываем кнопку "Вернуться"
+        if (toggleDesignsButton && toggleMainHeaderButton) {
+            toggleDesignsButton.classList.add('hidden');
+            toggleMainHeaderButton.classList.remove('hidden');
+        }
+
         // Используем opacity и затем display none после завершения перехода
         mainContent.style.opacity = 0;
         setTimeout(() => {
              mainContent.classList.add('hidden'); // Скрываем основной контент
              designShowcase.classList.remove('hidden'); // Показываем секцию дизайнов
-             designShowcase.style.opacity = 1; // Показываем с плавным переходом
+             // Убедимся, что opacity корректно установлено для плавного перехода
+             designShowcase.style.opacity = 1;
              window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокручиваем вверх
         }, 500); // Время должно совпадать с transition opacity в CSS
     }
 
     // Функция для показа основного контента
     function showMainContent() {
+         // Скрываем кнопку "Вернуться", показываем кнопку "Показать Дизайны"
+         if (toggleDesignsButton && toggleMainHeaderButton) {
+            toggleMainHeaderButton.classList.add('hidden');
+            toggleDesignsButton.classList.remove('hidden');
+         }
+
         // Используем opacity и затем display none после завершения перехода
         designShowcase.style.opacity = 0;
         setTimeout(() => {
             designShowcase.classList.add('hidden'); // Скрываем секцию дизайнов
             mainContent.classList.remove('hidden'); // Показываем основной контент
-            mainContent.style.opacity = 1; // Показываем с плавным переходом
+            // Убедимся, что opacity корректно установлено для плавного перехода
+            mainContent.style.opacity = 1;
             window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокручиваем вверх
         }, 500); // Время должно совпадать с transition opacity в CSS
     }
@@ -46,9 +60,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         toggleDesignsButton.addEventListener('click', showDesigns);
     }
 
-    if (toggleMainButton) {
-        toggleMainButton.addEventListener('click', showMainContent);
+    // Используем новую кнопку в хедере для возврата
+    if (toggleMainHeaderButton) {
+        toggleMainHeaderButton.addEventListener('click', showMainContent);
     }
+
 
     // Обработчики кликов для кнопок переключения тем
     if (themeSwitches && samplePage) {
@@ -76,16 +92,35 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     // Изначально устанавливаем opacity для основной секции
+    // и скрываем кнопку "Вернуться" в хедере
     if (mainContent && !mainContent.classList.contains('hidden')) {
          mainContent.style.opacity = 1;
+         if (toggleMainHeaderButton) {
+             toggleMainHeaderButton.classList.add('hidden'); // Убедимся, что скрыта
+         }
+         if (toggleDesignsButton) {
+              toggleDesignsButton.classList.remove('hidden'); // Убедимся, что показана
+         }
     }
      // Изначально устанавливаем opacity для секции дизайнов (если она случайно видима)
+     // и показываем кнопку "Вернуться"
      if (designShowcase && !designShowcase.classList.contains('hidden')) {
          designShowcase.style.opacity = 1;
+          if (toggleMainHeaderButton) {
+             toggleMainHeaderButton.classList.remove('hidden'); // Убедимся, что показана
+         }
+         if (toggleDesignsButton) {
+              toggleDesignsButton.classList.add('hidden'); // Убедимся, что скрыта
+         }
+
      } else if (designShowcase) {
          // Если секция дизайнов скрыта, убедимся, что opacity 0
          designShowcase.style.opacity = 0;
+          if (toggleMainHeaderButton) {
+             toggleMainHeaderButton.classList.add('hidden'); // Убедимся, что скрыта
+         }
+         if (toggleDesignsButton) {
+              toggleDesignsButton.classList.remove('hidden'); // Убедимся, что показана
+         }
      }
-
-
 });
