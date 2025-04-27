@@ -240,7 +240,7 @@ footer {
 }
 
 
-/* Секция дизайнов, когда скрыта */
+/* Класс для скрытия, используется в JS */
 .hidden {
     display: none;
 }
@@ -650,8 +650,7 @@ footer {
 }
 
 
-/* --- Стили для темы "Gaming" (Светлая) --- */
-/* Gaming по своей сути темный, так что "светлая" версия будет скорее "менее темная" или просто основная */
+/* --- Стили для темы "Gaming" (Светлая - основная) --- */
 .sample-page.theme-gaming {
     background: linear-gradient(135deg, #111, #2a0000); /* Темный фон с оттенком красного */
     color: #ff9900; /* Оранжевый текст по умолчанию */
@@ -815,8 +814,8 @@ footer {
      color: #ff9900; /* Оранжевый цвет текста */
 }
 
+
 /* --- Стили для темы "Gaming" (Темная) --- */
-/* Gaming по своей сути темный, так что это скорее "более темная" или альтернативная темная версия */
 .sample-page.theme-gaming.mode-dark {
     background: linear-gradient(135deg, #080808, #1a0000); /* Еще более темный фон */
     color: #ff00ff; /* Фиолетовый текст по умолчанию */
@@ -891,7 +890,7 @@ footer {
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane p,
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane li {
-     color: #ff9900; /* Оранжевый текст во вкладках */
+    color: #ff9900; /* Оранжевый текст во вкладках */
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane li::before {
     color: #e51a4b; /* ROG красный маркер */
@@ -1060,6 +1059,10 @@ footer {
     transition: transform 0.3s ease;
 }
 
+.sample-page.theme-modern .tab-button:hover {
+    background-color: #eee;
+}
+
 .sample-page.theme-modern .tab-button.active {
     background-color: #fff;
     color: #333;
@@ -1069,6 +1072,16 @@ footer {
      transform: translateX(0);
 }
 
+.sample-page.theme-modern .sample-tabs .tab-content {
+     color: #333;
+}
+.sample-page.theme-modern .sample-tabs .tab-pane p,
+.sample-page.theme-modern .sample-tabs .tab-pane li {
+    color: #333;
+}
+.sample-page.theme-modern .sample-tabs .tab-pane li::before {
+    color: #007bff;
+}
 
 .sample-page.theme-modern .sample-toggle {
      color: #444;
@@ -1093,6 +1106,7 @@ footer {
 .sample-page.theme-modern input[type="checkbox"]:checked + label::before {
     transform: translateX(20px);
 }
+
 
 /* --- Стили для темы "Modern" (Темная) --- */
 .sample-page.theme-modern.mode-dark {
@@ -1122,6 +1136,7 @@ footer {
 
 
 .sample-page.theme-modern.mode-dark .sample-content {
+    background-color: transparent;
     color: #ddd;
 }
 
@@ -1131,6 +1146,10 @@ footer {
 
 .sample-page.theme-modern.mode-dark .sample-content p {
     color: #ccc;
+}
+
+.sample-page.theme-modern.mode-dark .sample-content ul {
+    /* list-style: none; */ /* Переопределяем, если нужно */
 }
 
 .sample-page.theme-modern.mode-dark .sample-content li {
@@ -1186,6 +1205,7 @@ footer {
     color: #ff9900; /* Оранжевый маркер */
 }
 
+
 .sample-page.theme-modern.mode-dark .sample-toggle {
      color: #bbb;
 }
@@ -1203,8 +1223,8 @@ footer {
 }
 
 
-/* --- Стили для плавающей кнопки погоды и виджета --- */
-.weather-toggle {
+/* --- Стили для плавающей кнопки калькулятора и виджета --- */
+.calculator-toggle {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -1224,34 +1244,34 @@ footer {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.weather-toggle:hover {
+.calculator-toggle:hover {
     background-color: #0056b3;
     transform: scale(1.1);
 }
 
-.weather-widget {
+.calculator-widget {
     position: fixed;
     bottom: 80px; /* Выше кнопки */
     right: 20px;
-    width: 280px; /* Чуть шире */
-    padding: 15px;
-    background-color: #fff;
+    width: 250px; /* Ширина калькулятора */
+    background-color: #222; /* Темный фон калькулятора */
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     z-index: 100;
-    font-family: 'Open Sans', sans-serif;
-    color: #333;
+    font-family: 'Roboto', sans-serif;
+    color: #fff; /* Светлый текст */
     display: none; /* По умолчанию скрыт */
     opacity: 0; /* Для плавного появления */
     transition: opacity 0.3s ease;
+    padding: 10px; /* Внутренний отступ */
 }
 
-.weather-widget.visible {
+.calculator-widget.visible {
     display: block;
     opacity: 1;
 }
 
-.weather-widget .close-button {
+.calculator-widget .close-button {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -1260,31 +1280,75 @@ footer {
     font-size: 1.5rem;
     cursor: pointer;
     color: #888;
+    line-height: 1; /* Убираем лишний отступ */
 }
 
-.weather-widget h3 {
-    margin-top: 0;
+.calculator-display {
+    background-color: #111; /* Еще более темный фон дисплея */
+    color: #00ff00; /* Неоновый зеленый текст */
+    font-size: 2rem;
+    text-align: right;
+    padding: 15px 10px;
+    border-radius: 5px;
     margin-bottom: 10px;
-    color: #007bff;
+    overflow-x: auto; /* Прокрутка, если число длинное */
+    white-space: nowrap; /* Не переносить строку */
+}
+
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 колонки */
+    gap: 8px; /* Расстояние между кнопками */
+}
+
+.calculator-buttons .btn {
+    padding: 15px 10px;
+    border: none;
+    border-radius: 5px;
     font-size: 1.2rem;
+    cursor: pointer;
+    background-color: #444; /* Цвет кнопок */
+    color: #fff;
+    transition: background-color 0.2s ease;
+    text-align: center;
 }
 
-.weather-widget .weather-info p {
-    margin: 5px 0;
-    font-size: 1rem;
-    color: #555;
+.calculator-buttons .btn:hover {
+    background-color: #555;
 }
 
-.weather-widget #weather-icon {
-    display: block;
-    margin: 10px auto;
-    width: 50px;
-    height: 50px;
+.calculator-buttons .btn.clear {
+    background-color: #d35400; /* Оранжевый для C */
+}
+.calculator-buttons .btn.clear:hover {
+     background-color: #e67e22;
 }
 
-/* Класс для скрытия, используется в JS */
-.hidden {
-    display: none;
+.calculator-buttons .btn.operator {
+    background-color: #f39c12; /* Оранжевый для операторов */
+}
+.calculator-buttons .btn.operator:hover {
+     background-color: #f1c40f;
+}
+
+.calculator-buttons .btn.equals {
+    background-color: #2ecc71; /* Зеленый для = */
+    grid-row: span 2; /* Занимает 2 ряда */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.calculator-buttons .btn.equals:hover {
+     background-color: #27ae60;
+}
+
+
+.calculator-buttons .btn.zero {
+    grid-column: span 2; /* Занимает 2 колонки */
+}
+
+.calculator-buttons .btn.decimal {
+    /* Базовый стиль кнопки */
 }
 
 
@@ -1295,16 +1359,31 @@ footer {
 
 @media (max-width: 480px) {
      /* ... существующие медиа-запросы ... */
-      .weather-toggle {
+      .calculator-toggle {
         bottom: 10px;
         right: 10px;
         width: 40px;
         height: 40px;
         font-size: 1.2rem;
       }
-      .weather-widget {
+      .calculator-widget {
         bottom: 60px;
         right: 10px;
-        width: 250px;
+        width: 220px; /* Чуть меньше на маленьких экранах */
+        padding: 8px;
+      }
+      .calculator-display {
+        font-size: 1.5rem;
+        padding: 10px 8px;
+      }
+      .calculator-buttons {
+         gap: 6px;
+      }
+      .calculator-buttons .btn {
+         padding: 10px 8px;
+         font-size: 1rem;
+      }
+      .calculator-widget .close-button {
+         font-size: 1.2rem;
       }
 }
