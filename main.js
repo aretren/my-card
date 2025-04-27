@@ -13,29 +13,56 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const toggleMainHeaderButton = document.getElementById('toggle-main-header');
     const mainContent = document.getElementById('main-content');
     const designShowcase = document.getElementById('design-showcase');
-    const themeSwitches = document.querySelectorAll('.theme-switch');
+    const baseThemeSwitches = document.querySelectorAll('.base-theme-switch'); // Кнопки выбора стиля
+    const modeSwitches = document.querySelectorAll('.mode-switch');         // Кнопки выбора режима
     const samplePage = document.getElementById('sample-page');
 
-    // Функция для применения темы
-    function applyTheme(themeName) {
-        // Удаляем активный класс у всех кнопок переключения тем
-        themeSwitches.forEach(btn => btn.classList.remove('active'));
+    // Переменные для хранения текущего выбранного стиля и режима
+    let currentBaseTheme = 'aero'; // Стиль по умолчанию
+    let currentMode = 'light';     // Режим по умолчанию
 
-        // Находим и добавляем активный класс кнопке с соответствующим data-theme
-        const activeButton = document.querySelector(`.theme-switch[data-theme="${themeName}"]`);
-        if (activeButton) {
-            activeButton.classList.add('active');
-        }
-
-        // Удаляем все классы тем у примера страницы, оставляя только базовый 'sample-page'
+    // Функция для применения текущего выбранного стиля и режима к примеру страницы
+    function applyCurrentTheme() {
+        // Удаляем все классы тем и режимов у примера страницы
         samplePage.className = 'sample-page';
 
-        // Добавляем класс выбранной темы
-        if (themeName && themeName !== 'default') {
-            samplePage.classList.add('theme-' + themeName);
+        // Добавляем класс базового стиля
+        if (currentBaseTheme && currentBaseTheme !== 'default') {
+            samplePage.classList.add('theme-' + currentBaseTheme);
         }
-         // После смены темы, переинициализируем вкладки для нового стиля
-         initializeSampleTabs();
+
+        // Добавляем класс режима (только если это не режим по умолчанию, который обрабатывается базовым стилем)
+        if (currentMode && currentMode !== 'light') {
+             // Для Gaming, основной стиль уже темный, добавим mode-dark только если это нужно для переопределения
+             if (!(currentBaseTheme === 'gaming' && currentMode === 'dark')) {
+                 samplePage.classList.add('mode-' + currentMode);
+             } else if (currentBaseTheme === 'gaming' && currentMode === 'dark') {
+                 // Для Gaming Dark явно добавляем mode-dark, даже если базовый стиль уже темный,
+                 // чтобы CSS селекторы .theme-gaming.mode-dark работали
+                 samplePage.classList.add('mode-' + currentMode);
+             }
+        }
+
+
+        // Обновляем активные состояния кнопок управления
+        baseThemeSwitches.forEach(button => {
+            if (button.getAttribute('data-base-theme') === currentBaseTheme) {
+                button.classList.add('active');
+            } else {
+                button.classList.remove('active');
+            }
+        });
+
+        modeSwitches.forEach(button => {
+            if (button.getAttribute('data-mode') === currentMode) {
+                button.classList.add('active');
+            } else {
+                button.classList.remove('active');
+            }
+        });
+
+        // После смены темы/режима, переинициализируем вкладки для нового стиля
+        initializeSampleTabs();
     }
 
 
@@ -47,17 +74,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             toggleMainHeaderButton.classList.remove('hidden');
         }
 
-        // Перед показом секции, применяем первую тему по умолчанию (например, Aero)
-        const firstThemeButton = document.querySelector('.theme-switch'); // Находит первую кнопку .theme-switch
-        if (firstThemeButton) {
-            const defaultDesignTheme = firstThemeButton.getAttribute('data-theme');
-             // Применяем тему и делаем кнопку активной
-            applyTheme(defaultDesignTheme);
-        } else {
-            // Если кнопок тем нет (что маловероятно), применяем базовый стиль
-             applyTheme('default');
-        }
-
+        // Перед показом секции, применяем текущий выбранный стиль и режим
+        applyCurrentTheme();
 
         // Используем opacity и затем display none после перехода
         mainContent.style.opacity = 0;
@@ -97,9 +115,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const tabButtons = sampleTabs.querySelectorAll('.tab-button');
             const tabPanes = sampleTabs.querySelectorAll('.tab-pane');
 
-            // Удаляем все предыдущие обработчики, чтобы избежать их дублирования при applyTheme
+            // Удаляем все предыдущие обработчики
             tabButtons.forEach(button => {
-                 // Клонируем и заменяем элемент, чтобы удалить все обработчики
                  const newButton = button.cloneNode(true);
                  button.parentNode.replaceChild(newButton, button);
             });
@@ -113,7 +130,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
                     // Удаляем активный класс у всех кнопок и панелей
                     updatedTabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabPanes.forEach(pane => pane.classList.remove('active')); // tabPanes ссылки не меняются
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
 
                     // Добавляем активный класс кликнутой кнопке и целевой панели
                     button.classList.add('active');
@@ -132,35 +149,159 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
+    // --- Логика для виджета погоды ---
+    const weatherToggle = document.getElementById('weather-toggle');
+    const weatherWidget = document.getElementById('weather-widget');
+    const weatherCloseButton = weatherWidget ? weatherWidget.querySelector('.close-button') : null;
+    const weatherInfoDiv = weatherWidget ? weatherWidget.querySelector('.weather-info') : null;
 
-    // Обработчики кликов для кнопок переключения секций
-    if (toggleDesignsButton) {
-        toggleDesignsButton.addEventListener('click', showDesigns);
+
+    // Функция для получения погоды (используем placeholder)
+    function getWeatherData(latitude, longitude) {
+        console.log(`Получены координаты: ${latitude}, ${longitude}. Загрузка погоды...`);
+        // Здесь нужно интегрировать ваш реальный API погоды (например, OpenWeatherMap)
+        // Вам понадобится API ключ.
+        // Пример fetch запроса (замените URL и KEY):
+        /*
+        const API_KEY = 'ВАШ_API_КЛЮЧ';
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=ru`;
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Данные погоды:", data);
+                // Отобразить данные в виджете
+                if (weatherInfoDiv) {
+                    weatherInfoDiv.innerHTML = `
+                        <p>Местоположение: <strong>${data.name}</strong></p>
+                        <p>Температура: <strong>${data.main.temp}°C</strong></p>
+                        <p>Описание: <strong>${data.weather[0].description}</strong></p>
+                        <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="${data.weather[0].description}" id="weather-icon">
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error("Ошибка при получении погоды:", error);
+                if (weatherInfoDiv) {
+                     weatherInfoDiv.innerHTML = "<p>Не удалось загрузить данные погоды.</p>";
+                }
+            });
+        */
+
+        // Placeholder: Имитация загрузки
+        if (weatherInfoDiv) {
+             weatherInfoDiv.innerHTML = `<p>Ваши координаты: ${latitude.toFixed(2)}, ${longitude.toFixed(2)}</p><p>Загрузка данных погоды...</p>`;
+
+             // Через пару секунд покажем фейковые данные
+             setTimeout(() => {
+                 if (weatherInfoDiv) {
+                     weatherInfoDiv.innerHTML = `
+                        <p>Местоположение: <strong>Ваш город</strong></p>
+                        <p>Температура: <strong>+15°C</strong></p>
+                        <p>Описание: <strong>Ясно</strong></p>
+                        <img src="http://openweathermap.org/img/wn/01d.png" alt="Ясно" id="weather-icon">
+                     `;
+                 }
+             }, 2000);
+        }
     }
 
-    // Используем новую кнопку в хедере для возврата
-    if (toggleMainHeaderButton) {
-        toggleMainHeaderButton.addEventListener('click', showMainContent);
+
+    // Функция для получения местоположения пользователя
+    function getUserLocation() {
+        if (!navigator.geolocation) {
+            if (weatherInfoDiv) {
+                weatherInfoDiv.innerHTML = "<p>Геолокация не поддерживается вашим браузером.</p>";
+            }
+            console.error("Геолокация не поддерживается");
+            return;
+        }
+
+        if (weatherInfoDiv) {
+             weatherInfoDiv.innerHTML = "<p>Определение местоположения...</p>";
+        }
+
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                getWeatherData(latitude, longitude); // Получаем погоду по координатам
+            },
+            (error) => {
+                let errorMessage = "Не удалось определить местоположение.";
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        errorMessage = "Доступ к местоположению запрещен пользователем.";
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        errorMessage = "Информация о местоположении недоступна.";
+                        break;
+                    case error.TIMEOUT:
+                        errorMessage = "Истекло время ожидания запроса местоположения.";
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        errorMessage = "Произошла неизвестная ошибка геолокации.";
+                        break;
+                }
+                 if (weatherInfoDiv) {
+                     weatherInfoDiv.innerHTML = `<p>${errorMessage}</p>`;
+                 }
+                console.error("Ошибка геолокации:", errorMessage);
+            }
+        );
     }
 
 
-    // Обработчики кликов для кнопок переключения тем
-    if (themeSwitches.length > 0 && samplePage) {
-        themeSwitches.forEach(button => {
+    // Обработчики кликов для кнопок переключения стилей
+    if (baseThemeSwitches.length > 0 && samplePage) {
+        baseThemeSwitches.forEach(button => {
             button.addEventListener('click', () => {
-                const theme = button.getAttribute('data-theme');
-                applyTheme(theme); // Используем функцию applyTheme
+                currentBaseTheme = button.getAttribute('data-base-theme');
+                applyCurrentTheme(); // Применяем текущий стиль и режим
             });
         });
-
-        // Изначально, если секция дизайнов скрыта, убедимся, что пример страницы
-        // имеет только базовые стили и вкладки инициализированы в базовом состоянии.
-         if (designShowcase.classList.contains('hidden')) {
-            samplePage.className = 'sample-page'; // Применяем базовый класс
-            initializeSampleTabs(); // Инициализируем вкладки
-         }
     } else {
-         console.warn("Кнопки переключения тем или пример страницы не найдены.");
+         console.warn("Кнопки выбора базового стиля не найдены.");
+    }
+
+    // Обработчики кликов для кнопок переключения режимов (светлая/темная)
+    if (modeSwitches.length > 0 && samplePage) {
+        modeSwitches.forEach(button => {
+            button.addEventListener('click', () => {
+                currentMode = button.getAttribute('data-mode');
+                applyCurrentTheme(); // Применяем текущий стиль и режим
+            });
+        });
+    } else {
+         console.warn("Кнопки выбора режима (светлая/темная) не найдены.");
+    }
+
+
+    // Обработчик клика для плавающей кнопки погоды
+    if (weatherToggle && weatherWidget) {
+        weatherToggle.addEventListener('click', () => {
+            // Переключаем видимость виджета
+            weatherWidget.classList.toggle('visible');
+            // Если виджет становится видимым, пытаемся получить погоду
+            if (weatherWidget.classList.contains('visible')) {
+                 getUserLocation();
+            }
+        });
+    } else {
+         console.warn("Кнопка или виджет погоды не найдены.");
+    }
+
+     // Обработчик клика для кнопки закрытия виджета погоды
+    if (weatherCloseButton && weatherWidget) {
+         weatherCloseButton.addEventListener('click', () => {
+             weatherWidget.classList.remove('visible');
+         });
     }
 
 
@@ -179,10 +320,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
              designShowcase.style.opacity = 1; // Убедимся, что дизайны видны
              mainContent.style.opacity = 0; // И основной контент скрыт
 
-             // Если дизайны видны при загрузке, активируем первую тему
-             const firstThemeButton = document.querySelector('.theme-switch');
-             if (firstThemeButton) {
-                 applyTheme(firstThemeButton.getAttribute('data-theme'));
+             // Если дизайны видны при загрузке, активируем первую тему и светлый режим
+             const firstBaseThemeButton = document.querySelector('.base-theme-switch');
+             if (firstBaseThemeButton) {
+                 currentBaseTheme = firstBaseThemeButton.getAttribute('data-base-theme');
+                 currentMode = 'light'; // По умолчанию светлый режим
+                 applyCurrentTheme();
              } else {
                  // Если нет кнопок тем, просто инициализируем вкладки
                  initializeSampleTabs();
@@ -194,11 +337,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
              toggleMainHeaderButton.classList.add('hidden');
              mainContent.style.opacity = 1;
              designShowcase.style.opacity = 0;
-             initializeSampleTabs(); // Инициализируем вкладки
+             // Инициализируем вкладки в базовом состоянии
+             initializeSampleTabs();
         }
     } else {
         console.error("Не найдены все необходимые элементы DOM для переключения секций!");
     }
 
+     // При загрузке страницы убедимся, что виджет погоды скрыт
+    if (weatherWidget) {
+         weatherWidget.classList.remove('visible');
+    }
 
 });
