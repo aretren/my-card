@@ -16,6 +16,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const themeSwitches = document.querySelectorAll('.theme-switch');
     const samplePage = document.getElementById('sample-page');
 
+    // Функция для применения темы
+    function applyTheme(themeName) {
+        // Удаляем активный класс у всех кнопок
+        themeSwitches.forEach(btn => btn.classList.remove('active'));
+
+        // Находим и добавляем активный класс кнопке с соответствующим data-theme
+        const activeButton = document.querySelector(`.theme-switch[data-theme="${themeName}"]`);
+        if (activeButton) {
+            activeButton.classList.add('active');
+        }
+
+        // Удаляем все классы тем у примера страницы, оставляя только базовый 'sample-page'
+        samplePage.className = 'sample-page';
+
+        // Добавляем класс выбранной темы, если она не "default" (который соответствует базовому стилю)
+        if (themeName !== 'default') {
+            samplePage.classList.add('theme-' + themeName);
+        }
+    }
+
+
     // Функция для показа секции дизайнов
     function showDesigns() {
         // Скрываем кнопку "Показать Дизайны", показываем кнопку "Вернуться"
@@ -24,7 +45,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
             toggleMainHeaderButton.classList.remove('hidden');
         }
 
-        // Используем opacity и затем display none после завершения перехода
+        // Перед показом секции, применяем первую тему по умолчанию (например, Aero)
+        const firstThemeButton = document.querySelector('.theme-switch');
+        if (firstThemeButton) {
+            const defaultDesignTheme = firstThemeButton.getAttribute('data-theme');
+             // Применяем тему и делаем кнопку активной
+            applyTheme(defaultDesignTheme);
+        } else {
+            // Если кнопок тем нет, просто убедимся, что базовый стиль применен
+             applyTheme('default');
+        }
+
+
+        // Используем opacity и затем display none после перехода
         mainContent.style.opacity = 0;
         setTimeout(() => {
              mainContent.classList.add('hidden'); // Скрываем основной контент
@@ -43,7 +76,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             toggleDesignsButton.classList.remove('hidden');
          }
 
-        // Используем opacity и затем display none после завершения перехода
+        // Используем opacity и затем display none после перехода
         designShowcase.style.opacity = 0;
         setTimeout(() => {
             designShowcase.classList.add('hidden'); // Скрываем секцию дизайнов
@@ -52,7 +85,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             mainContent.style.opacity = 1;
             window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокручиваем вверх
         }, 500); // Время должно совпадать с transition opacity в CSS
-    }
+    }, 500);
 
 
     // Обработчики кликов для кнопок переключения секций
@@ -67,60 +100,42 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
     // Обработчики кликов для кнопок переключения тем
-    if (themeSwitches && samplePage) {
+    if (themeSwitches.length > 0 && samplePage) {
         themeSwitches.forEach(button => {
             button.addEventListener('click', () => {
-                // Удаляем активный класс у всех кнопок
-                themeSwitches.forEach(btn => btn.classList.remove('active'));
-
-                // Добавляем активный класс кликнутой кнопке
-                button.classList.add('active');
-
-                // Получаем название темы из data-атрибута
                 const theme = button.getAttribute('data-theme');
-
-                // Удаляем все классы тем у примера страницы
-                // Сохраняем базовый класс 'sample-page'
-                samplePage.className = 'sample-page';
-
-                // Добавляем класс выбранной темы, если это не "default"
-                if (theme !== 'default') {
-                    samplePage.classList.add('theme-' + theme);
-                }
+                applyTheme(theme); // Используем новую функцию applyTheme
             });
         });
+
+        // При загрузке страницы, если секция дизайнов скрыта,
+        // убедимся, что пример страницы использует базовые стили (эквивалент "Стандартный")
+         if (designShowcase.classList.contains('hidden')) {
+            samplePage.className = 'sample-page'; // Применяем базовый класс
+         }
     }
 
-    // Изначально устанавливаем opacity для основной секции
-    // и скрываем кнопку "Вернуться" в хедере
-    if (mainContent && !mainContent.classList.contains('hidden')) {
-         mainContent.style.opacity = 1;
-         if (toggleMainHeaderButton) {
-             toggleMainHeaderButton.classList.add('hidden'); // Убедимся, что скрыта
-         }
-         if (toggleDesignsButton) {
-              toggleDesignsButton.classList.remove('hidden'); // Убедимся, что показана
-         }
+    // Управление видимостью кнопок в хедере при загрузке
+    if (mainContent && designShowcase && toggleDesignsButton && toggleMainHeaderButton) {
+        if (!mainContent.classList.contains('hidden')) {
+             // Виден основной контент
+             toggleDesignsButton.classList.remove('hidden');
+             toggleMainHeaderButton.classList.add('hidden');
+             mainContent.style.opacity = 1; // Убедимся, что основной контент видим
+             designShowcase.style.opacity = 0; // И дизайны скрыты
+        } else if (!designShowcase.classList.contains('hidden')) {
+             // Видны дизайны
+             toggleDesignsButton.classList.add('hidden');
+             toggleMainHeaderButton.classList.remove('hidden');
+             designShowcase.style.opacity = 1; // Убедимся, что дизайны видны
+             mainContent.style.opacity = 0; // И основной контент скрыт
+        } else {
+            // Обе секции скрыты (неожиданно, но на всякий случай)
+             toggleDesignsButton.classList.remove('hidden');
+             toggleMainHeaderButton.classList.add('hidden');
+             mainContent.style.opacity = 1;
+             designShowcase.style.opacity = 0;
+        }
     }
-     // Изначально устанавливаем opacity для секции дизайнов (если она случайно видима)
-     // и показываем кнопку "Вернуться"
-     if (designShowcase && !designShowcase.classList.contains('hidden')) {
-         designShowcase.style.opacity = 1;
-          if (toggleMainHeaderButton) {
-             toggleMainHeaderButton.classList.remove('hidden'); // Убедимся, что показана
-         }
-         if (toggleDesignsButton) {
-              toggleDesignsButton.classList.add('hidden'); // Убедимся, что скрыта
-         }
 
-     } else if (designShowcase) {
-         // Если секция дизайнов скрыта, убедимся, что opacity 0
-         designShowcase.style.opacity = 0;
-          if (toggleMainHeaderButton) {
-             toggleMainHeaderButton.classList.add('hidden'); // Убедимся, что скрыта
-         }
-         if (toggleDesignsButton) {
-              toggleDesignsButton.classList.remove('hidden'); // Убедимся, что показана
-         }
-     }
 });
