@@ -367,99 +367,254 @@ footer {
     transition: all 0.8s ease;
 }
 
+/* --- Стили для новых элементов внутри примера страницы --- */
 
-/* Стили для темы "Aero" */
+/* Стили для вкладок */
+.sample-tabs {
+    margin-top: 2rem;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.sample-tabs .tab-buttons {
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+
+.sample-tabs .tab-button {
+    flex-grow: 1; /* Кнопки занимают всю доступную ширину */
+    padding: 0.8rem 1rem;
+    border: none;
+    background-color: #f8f8f8;
+    color: #555;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.sample-tabs .tab-button:hover {
+    background-color: #eee;
+}
+
+.sample-tabs .tab-button.active {
+    background-color: #fff;
+    color: #333;
+    border-bottom: 2px solid #007bff; /* Активная вкладка подчеркнута */
+}
+
+.sample-tabs .tab-content {
+    padding: 1rem;
+}
+
+.sample-tabs .tab-pane {
+    display: none; /* По умолчанию все вкладки скрыты */
+}
+
+.sample-tabs .tab-pane.active {
+    display: block; /* Активная вкладка показывается */
+}
+
+
+/* Стили для переключателя (тумблера) */
+.sample-toggle {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.sample-toggle input[type="checkbox"] {
+    display: none; /* Скрываем стандартный чекбокс */
+}
+
+.sample-toggle label {
+    position: relative;
+    display: inline-block;
+    width: 40px; /* Ширина тумблера */
+    height: 24px; /* Высота тумблера */
+    background-color: #ccc; /* Цвет фона выключенного тумблера */
+    border-radius: 24px; /* Круглые края */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sample-toggle label::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px; /* Ширина "ползунка" */
+    height: 20px; /* Высота "ползунка" */
+    border-radius: 50%; /* Круглый ползунок */
+    background-color: #fff; /* Цвет ползунка */
+    transition: transform 0.3s ease;
+}
+
+/* Состояние "включено" */
+.sample-toggle input[type="checkbox"]:checked + label {
+    background-color: #007bff; /* Цвет фона включенного тумблера */
+}
+
+.sample-toggle input[type="checkbox"]:checked + label::before {
+    transform: translateX(16px); /* Сдвигаем ползунок вправо */
+}
+
+
+/* --- Стили для темы "Aero" (Переработка с большим количеством пастельных цветов) --- */
 .sample-page.theme-aero {
-    background-color: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
-    color: #333; /* Стандартный темный текст */
-    border: none; /* Убираем рамку */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Мягкая тень */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Шрифт в стиле Aero */
-    backdrop-filter: blur(10px); /* Эффект "запотевшего стекла" */
-    -webkit-backdrop-filter: blur(10px); /* Префикс для Safari */
+    background: linear-gradient(135deg, rgba(224, 242, 241, 0.9), rgba(128, 222, 234, 0.7)); /* Светлый пастельный градиент */
+    color: #333;
+    border: none;
+    box-shadow: 0 15px 30px rgba(0, 188, 212, 0.2); /* Более выраженная, но мягкая тень */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    backdrop-filter: blur(12px); /* Чуть сильнее размытие */
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .sample-page.theme-aero .sample-header {
-    border-bottom: 1px solid rgba(200, 200, 200, 0.5); /* Полупрозрачная серая граница */
-    color: #555; /* Серый заголовок */
-    background-color: rgba(240, 240, 240, 0.7); /* Легкий полупрозрачный серый фон */
-    margin-bottom: 1rem; /* Уменьшаем нижний отступ */
-    border-radius: 5px 5px 0 0; /* Скругленные верхние углы */
+    border-bottom: 1px solid rgba(178, 235, 242, 0.5); /* Полупрозрачная пастельная граница */
+    color: #00796b; /* Темно-бирюзовый заголовок */
+    background-color: rgba(178, 235, 242, 0.3); /* Полупрозрачный фон */
+    margin-bottom: 1rem;
+    border-radius: 5px 5px 0 0;
 }
 
 .sample-page.theme-aero .sample-header h3 {
-     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* Легкая тень текста */
+     text-shadow: 1px 1px 2px rgba(0, 121, 107, 0.1); /* Тень в тон заголовка */
+}
+.sample-page.theme-aero .sample-header p {
+    color: #4db6ac; /* Пастельный цвет подзаголовка */
 }
 
+
 .sample-page.theme-aero .sample-content {
-    background-color: rgba(255, 255, 255, 0.7); /* Чуть более прозрачный белый фон контента */
-    padding: 1.5rem; /* Увеличиваем padding */
+    background-color: rgba(255, 255, 255, 0.7); /* Полупрозрачный белый фон контента */
+    padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Легкая тень контента */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Мягкая тень контента */
+}
+
+.sample-page.theme-aero .sample-content h4 {
+     color: #00838f; /* Темно-голубой/бирюзовый заголовок контента */
 }
 
 .sample-page.theme-aero .sample-content ul {
-     list-style: circle; /* Маркеры - круги */
-     color: #6699cc; /* Пастельный синий цвет для маркеров */
+     list-style: circle;
+     color: #4dd0e1; /* Пастельный бирюзовый для маркеров */
 }
 .sample-page.theme-aero .sample-content p {
-     color: #444; /* Чуть темнее текст параграфа */
+     color: #555;
 }
 
 
 .sample-page.theme-aero .sample-footer {
-     border-top: 1px solid rgba(200, 200, 200, 0.5); /* Полупрозрачная серая граница */
-     color: #555; /* Серый футер */
-     background-color: rgba(240, 240, 240, 0.7); /* Легкий полупрозрачный серый фон */
-     margin-top: 1rem; /* Уменьшаем верхний отступ */
-     border-radius: 0 0 5px 5px; /* Скругленные нижние углы */
+     border-top: 1px solid rgba(178, 235, 242, 0.5); /* Полупрозрачная пастельная граница */
+     color: #00796b; /* Темно-бирюзовый футер */
+     background-color: rgba(178, 235, 242, 0.3); /* Полупрозрачный фон */
+     margin-top: 1rem;
+     border-radius: 0 0 5px 5px;
 }
 
-/* Стили для темы "Gaming" */
+/* Стили Aero для новых элементов */
+.sample-page.theme-aero .sample-tabs .tab-button {
+    background-color: rgba(224, 242, 241, 0.5); /* Полупрозрачный фон кнопок */
+    color: #00838f; /* Цвет текста кнопок */
+    border-bottom: 1px solid rgba(178, 235, 242, 0.5);
+}
+.sample-page.theme-aero .sample-tabs .tab-button:hover {
+     background-color: rgba(178, 235, 242, 0.7);
+}
+.sample-page.theme-aero .sample-tabs .tab-button.active {
+    background-color: rgba(255, 255, 255, 0.8); /* Активная вкладка более светлая */
+    color: #004d40; /* Темный цвет текста активной вкладки */
+    border-bottom: 2px solid #00bcd4; /* Ярче подчеркивание */
+}
+
+.sample-page.theme-aero .sample-toggle label {
+    background-color: rgba(178, 235, 242, 0.5); /* Полупрозрачный фон тумблера */
+}
+.sample-page.theme-aero .sample-toggle input[type="checkbox"]:checked + label {
+    background-color: #00bcd4; /* Бирюзовый при включении */
+}
+.sample-page.theme-aero .sample-toggle input[type="checkbox"]:checked + label::before {
+     background-color: #e0f7fa; /* Светлый ползунок */
+}
+.sample-page.theme-aero .sample-toggle span {
+     color: #00796b; /* Цвет текста тумблера */
+}
+
+
+/* --- Стили для темы "Gaming" (Без голубых оттенков) --- */
 .sample-page.theme-gaming {
-    background-color: #1a1a1a; /* Темный фон */
-    color: #e0e0e0; /* Светло-серый текст по умолчанию */
+    background: linear-gradient(135deg, #111, #2a0000); /* Темный фон с оттенком красного */
+    color: #ff9900; /* Оранжевый текст по умолчанию */
     border: 2px solid #e51a4b; /* ROG красный рамка */
-    box-shadow: 0 0 25px rgba(229, 26, 75, 0.8); /* Сильное красное свечение */
+    box-shadow: 0 0 30px rgba(229, 26, 75, 0.8), inset 0 0 15px rgba(229, 26, 75, 0.4); /* Сильное красное свечение снаружи и внутри */
     font-family: 'Orbitron', sans-serif; /* Футуристический шрифт */
     position: relative;
-    overflow: hidden; /* Скрываем выходящие за границы элементы */
-    border-radius: 8px; /* Скругленные углы как у стандартного */
+    overflow: hidden;
+    border-radius: 8px;
 }
 
-/* Удаляем или меняем эффект сканирующей линии, если он не подходит */
-/* .sample-page.theme-gaming::before { ... }
-@keyframes scanline { ... } */
+/* Добавляем угловые декорации */
+.sample-page.theme-gaming::before,
+.sample-page.theme-gaming::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 3px solid #ff00ff; /* Фиолетовый акцент */
+    z-index: 1;
+}
+.sample-page.theme-gaming::before {
+    top: -3px;
+    left: -3px;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+}
+.sample-page.theme-gaming::after {
+    bottom: -3px;
+    right: -3px;
+    border-top-color: transparent;
+    border-left-color: transparent;
+}
 
 
 .sample-page.theme-gaming .sample-header {
-    border-bottom: 1px solid #e51a4b; /* ROG красный граница */
+    border-bottom: 1px dashed #ff00ff; /* Фиолетовая пунктирная граница */
     color: #fff; /* Белый заголовок */
-    background-color: rgba(229, 26, 75, 0.15); /* Полупрозрачный ROG красный фон */
-    text-align: left; /* Выравнивание заголовка влево */
+    background-color: rgba(229, 26, 75, 0.1); /* Полупрозрачный ROG красный фон */
+    text-align: left;
+    padding-bottom: 0.8rem;
 }
 
 .sample-page.theme-gaming .sample-header h3 {
-     text-shadow: 0 0 8px #e51a4b; /* Красное свечение текста */
-     font-size: 2rem; /* Чуть больше заголовок */
+     text-shadow: 0 0 10px #ff00ff; /* Фиолетовое свечение текста */
+     font-size: 2.2rem; /* Чуть больше заголовок */
 }
 .sample-page.theme-gaming .sample-header p {
-    color: #bbb; /* Более светлый подзаголовок */
+    color: #ff9900; /* Оранжевый подзаголовок */
 }
 
 
 .sample-page.theme-gaming .sample-content {
     background-color: #2a2a2a; /* Чуть светлее темный фон контента */
-    padding: 2rem; /* Увеличиваем padding */
+    padding: 2rem;
     border-radius: 5px;
-    color: #00ffff; /* Голубой/Циановый текст контента */
-    border: 1px solid rgba(0, 255, 255, 0.3); /* Полупрозрачная циановая рамка */
+    color: #e0e0e0; /* Светло-серый текст контента */
+    border: 1px solid rgba(255, 153, 0, 0.3); /* Полупрозрачная оранжевая рамка */
+    position: relative;
+    z-index: 2; /* Поверх угловых декораций */
 }
 
 .sample-page.theme-gaming .sample-content h4 {
-    color: #ff9900; /* Оранжевый заголовок контента */
-    text-shadow: 0 0 5px #ff9900; /* Оранжевое свечение */
-    border-bottom: 1px dashed #ff9900; /* Пунктирная оранжевая линия */
+    color: #ff00ff; /* Фиолетовый заголовок контента */
+    text-shadow: 0 0 5px #ff00ff; /* Фиолетовое свечение */
+    border-bottom: 1px dashed #ff00ff; /* Пунктирная фиолетовая линия */
     display: inline-block;
     padding-bottom: 0.3rem;
 }
@@ -476,14 +631,14 @@ footer {
 
 .sample-page.theme-gaming .sample-content li {
     margin-bottom: 0.8rem;
-    color: #00ffff; /* Голубой/Циановый текст списка */
+    color: #ff9900; /* Оранжевый текст списка */
     position: relative;
-    padding-left: 1.5rem; /* Отступ для маркера */
+    padding-left: 1.5rem;
 }
 
 .sample-page.theme-gaming .sample-content li::before {
-    content: '\2022'; /* Символ точки (bullet) */
-    color: #ff00ff; /* Фиолетовый цвет маркера */
+    content: '\203A'; /* Угловая скобка */
+    color: #e51a4b; /* ROG красный цвет маркера */
     position: absolute;
     left: 0;
     top: 0;
@@ -492,115 +647,262 @@ footer {
 
 
 .sample-page.theme-gaming .sample-footer {
-     border-top: 1px solid #e51a4b; /* ROG красный граница */
-     color: #ff9900; /* Оранжевый футер */
-     background-color: rgba(229, 26, 75, 0.15); /* Полупрозрачный ROG красный фон */
-     text-align: right; /* Выравнивание футера вправо */
+     border-top: 1px dashed #ff00ff; /* Фиолетовая пунктирная граница */
+     color: #ff00ff; /* Фиолетовый футер */
+     background-color: rgba(229, 26, 75, 0.1); /* Полупрозрачный ROG красный фон */
+     text-align: right;
      font-size: 0.9rem;
+     padding-top: 0.8rem;
+}
+
+/* Стили Gaming для новых элементов */
+.sample-page.theme-gaming .sample-tabs .tab-button {
+    background-color: #2a2a2a;
+    color: #ff9900;
+    border: none;
+    border-bottom: 1px solid #e51a4b;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+}
+.sample-page.theme-gaming .sample-tabs .tab-button:hover {
+     background-color: #3a0000;
+     color: #fff;
+}
+.sample-page.theme-gaming .sample-tabs .tab-button.active {
+    background-color: #1a1a1a;
+    color: #fff;
+    border-bottom: 2px solid #ff00ff; /* Фиолетовое подчеркивание */
+    text-shadow: 0 0 5px #ff00ff;
+}
+
+.sample-page.theme-gaming .sample-tabs .tab-content {
+    background-color: #1a1a1a; /* Фон контента вкладок */
+    border-radius: 0 0 5px 5px;
+    padding: 1.5rem;
+}
+.sample-page.theme-gaming .sample-tabs .tab-pane p,
+.sample-page.theme-gaming .sample-tabs .tab-pane li {
+     color: #00ffff; /* Циановый текст во вкладках для контраста */
+}
+.sample-page.theme-gaming .sample-tabs .tab-pane li::before {
+    color: #ff00ff; /* Фиолетовый маркер в списке вкладок */
 }
 
 
-/* Стили для темы "Arthouse" */
-.sample-page.theme-arthouse {
-    background: linear-gradient(180deg, #fcf5eb, #ebdec8); /* Мягкий градиентный фон */
-    color: #3d2b1f; /* Темно-коричневый текст */
-    border: none; /* Убираем рамку */
-    box-shadow: none; /* Убираем тень */
-    font-family: 'Playfair Display', serif; /* Художественный шрифт с засечками */
+.sample-page.theme-gaming .sample-toggle {
+     color: #ff00ff; /* Фиолетовый текст тумблера */
+}
+.sample-page.theme-gaming .sample-toggle label {
+    background-color: #e51a4b; /* Красный фон выключенного тумблера */
+    box-shadow: 0 0 5px rgba(229, 26, 75, 0.5);
+}
+.sample-page.theme-gaming .sample-toggle label::before {
+     background-color: #111; /* Темный ползунок */
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.sample-page.theme-gaming input[type="checkbox"]:checked + label {
+    background-color: #ff9900; /* Оранжевый фон включенного тумблера */
+    box-shadow: 0 0 5px rgba(255, 153, 0, 0.5);
+}
+.sample-page.theme-gaming input[type="checkbox"]:checked + label::before {
+    transform: translateX(16px);
+     background-color: #fff; /* Белый ползунок */
+}
+.sample-page.theme-gaming .sample-toggle span {
+     color: #ff9900; /* Оранжевый цвет текста */
+}
+
+
+/* --- Стили для темы "Modern" (Переработка из Arthouse) --- */
+.sample-page.theme-modern {
+    background-color: #ffffff; /* Чисто белый фон */
+    color: #333;
+    border: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* Легкая, широкая тень */
+    font-family: 'Montserrat', sans-serif; /* Современный шрифт */
     position: relative;
-    overflow: visible; /* Разрешаем выход элементов за границы */
-    transform: rotate(-1deg); /* Небольшой наклон */
-    margin: 3rem auto; /* Увеличиваем отступы для эффекта */
+    overflow: hidden;
+    border-radius: 5px; /* Менее скругленные углы */
+    padding: 3rem; /* Больше внутреннего отступа */
 }
 
-/* Добавляем "рваный" край или фон */
-.sample-page.theme-arthouse::before {
+/* Добавляем минималистичные декоративные линии */
+.sample-page.theme-modern::before,
+.sample-page.theme-modern::after {
     content: '';
     position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    border: 5px dashed #a0522d; /* "Рисованная" рамка */
-    z-index: -1; /* Под контентом */
-    border-radius: 10px;
-    transform: rotate(1deg); /* Наклон в другую сторону */
+    background-color: #007bff; /* Синий акцент */
+    z-index: 0;
+}
+.sample-page.theme-modern::before {
+    top: 0;
+    left: 0;
+    width: 5px; /* Вертикальная линия слева */
+    height: 100%;
+}
+.sample-page.theme-modern::after {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 5px; /* Горизонтальная линия снизу */
 }
 
 
-.sample-page.theme-arthouse .sample-header {
-    border-bottom: none; /* Убираем нижнюю границу */
-    padding-bottom: 0.5rem;
-    color: #5a3a29; /* Более светлый заголовок */
-    text-align: left; /* Выравнивание заголовка влево */
-    font-style: italic; /* Курсив */
-    margin-bottom: 0;
+.sample-page.theme-modern .sample-header {
+    border-bottom: 1px solid #eee;
+    padding: 0 0 1rem 0; /* Отступ только снизу */
+    margin-bottom: 2rem; /* Отступ после хедера */
+    text-align: left; /* Выравнивание влево */
+    color: #222;
 }
 
-.sample-page.theme-arthouse .sample-header h3 {
-    font-size: 2rem;
-    margin-bottom: 0.2rem;
+.sample-page.theme-modern .sample-header h3 {
+     font-size: 2.2rem;
+     margin-bottom: 0.5rem;
+     font-weight: 700; /* Жирный заголовок */
+}
+.sample-page.theme-modern .sample-header p {
+     font-size: 1rem;
+     color: #555;
 }
 
 
-.sample-page.theme-arthouse .sample-content {
-    background-color: rgba(255, 255, 255, 0.7); /* Полупрозрачный белый фон контента */
-    padding: 1.5rem; /* Увеличиваем padding */
-    margin-bottom: 1.5rem;
-    border-left: 3px solid #8b4513; /* Вертикальная линия слева */
+.sample-page.theme-modern .sample-content {
+    background-color: transparent; /* Прозрачный фон контента */
+    padding: 0;
+    margin-bottom: 2rem; /* Отступ после контента */
 }
 
-.sample-page.theme-arthouse .sample-content h4 {
+.sample-page.theme-modern .sample-content h4 {
     margin-top: 0;
-    color: #a0522d; /* Цвет заголовка контента */
-    font-size: 1.6rem;
-    margin-bottom: 0.8rem;
-    border-bottom: 1px dotted #a0522d; /* Пунктирная линия под заголовком */
-    display: inline-block; /* Чтобы линия была только под текстом */
-    padding-bottom: 0.3rem;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #007bff; /* Синий акцент */
+    border-bottom: none; /* Убираем линию */
+    display: block; /* Снова блочный элемент */
+    padding-bottom: 0;
+    font-weight: 700;
 }
 
-.sample-page.theme-arthouse .sample-content p {
-     text-indent: 1.5em; /* Красная строка */
+.sample-page.theme-modern .sample-content p {
      margin-bottom: 1.5rem;
+     line-height: 1.8; /* Увеличиваем межстрочный интервал */
+     color: #444;
 }
 
-.sample-page.theme-arthouse .sample-content ul {
-    list-style: '» '; /* Необычный маркер */
-    padding-left: 30px;
-    color: #8b4513; /* Коричневый цвет маркеров */
+.sample-page.theme-modern .sample-content ul {
+    list-style: none;
+    padding-left: 0;
 }
 
-.sample-page.theme-arthouse .sample-content li {
+.sample-page.theme-modern .sample-content li {
     margin-bottom: 0.8rem;
+    color: #333;
+    position: relative;
+    padding-left: 1.5rem;
+}
+.sample-page.theme-modern .sample-content li::before {
+    content: '—'; /* Тире в качестве маркера */
+    color: #007bff; /* Синий маркер */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
 }
 
 
-.sample-page.theme-arthouse .sample-footer {
-    border-top: none; /* Убираем верхнюю границу */
-    padding-top: 0.5rem;
-    color: #a0522d; /* Светло-коричневый футер */
-    font-style: italic; /* Курсив */
-    text-align: right; /* Выравнивание футера вправо */
+.sample-page.theme-modern .sample-footer {
+    border-top: 1px solid #eee;
+    padding: 1rem 0 0 0; /* Отступ только сверху */
+    text-align: right; /* Выравнивание вправо */
     font-size: 0.8rem;
+    color: #555;
+    margin-top: 2rem; /* Отступ перед футером */
+}
+
+/* Стили Modern для новых элементов */
+.sample-page.theme-modern .sample-tabs {
+    margin-top: 2rem;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.sample-page.theme-modern .sample-tabs .tab-buttons {
+    border-bottom: 1px solid #eee;
+}
+
+.sample-page.theme-modern .tab-button {
+    background-color: #f8f8f8;
+    color: #555;
+    border-bottom: none; /* Убираем стандартную границу */
+    position: relative;
+    overflow: hidden;
+}
+
+.sample-page.theme-modern .tab-button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #007bff; /* Синий акцент */
+    transform: translateX(-100%); /* Скрыта по умолчанию */
+    transition: transform 0.3s ease;
+}
+
+.sample-page.theme-modern .tab-button.active {
+    background-color: #fff;
+    color: #333;
+    border-bottom: none; /* Убираем стандартную границу */
+}
+.sample-page.theme-modern .tab-button.active::before {
+     transform: translateX(0); /* Показываем подчеркивание */
+}
+
+
+.sample-page.theme-modern .sample-toggle {
+     color: #444;
+}
+.sample-page.theme-modern .sample-toggle label {
+    background-color: #ccc;
+    border-radius: 12px; /* Меньший радиус */
+    height: 24px;
+    width: 44px; /* Чуть шире */
+}
+.sample-page.theme-modern .sample-toggle label::before {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px; /* Квадратный ползунок */
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.sample-page.theme-modern input[type="checkbox"]:checked + label {
+    background-color: #007bff; /* Синий при включении */
+}
+.sample-page.theme-modern input[type="checkbox"]:checked + label::before {
+    transform: translateX(20px); /* Сдвигаем ползунок */
 }
 
 
 /* Медиа-запросы для адаптивности (пример) */
-@media (max-width: 768px) { /* Изменяем точку останова, т.к. увеличили max-width */
+@media (max-width: 768px) {
     section {
         padding: 1.5rem 0.8rem;
         margin: 1.5rem auto;
     }
 
     .projects {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Чуть меньше на средних экранах */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 1.5rem;
     }
 
     .sample-page {
-        padding: 1.5rem; /* Уменьшаем padding примера страницы */
-        max-width: 95%; /* Уменьшаем максимальную ширину на мобильных */
+        padding: 1.5rem;
+        max-width: 95%;
     }
 
     .sample-page .sample-header h3 {
@@ -625,10 +927,22 @@ footer {
          font-size: 0.9rem;
     }
 
-    /* Если эффект сканирующей линии Gaming включен */
-    /* .sample-page.theme-gaming::before {
-        height: 2px;
-    } */
+    .sample-page.theme-gaming::before,
+    .sample-page.theme-gaming::after {
+        width: 30px;
+        height: 30px;
+        border-width: 2px;
+    }
+
+    .sample-page.theme-modern {
+        padding: 2rem; /* Уменьшаем padding на мобильных */
+    }
+    .sample-page.theme-modern::before {
+        width: 3px;
+    }
+    .sample-page.theme-modern::after {
+        height: 3px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -663,6 +977,11 @@ footer {
      }
 
      .header-buttons .toggle-button {
-        margin: 0.3rem; /* Уменьшаем отступ между кнопками на маленьких экранах */
+        margin: 0.3rem;
+     }
+
+     .sample-tabs .tab-button {
+         padding: 0.6rem 0.5rem; /* Меньше padding на маленьких экранах */
+         font-size: 0.8rem;
      }
 }
