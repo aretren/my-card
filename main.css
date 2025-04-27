@@ -149,3 +149,227 @@ footer {
         grid-template-columns: 1fr; /* В одну колонку на маленьких экранах */
     }
 }
+.toggle-button {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Стили для секции дизайнов */
+#design-showcase {
+    padding-top: 0; /* Убираем верхний padding, т.к. у нас есть кнопка toggle-main */
+    margin-top: 0; /* Убираем верхний margin */
+}
+
+#design-showcase h2 {
+     margin-top: 0; /* Убираем верхний margin у заголовка секции */
+     padding-top: 2rem; /* Добавляем padding сверху для отступа */
+}
+
+
+/* Класс для скрытия элементов */
+.hidden {
+    display: none;
+}
+
+/* Стили для контейнера переключателей тем */
+.theme-controls {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.theme-switch {
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #007bff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-switch:hover {
+    background-color: #e9ecef;
+}
+
+.theme-switch.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Базовые стили для примера страницы */
+.sample-page {
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 0 auto; /* Центрируем пример страницы */
+    max-width: 600px; /* Ограничиваем ширину */
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s ease; /* Плавный переход между стилями */
+}
+
+.sample-page .sample-header {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.sample-page .sample-header h3 {
+    margin: 0 0 0.5rem 0;
+}
+
+.sample-page .sample-content {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.sample-page .sample-content ul {
+    padding-left: 20px;
+}
+
+.sample-page .sample-footer {
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+
+/* Стили для темы "Aero" */
+.sample-page.theme-aero {
+    background: linear-gradient(to bottom right, #e0f7fa, #b2ebf2); /* Градиентный фон */
+    color: #004d40; /* Темно-бирюзовый текст */
+    border-color: #4dd0e1; /* Бирюзовая рамка */
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3); /* Неоновая тень */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Шрифт в стиле Aero */
+}
+
+.sample-page.theme-aero .sample-header {
+    border-bottom-color: #80deea;
+    color: #00776c; /* Более темный заголовок */
+}
+
+.sample-page.theme-aero .sample-footer {
+     border-top-color: #80deea;
+     color: #006064; /* Более темный футер */
+}
+
+/* Стили для темы "Gaming" */
+.sample-page.theme-gaming {
+    background-color: #1a1a1a; /* Темный фон */
+    color: #ff4136; /* Ярко-красный текст */
+    border-color: #ff4136; /* Красная рамка */
+    box-shadow: 0 5px 15px rgba(255, 65, 54, 0.4); /* Красная неоновая тень */
+    font-family: 'Consolas', 'Courier New', monospace; /* Шрифт в стиле терминала/игры */
+}
+
+.sample-page.theme-gaming .sample-header {
+    border-bottom-color: #ff4136;
+    color: #fff; /* Белый заголовок */
+}
+
+.sample-page.theme-gaming .sample-content {
+    background-color: #222; /* Чуть светлее фон контента */
+    padding: 1.5rem; /* Отступ побольше */
+    border-radius: 5px;
+}
+
+.sample-page.theme-gaming .sample-content ul li {
+    margin-bottom: 0.5rem;
+    list-style: '>'; /* Свой маркер списка */
+    color: #ff851b; /* Оранжевый цвет для маркеров */
+}
+
+.sample-page.theme-gaming .sample-footer {
+     border-top-color: #ff4136;
+     color: #ff851b; /* Оранжевый футер */
+}
+
+/* Стили для темы "Arthouse" */
+.sample-page.theme-arthouse {
+    background-color: #fcf5eb; /* Светлый кремовый фон */
+    color: #3d2b1f; /* Темно-коричневый текст */
+    border: 2px dashed #8b4513; /* Пунктирная коричневая рамка */
+    box-shadow: 5px 5px 0px #8b4513; /* Смещенная тень */
+    font-family: 'Georgia', serif; /* Шрифты с засечками */
+    position: relative; /* Для позиционирования псевдоэлемента */
+    overflow: hidden; /* Скрываем выходящие за рамки элементы */
+}
+
+/* Добавляем псевдоэлемент для "грязной" текстуры или угла */
+.sample-page.theme-arthouse::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100px;
+    height: 100px;
+    background: rgba(139, 69, 19, 0.2); /* Полупрозрачный коричневый */
+    transform: rotate(45deg);
+    z-index: 0;
+}
+
+
+.sample-page.theme-arthouse .sample-header {
+    border-bottom: none; /* Убираем нижнюю границу */
+    padding-bottom: 0.5rem;
+    color: #5a3a29; /* Более светлый заголовок */
+}
+
+.sample-page.theme-arthouse .sample-content {
+    background-color: transparent; /* Прозрачный фон контента */
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.sample-page.theme-arthouse .sample-content p {
+     text-indent: 1.5em; /* Красная строка */
+}
+
+.sample-page.theme-arthouse .sample-content ul {
+    list-style: square; /* Квадратные маркеры */
+    color: #8b4513; /* Коричневые маркеры */
+}
+
+.sample-page.theme-arthouse .sample-footer {
+    border-top: none; /* Убираем верхнюю границу */
+    padding-top: 0.5rem;
+    color: #a0522d; /* Светло-коричневый футер */
+    font-style: italic; /* Курсив */
+}
+
+
+/* Медиа-запросы для адаптивности (пример) */
+@media (max-width: 600px) {
+    /* ... (остальные медиа-запросы) ... */
+
+    .theme-controls {
+        margin-bottom: 1rem; /* Уменьшаем отступ */
+    }
+
+    .theme-switch {
+        margin: 0.3rem; /* Уменьшаем отступы между кнопками */
+        font-size: 0.9rem;
+    }
+
+    .sample-page {
+        padding: 1rem; /* Уменьшаем отступы примера страницы */
+    }
+}
