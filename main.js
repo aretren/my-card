@@ -18,17 +18,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Функция для показа секции дизайнов
     function showDesigns() {
-        mainContent.classList.add('hidden'); // Скрываем основной контент
-        designShowcase.classList.remove('hidden'); // Показываем секцию дизайнов
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокручиваем вверх
+        // Используем opacity и затем display none после завершения перехода
+        mainContent.style.opacity = 0;
+        setTimeout(() => {
+             mainContent.classList.add('hidden'); // Скрываем основной контент
+             designShowcase.classList.remove('hidden'); // Показываем секцию дизайнов
+             designShowcase.style.opacity = 1; // Показываем с плавным переходом
+             window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокручиваем вверх
+        }, 500); // Время должно совпадать с transition opacity в CSS
     }
 
     // Функция для показа основного контента
     function showMainContent() {
-        designShowcase.classList.add('hidden'); // Скрываем секцию дизайнов
-        mainContent.classList.remove('hidden'); // Показываем основной контент
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокручиваем вверх
+        // Используем opacity и затем display none после завершения перехода
+        designShowcase.style.opacity = 0;
+        setTimeout(() => {
+            designShowcase.classList.add('hidden'); // Скрываем секцию дизайнов
+            mainContent.classList.remove('hidden'); // Показываем основной контент
+            mainContent.style.opacity = 1; // Показываем с плавным переходом
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокручиваем вверх
+        }, 500); // Время должно совпадать с transition opacity в CSS
     }
+
 
     // Обработчики кликов для кнопок переключения секций
     if (toggleDesignsButton) {
@@ -53,7 +64,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 const theme = button.getAttribute('data-theme');
 
                 // Удаляем все классы тем у примера страницы
-                samplePage.className = 'sample-page'; // Сбрасываем до базового класса
+                // Сохраняем базовый класс 'sample-page'
+                samplePage.className = 'sample-page';
 
                 // Добавляем класс выбранной темы, если это не "default"
                 if (theme !== 'default') {
@@ -62,4 +74,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
         });
     }
+
+    // Изначально устанавливаем opacity для основной секции
+    if (mainContent && !mainContent.classList.contains('hidden')) {
+         mainContent.style.opacity = 1;
+    }
+     // Изначально устанавливаем opacity для секции дизайнов (если она случайно видима)
+     if (designShowcase && !designShowcase.classList.contains('hidden')) {
+         designShowcase.style.opacity = 1;
+     } else if (designShowcase) {
+         // Если секция дизайнов скрыта, убедимся, что opacity 0
+         designShowcase.style.opacity = 0;
+     }
+
+
 });
