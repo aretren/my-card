@@ -9,6 +9,9 @@ body {
     transition: background-color 0.5s ease, color 0.5s ease; /* Плавный переход для body */
 }
 
+/* Импорт шрифтов (опционально, если используете Google Fonts) */
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); */
+
 
 header {
     background-color: #333; /* Темный фон для хедера */
@@ -39,6 +42,13 @@ header p {
     object-fit: cover; /* Обрезка фото, чтобы оно было круглым */
     border: 3px solid #fff; /* Белая рамка вокруг фото */
 }
+
+/* Стили для контейнера кнопок в хедере */
+.header-buttons {
+    margin-top: 1.5rem; /* Отступ сверху, чтобы отделить от заголовков хедера */
+    text-align: center;
+}
+
 
 section {
     padding: 2rem 1rem;
@@ -187,10 +197,10 @@ footer {
 }
 
 
-/* Стили для переключающих кнопок секций */
+/* Стили для переключающих кнопок секций (в хедере) */
 .toggle-button {
     display: inline-block;
-    margin-top: 1.5rem;
+    margin: 0 0.5rem; /* Отступы между кнопками в хедере */
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
     color: #fff;
@@ -214,8 +224,9 @@ footer {
 
 /* Стили для секции дизайнов */
 #design-showcase {
-    padding-top: 0; /* Убираем верхний padding, т.к. у нас есть кнопка toggle-main */
-    margin-top: 0; /* Убираем верхний margin */
+    /* УБИРАЕМ ВЕРХНИЕ ОТСТУПЫ ИЗ СЕКЦИИ */
+    padding-top: 0;
+    margin-top: 0;
 }
 
 /* Секция дизайнов, когда скрыта */
@@ -223,10 +234,15 @@ footer {
     display: none;
 }
 
+/* Исправляем отступ заголовка внутри секции дизайнов */
 #design-showcase h2 {
-     margin-top: 0; /* Убираем верхний margin у заголовка секции */
-     padding-top: 2rem; /* Добавляем padding сверху для отступа */
+     margin-top: 1.5rem; /* Добавляем верхний margin для отступа от верха секции */
+     padding-top: 0; /* Убеждаемся, что padding-top равен 0 */
      margin-bottom: 1rem; /* Уменьшаем нижний отступ */
+     text-align: center;
+     color: #333;
+     font-size: 2rem;
+     transition: color 0.5s ease;
 }
 
 
@@ -470,7 +486,7 @@ footer {
 }
 
 
-/* Стили для темы "Arthouse" - Без изменений по сравнению с предыдущей версией */
+/* Стили для темы "Arthouse" - Без изменений */
 .sample-page.theme-arthouse {
     background: linear-gradient(180deg, #fcf5eb, #ebdec8); /* Мягкий градиентный фон */
     color: #3d2b1f; /* Темно-коричневый текст */
@@ -595,9 +611,10 @@ footer {
          font-size: 0.9rem;
     }
 
-    .sample-page.theme-gaming::before {
-        height: 2px; /* Уменьшаем высоту сканирующей линии */
-    }
+    /* Если эффект сканирующей линии Gaming включен */
+    /* .sample-page.theme-gaming::before {
+        height: 2px;
+    } */
 }
 
 @media (max-width: 480px) {
@@ -629,5 +646,9 @@ footer {
      #skills li {
          padding: 0.5rem 1rem;
          font-size: 0.8rem;
+     }
+
+     .header-buttons .toggle-button {
+        margin: 0.3rem; /* Уменьшаем отступ между кнопками на маленьких экранах */
      }
 }
