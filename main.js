@@ -48,13 +48,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
 
         // Перед показом секции, применяем первую тему по умолчанию (например, Aero)
-        const firstThemeButton = document.querySelector('.theme-switch');
+        const firstThemeButton = document.querySelector('.theme-switch'); // Находит первую кнопку .theme-switch
         if (firstThemeButton) {
             const defaultDesignTheme = firstThemeButton.getAttribute('data-theme');
-            // Применяем тему и делаем кнопку активной
+             // Применяем тему и делаем кнопку активной
             applyTheme(defaultDesignTheme);
         } else {
-            // Если кнопок тем нет, применяем базовый стиль
+            // Если кнопок тем нет (что маловероятно), применяем базовый стиль
              applyTheme('default');
         }
 
