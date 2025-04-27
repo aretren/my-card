@@ -464,47 +464,47 @@ footer {
 }
 
 
-/* --- Стили для темы "Aero" (Переработка с большим количеством пастельных цветов) --- */
+/* --- Стили для темы "Aero" (Переработка с небесно-голубыми, пастельными, сероватыми) --- */
 .sample-page.theme-aero {
-    background: linear-gradient(135deg, rgba(224, 242, 241, 0.9), rgba(128, 222, 234, 0.7)); /* Светлый пастельный градиент */
+    background: linear-gradient(135deg, rgba(240, 248, 255, 0.9), rgba(173, 216, 230, 0.7)); /* AliceBlue к LightBlue */
     color: #333;
     border: none;
-    box-shadow: 0 15px 30px rgba(0, 188, 212, 0.2); /* Более выраженная, но мягкая тень */
+    box-shadow: 0 15px 30px rgba(70, 130, 180, 0.2); /* SteelBlue тень */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    backdrop-filter: blur(12px); /* Чуть сильнее размытие */
+    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
 
 .sample-page.theme-aero .sample-header {
-    border-bottom: 1px solid rgba(178, 235, 242, 0.5); /* Полупрозрачная пастельная граница */
-    color: #00796b; /* Темно-бирюзовый заголовок */
-    background-color: rgba(178, 235, 242, 0.3); /* Полупрозрачный фон */
+    border-bottom: 1px solid rgba(176, 196, 222, 0.5); /* LightSteelBlue граница */
+    color: #4682b4; /* SteelBlue заголовок */
+    background-color: rgba(176, 196, 222, 0.3); /* LightSteelBlue фон */
     margin-bottom: 1rem;
     border-radius: 5px 5px 0 0;
 }
 
 .sample-page.theme-aero .sample-header h3 {
-     text-shadow: 1px 1px 2px rgba(0, 121, 107, 0.1); /* Тень в тон заголовка */
+     text-shadow: 1px 1px 2px rgba(70, 130, 180, 0.1);
 }
 .sample-page.theme-aero .sample-header p {
-    color: #4db6ac; /* Пастельный цвет подзаголовка */
+    color: #778899; /* LightSlateGray подзаголовок */
 }
 
 
 .sample-page.theme-aero .sample-content {
-    background-color: rgba(255, 255, 255, 0.7); /* Полупрозрачный белый фон контента */
+    background-color: rgba(255, 255, 255, 0.7); /* Полупрозрачный белый */
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Мягкая тень контента */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .sample-page.theme-aero .sample-content h4 {
-     color: #00838f; /* Темно-голубой/бирюзовый заголовок контента */
+     color: #6495ed; /* CornflowerBlue заголовок контента */
 }
 
 .sample-page.theme-aero .sample-content ul {
      list-style: circle;
-     color: #4dd0e1; /* Пастельный бирюзовый для маркеров */
+     color: #add8e6; /* LightBlue маркеры */
 }
 .sample-page.theme-aero .sample-content p {
      color: #555;
@@ -512,39 +512,39 @@ footer {
 
 
 .sample-page.theme-aero .sample-footer {
-     border-top: 1px solid rgba(178, 235, 242, 0.5); /* Полупрозрачная пастельная граница */
-     color: #00796b; /* Темно-бирюзовый футер */
-     background-color: rgba(178, 235, 242, 0.3); /* Полупрозрачный фон */
+     border-top: 1px solid rgba(176, 196, 222, 0.5); /* LightSteelBlue граница */
+     color: #4682b4; /* SteelBlue футер */
+     background-color: rgba(176, 196, 222, 0.3); /* LightSteelBlue фон */
      margin-top: 1rem;
      border-radius: 0 0 5px 5px;
 }
 
 /* Стили Aero для новых элементов */
 .sample-page.theme-aero .sample-tabs .tab-button {
-    background-color: rgba(224, 242, 241, 0.5); /* Полупрозрачный фон кнопок */
-    color: #00838f; /* Цвет текста кнопок */
-    border-bottom: 1px solid rgba(178, 235, 242, 0.5);
+    background-color: rgba(240, 248, 255, 0.5); /* Полупрозрачный AliceBlue */
+    color: #4682b4; /* SteelBlue текст */
+    border-bottom: 1px solid rgba(173, 216, 230, 0.5); /* LightBlue граница */
 }
 .sample-page.theme-aero .sample-tabs .tab-button:hover {
-     background-color: rgba(178, 235, 242, 0.7);
+     background-color: rgba(173, 216, 230, 0.7); /* LightBlue при наведении */
 }
 .sample-page.theme-aero .sample-tabs .tab-button.active {
-    background-color: rgba(255, 255, 255, 0.8); /* Активная вкладка более светлая */
-    color: #004d40; /* Темный цвет текста активной вкладки */
-    border-bottom: 2px solid #00bcd4; /* Ярче подчеркивание */
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #2f4f4f; /* DarkSlateGray текст */
+    border-bottom: 2px solid #4682b4; /* SteelBlue подчеркивание */
 }
 
 .sample-page.theme-aero .sample-toggle label {
-    background-color: rgba(178, 235, 242, 0.5); /* Полупрозрачный фон тумблера */
+    background-color: rgba(173, 216, 230, 0.5); /* LightBlue фон */
 }
 .sample-page.theme-aero .sample-toggle input[type="checkbox"]:checked + label {
-    background-color: #00bcd4; /* Бирюзовый при включении */
+    background-color: #4682b4; /* SteelBlue при включении */
 }
 .sample-page.theme-aero .sample-toggle input[type="checkbox"]:checked + label::before {
-     background-color: #e0f7fa; /* Светлый ползунок */
+     background-color: #f0f8ff; /* AliceBlue ползунок */
 }
 .sample-page.theme-aero .sample-toggle span {
-     color: #00796b; /* Цвет текста тумблера */
+     color: #4682b4; /* SteelBlue текст */
 }
 
 
@@ -682,7 +682,9 @@ footer {
 }
 .sample-page.theme-gaming .sample-tabs .tab-pane p,
 .sample-page.theme-gaming .sample-tabs .tab-pane li {
-     color: #00ffff; /* Циановый текст во вкладках для контраста */
+     /* ИСПРАВЛЕНИЕ: Изменен цвет текста во вкладках Gaming */
+     color: #e0e0e0; /* Светло-серый */
+     /* color: #ff9900; /* Или оранжевый, если нужно */
 }
 .sample-page.theme-gaming .sample-tabs .tab-pane li::before {
     color: #ff00ff; /* Фиолетовый маркер в списке вкладок */
