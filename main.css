@@ -6,10 +6,8 @@ body {
     background-color: #f4f4f4; /* Светлый фон */
     color: #333; /* Темный текст */
     padding-bottom: 80px; /* Отступ снизу, чтобы футер не налезал */
+    transition: background-color 0.5s ease, color 0.5s ease; /* Плавный переход для body */
 }
-
-/* Импорт шрифтов (опционально, если используете Google Fonts) */
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); */
 
 
 header {
@@ -19,6 +17,7 @@ header {
     text-align: center;
     position: relative; /* Для позиционирования кнопки переключения */
     z-index: 10; /* Чтобы хедер был поверх других элементов, если нужно */
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 header h1 {
@@ -49,7 +48,7 @@ section {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Легкая тень */
     border-radius: 8px; /* Скругленные углы */
     opacity: 1; /* Базовая прозрачность */
-    transition: opacity 0.5s ease; /* Плавный переход прозрачности */
+    transition: opacity 0.5s ease, background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease; /* Плавный переход */
 }
 
 /* Секции основного контента, когда скрыты */
@@ -65,6 +64,7 @@ section h2 {
     color: #333;
     margin-bottom: 1.5rem;
     font-size: 2rem;
+    transition: color 0.5s ease;
 }
 
 #skills ul {
@@ -82,7 +82,7 @@ section h2 {
     padding: 0.6rem 1.2rem;
     border-radius: 20px; /* Более скругленные углы */
     font-size: 0.9rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
 }
 
 #skills li:hover {
@@ -103,7 +103,7 @@ section h2 {
     border-radius: 8px; /* Скругленные углы */
     background-color: #f9f9f9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .project-item:hover {
@@ -116,11 +116,13 @@ section h2 {
     margin-top: 0;
     color: #007bff; /* Синий цвет для заголовков проектов */
     font-size: 1.4rem;
+    transition: color 0.3s ease;
 }
 
 .project-item p {
     font-size: 1rem;
     color: #555;
+    transition: color 0.3s ease;
 }
 
 
@@ -130,10 +132,12 @@ section h2 {
     color: #007bff;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .project-item a:hover {
     text-decoration: underline;
+    color: #0056b3;
 }
 
 /* Стиль для скриншотов проектов */
@@ -156,6 +160,7 @@ section h2 {
 #contact li {
     margin-bottom: 1rem; /* Увеличиваем отступ */
     font-size: 1.1rem;
+    transition: color 0.3s ease;
 }
 
 #contact a {
@@ -178,6 +183,7 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 
@@ -241,7 +247,7 @@ footer {
     background-color: #fff;
     color: #007bff;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
     font-size: 1rem;
     outline: none;
 }
@@ -332,103 +338,104 @@ footer {
 }
 
 
-/* Стили для темы "Aero" - ПЕРЕРАБОТКА */
+/* Стили для темы "Aero" - Обновление */
 .sample-page.theme-aero {
-    background: linear-gradient(135deg, rgba(224, 247, 250, 0.8), rgba(178, 235, 242, 0.7)); /* Полупрозрачный градиентный фон */
-    color: #004d40; /* Темно-бирюзовый текст */
+    background-color: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
+    color: #333; /* Стандартный темный текст */
     border: none; /* Убираем рамку */
-    box-shadow: 0 10px 30px rgba(0, 188, 212, 0.4); /* Более выраженная тень */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Мягкая тень */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Шрифт в стиле Aero */
-    backdrop-filter: blur(10px); /* Эффект "запотевшего стекла" (современные браузеры) */
+    backdrop-filter: blur(10px); /* Эффект "запотевшего стекла" */
     -webkit-backdrop-filter: blur(10px); /* Префикс для Safari */
 }
 
 .sample-page.theme-aero .sample-header {
-    border-bottom: 1px solid rgba(0, 151, 167, 0.3); /* Полупрозрачная граница */
-    color: #00776c; /* Более темный заголовок */
-    background: rgba(0, 188, 212, 0.1); /* Легкий полупрозрачный фон */
+    border-bottom: 1px solid rgba(200, 200, 200, 0.5); /* Полупрозрачная серая граница */
+    color: #555; /* Серый заголовок */
+    background-color: rgba(240, 240, 240, 0.7); /* Легкий полупрозрачный серый фон */
     margin-bottom: 1rem; /* Уменьшаем нижний отступ */
     border-radius: 5px 5px 0 0; /* Скругленные верхние углы */
 }
 
 .sample-page.theme-aero .sample-header h3 {
-     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Легкая тень текста */
+     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* Легкая тень текста */
 }
 
 .sample-page.theme-aero .sample-content {
-    background: rgba(255, 255, 255, 0.5); /* Полупрозрачный белый фон контента */
+    background-color: rgba(255, 255, 255, 0.7); /* Чуть более прозрачный белый фон контента */
     padding: 1.5rem; /* Увеличиваем padding */
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Легкая тень контента */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Легкая тень контента */
 }
 
 .sample-page.theme-aero .sample-content ul {
      list-style: circle; /* Маркеры - круги */
-     color: #00bcd4; /* Бирюзовый цвет для маркеров */
+     color: #6699cc; /* Пастельный синий цвет для маркеров */
+}
+.sample-page.theme-aero .sample-content p {
+     color: #444; /* Чуть темнее текст параграфа */
 }
 
+
 .sample-page.theme-aero .sample-footer {
-     border-top: 1px solid rgba(0, 151, 167, 0.3); /* Полупрозрачная граница */
-     color: #006064; /* Более темный футер */
-     background: rgba(0, 188, 212, 0.1); /* Легкий полупрозрачный фон */
+     border-top: 1px solid rgba(200, 200, 200, 0.5); /* Полупрозрачная серая граница */
+     color: #555; /* Серый футер */
+     background-color: rgba(240, 240, 240, 0.7); /* Легкий полупрозрачный серый фон */
      margin-top: 1rem; /* Уменьшаем верхний отступ */
      border-radius: 0 0 5px 5px; /* Скругленные нижние углы */
 }
 
-/* Стили для темы "Gaming" - УЛУЧШЕНИЕ */
+/* Стили для темы "Gaming" - Обновление */
 .sample-page.theme-gaming {
-    background-color: #111; /* Очень темный фон */
-    color: #00ff00; /* Неоново-зеленый текст по умолчанию */
-    border: 2px solid #ff0000; /* Ярко-красная рамка */
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); /* Сильное красное свечение */
-    font-family: 'Orbitron', sans-serif; /* Футуристический шрифт (потребуется импорт) */
-    /* @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap'); */
+    background-color: #1a1a1a; /* Темный фон */
+    color: #e0e0e0; /* Светло-серый текст по умолчанию */
+    border: 2px solid #e51a4b; /* ROG красный рамка */
+    box-shadow: 0 0 25px rgba(229, 26, 75, 0.8); /* Сильное красное свечение */
+    font-family: 'Orbitron', sans-serif; /* Футуристический шрифт */
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* Скрываем выходящие за границы элементы */
+    border-radius: 8px; /* Скругленные углы как у стандартного */
 }
 
-/* Добавляем эффект "сканирующей линии" */
-.sample-page.theme-gaming::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(to right, transparent, rgba(0, 255, 0, 0.5), transparent);
-    animation: scanline 3s infinite linear; /* Анимация */
-    z-index: 1;
-}
-
-@keyframes scanline {
-    0% { top: 0; }
-    50% { top: calc(100% - 3px); }
-    100% { top: 0; }
-}
+/* Удаляем или меняем эффект сканирующей линии, если он не подходит */
+/* .sample-page.theme-gaming::before { ... }
+@keyframes scanline { ... } */
 
 
 .sample-page.theme-gaming .sample-header {
-    border-bottom: 1px dashed #ff0000; /* Пунктирная красная граница */
+    border-bottom: 1px solid #e51a4b; /* ROG красный граница */
     color: #fff; /* Белый заголовок */
-    background-color: rgba(255, 0, 0, 0.1); /* Полупрозрачный красный фон */
+    background-color: rgba(229, 26, 75, 0.15); /* Полупрозрачный ROG красный фон */
+    text-align: left; /* Выравнивание заголовка влево */
 }
 
 .sample-page.theme-gaming .sample-header h3 {
-     text-shadow: 0 0 5px #ff0000; /* Красное свечение текста */
+     text-shadow: 0 0 8px #e51a4b; /* Красное свечение текста */
+     font-size: 2rem; /* Чуть больше заголовок */
+}
+.sample-page.theme-gaming .sample-header p {
+    color: #bbb; /* Более светлый подзаголовок */
 }
 
 
 .sample-page.theme-gaming .sample-content {
-    background-color: rgba(34, 34, 34, 0.8); /* Полупрозрачный темно-серый фон контента */
+    background-color: #2a2a2a; /* Чуть светлее темный фон контента */
     padding: 2rem; /* Увеличиваем padding */
     border-radius: 5px;
-    color: #00ff00; /* Неоново-зеленый текст контента */
-    border: 1px solid rgba(0, 255, 0, 0.3); /* Полупрозрачная зеленая рамка */
+    color: #00ffff; /* Голубой/Циановый текст контента */
+    border: 1px solid rgba(0, 255, 255, 0.3); /* Полупрозрачная циановая рамка */
 }
 
 .sample-page.theme-gaming .sample-content h4 {
-    color: #ffff00; /* Желтый заголовок контента */
-    text-shadow: 0 0 3px #ffff00; /* Желтое свечение */
+    color: #ff9900; /* Оранжевый заголовок контента */
+    text-shadow: 0 0 5px #ff9900; /* Оранжевое свечение */
+    border-bottom: 1px dashed #ff9900; /* Пунктирная оранжевая линия */
+    display: inline-block;
+    padding-bottom: 0.3rem;
+}
+
+.sample-page.theme-gaming .sample-content p {
+     color: #e0e0e0; /* Светло-серый текст параграфа */
 }
 
 
@@ -439,35 +446,37 @@ footer {
 
 .sample-page.theme-gaming .sample-content li {
     margin-bottom: 0.8rem;
-    color: #00ffff; /* Голубой текст списка */
+    color: #00ffff; /* Голубой/Циановый текст списка */
     position: relative;
     padding-left: 1.5rem; /* Отступ для маркера */
 }
 
 .sample-page.theme-gaming .sample-content li::before {
-    content: '// '; /* Пользовательский маркер */
+    content: '\2022'; /* Символ точки (bullet) */
     color: #ff00ff; /* Фиолетовый цвет маркера */
     position: absolute;
     left: 0;
     top: 0;
+    font-weight: bold;
 }
 
 
 .sample-page.theme-gaming .sample-footer {
-     border-top: 1px dashed #ff0000; /* Пунктирная красная граница */
-     color: #ffff00; /* Желтый футер */
-     background-color: rgba(255, 0, 0, 0.1); /* Полупрозрачный красный фон */
+     border-top: 1px solid #e51a4b; /* ROG красный граница */
+     color: #ff9900; /* Оранжевый футер */
+     background-color: rgba(229, 26, 75, 0.15); /* Полупрозрачный ROG красный фон */
+     text-align: right; /* Выравнивание футера вправо */
+     font-size: 0.9rem;
 }
 
 
-/* Стили для темы "Arthouse" - УЛУЧШЕНИЕ */
+/* Стили для темы "Arthouse" - Без изменений по сравнению с предыдущей версией */
 .sample-page.theme-arthouse {
     background: linear-gradient(180deg, #fcf5eb, #ebdec8); /* Мягкий градиентный фон */
     color: #3d2b1f; /* Темно-коричневый текст */
     border: none; /* Убираем рамку */
     box-shadow: none; /* Убираем тень */
-    font-family: 'Playfair Display', serif; /* Художественный шрифт с засечками (потребуется импорт) */
-    /* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap'); */
+    font-family: 'Playfair Display', serif; /* Художественный шрифт с засечками */
     position: relative;
     overflow: visible; /* Разрешаем выход элементов за границы */
     transform: rotate(-1deg); /* Небольшой наклон */
