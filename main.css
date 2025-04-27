@@ -244,7 +244,7 @@ footer {
 
 
 /* Секция дизайнов, когда скрыта */
-#design-showcase.hidden {
+.hidden {
     display: none;
 }
 
@@ -368,7 +368,7 @@ footer {
 }
 
 
-/* Стили для темы "Aero" - Обновление */
+/* Стили для темы "Aero" */
 .sample-page.theme-aero {
     background-color: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
     color: #333; /* Стандартный темный текст */
@@ -415,7 +415,7 @@ footer {
      border-radius: 0 0 5px 5px; /* Скругленные нижние углы */
 }
 
-/* Стили для темы "Gaming" - Обновление */
+/* Стили для темы "Gaming" */
 .sample-page.theme-gaming {
     background-color: #1a1a1a; /* Темный фон */
     color: #e0e0e0; /* Светло-серый текст по умолчанию */
@@ -500,7 +500,7 @@ footer {
 }
 
 
-/* Стили для темы "Arthouse" - Без изменений */
+/* Стили для темы "Arthouse" */
 .sample-page.theme-arthouse {
     background: linear-gradient(180deg, #fcf5eb, #ebdec8); /* Мягкий градиентный фон */
     color: #3d2b1f; /* Темно-коричневый текст */
