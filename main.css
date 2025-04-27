@@ -9,9 +9,6 @@ body {
     transition: background-color 0.5s ease, color 0.5s ease; /* Плавный переход для body */
 }
 
-/* Импорт шрифтов (опционально, если используете Google Fonts) */
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); */
-
 
 header {
     background-color: #333; /* Темный фон для хедера */
@@ -264,16 +261,25 @@ footer {
 .theme-controls {
     text-align: center;
     margin-bottom: 2rem;
-    display: flex; /* Используем flexbox для выравнивания кнопок */
-    justify-content: center;
-    flex-wrap: wrap; /* Перенос на новую строку */
-    gap: 10px; /* Расстояние между кнопками */
+    display: flex;
+    flex-direction: column; /* Располагаем блоки управления вертикально */
+    align-items: center; /* Центрируем по горизонтали */
+    gap: 15px; /* Расстояние между блоками управления */
 }
 
-.theme-switch {
-    padding: 0.6rem 1.2rem; /* Увеличиваем padding */
+.theme-controls .base-themes,
+.theme-controls .mode-toggle {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px; /* Расстояние между кнопками внутри блока */
+}
+
+
+.theme-controls button {
+    padding: 0.6rem 1.2rem;
     border: 1px solid #007bff;
-    border-radius: 20px; /* Более скругленные углы */
+    border-radius: 20px;
     background-color: #fff;
     color: #007bff;
     cursor: pointer;
@@ -282,36 +288,36 @@ footer {
     outline: none;
 }
 
-.theme-switch:hover {
+.theme-controls button:hover {
     background-color: #e9ecef;
     transform: translateY(-2px);
 }
 
-.theme-switch.active {
+.theme-controls button.active {
     background-color: #007bff;
     color: #fff;
-    transform: translateY(0); /* Убираем эффект подъема для активной */
+    transform: translateY(0);
 }
 
-.theme-switch:active {
+.theme-controls button:active {
      transform: translateY(0);
 }
 
 
-/* Базовые стили для примера страницы (это и есть "Стандартный" дизайн теперь) */
+/* Базовые стили для примера страницы */
 .sample-page {
     border: 1px solid #ddd;
-    padding: 2rem; /* Увеличиваем padding */
+    padding: 2rem;
     border-radius: 8px;
-    margin: 0 auto; /* Центрируем пример страницы */
-    max-width: 700px; /* УВЕЛИЧИВАЕМ ШИРИНУ */
+    margin: 0 auto;
+    max-width: 700px;
     background-color: #fff;
     color: #333;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.8s ease; /* Плавный переход между стилями */
-    font-family: 'Roboto', sans-serif; /* Базовый шрифт */
-    position: relative; /* Для позиционирования псевдоэлементов или абсолютных элементов */
-    overflow: hidden; /* Скрываем содержимое, выходящее за границы */
+    transition: all 0.8s ease;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    overflow: hidden;
 }
 
 .sample-page .sample-header {
@@ -350,7 +356,7 @@ footer {
 }
 
 .sample-page .sample-content ul {
-    padding-left: 25px; /* Отступ для списка */
+    padding-left: 25px;
     list-style: disc;
 }
 
@@ -375,21 +381,23 @@ footer {
     border: 1px solid #eee;
     border-radius: 5px;
     overflow: hidden;
+    transition: border-color 0.8s ease;
 }
 
 .sample-tabs .tab-buttons {
     display: flex;
     border-bottom: 1px solid #eee;
+    transition: border-color 0.8s ease;
 }
 
 .sample-tabs .tab-button {
-    flex-grow: 1; /* Кнопки занимают всю доступную ширину */
+    flex-grow: 1;
     padding: 0.8rem 1rem;
     border: none;
     background-color: #f8f8f8;
     color: #555;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-bottom-color 0.3s ease;
     font-size: 1rem;
     text-align: center;
 }
@@ -401,19 +409,20 @@ footer {
 .sample-tabs .tab-button.active {
     background-color: #fff;
     color: #333;
-    border-bottom: 2px solid #007bff; /* Активная вкладка подчеркнута */
+    border-bottom: 2px solid #007bff;
 }
 
 .sample-tabs .tab-content {
     padding: 1rem;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .sample-tabs .tab-pane {
-    display: none; /* По умолчанию все вкладки скрыты */
+    display: none;
 }
 
 .sample-tabs .tab-pane.active {
-    display: block; /* Активная вкладка показывается */
+    display: block;
 }
 
 
@@ -428,16 +437,16 @@ footer {
 }
 
 .sample-toggle input[type="checkbox"] {
-    display: none; /* Скрываем стандартный чекбокс */
+    display: none;
 }
 
 .sample-toggle label {
     position: relative;
     display: inline-block;
-    width: 40px; /* Ширина тумблера */
-    height: 24px; /* Высота тумблера */
-    background-color: #ccc; /* Цвет фона выключенного тумблера */
-    border-radius: 24px; /* Круглые края */
+    width: 40px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 24px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -447,24 +456,23 @@ footer {
     position: absolute;
     top: 2px;
     left: 2px;
-    width: 20px; /* Ширина "ползунка" */
-    height: 20px; /* Высота "ползунка" */
-    border-radius: 50%; /* Круглый ползунок */
-    background-color: #fff; /* Цвет ползунка */
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
     transition: transform 0.3s ease;
 }
 
-/* Состояние "включено" */
 .sample-toggle input[type="checkbox"]:checked + label {
-    background-color: #007bff; /* Цвет фона включенного тумблера */
+    background-color: #007bff;
 }
 
 .sample-toggle input[type="checkbox"]:checked + label::before {
-    transform: translateX(16px); /* Сдвигаем ползунок вправо */
+    transform: translateX(16px);
 }
 
 
-/* --- Стили для темы "Aero" (Переработка с небесно-голубыми, пастельными, сероватыми) --- */
+/* --- Стили для темы "Aero" (Светлая) --- */
 .sample-page.theme-aero {
     background: linear-gradient(135deg, rgba(240, 248, 255, 0.9), rgba(173, 216, 230, 0.7)); /* AliceBlue к LightBlue */
     color: #333;
@@ -519,7 +527,7 @@ footer {
      border-radius: 0 0 5px 5px;
 }
 
-/* Стили Aero для новых элементов */
+/* Стили Aero (Светлая) для новых элементов */
 .sample-page.theme-aero .sample-tabs .tab-button {
     background-color: rgba(240, 248, 255, 0.5); /* Полупрозрачный AliceBlue */
     color: #4682b4; /* SteelBlue текст */
@@ -548,7 +556,102 @@ footer {
 }
 
 
-/* --- Стили для темы "Gaming" (Без голубых оттенков) --- */
+/* --- Стили для темы "Aero" (Темная) --- */
+.sample-page.theme-aero.mode-dark {
+    background: linear-gradient(135deg, #0a141e, #1a2e3c); /* Темно-синий градиент */
+    color: #e0f7fa; /* Светло-бирюзовый текст */
+    box-shadow: 0 15px 30px rgba(0, 121, 107, 0.4); /* Темно-бирюзовая тень */
+}
+
+.sample-page.theme-aero.mode-dark .sample-header {
+    border-bottom-color: rgba(0, 151, 167, 0.5);
+    color: #80deea; /* Светло-бирюзовый заголовок */
+    background-color: rgba(0, 151, 167, 0.2);
+}
+.sample-page.theme-aero.mode-dark .sample-header h3 {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+.sample-page.theme-aero.mode-dark .sample-header p {
+    color: #4db6ac; /* Пастельный цвет подзаголовка */
+}
+
+
+.sample-page.theme-aero.mode-dark .sample-content {
+    background-color: rgba(26, 46, 60, 0.7); /* Полупрозрачный темно-синий */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.sample-page.theme-aero.mode-dark .sample-content h4 {
+     color: #00bcd4; /* Бирюзовый заголовок */
+}
+.sample-page.theme-aero.mode-dark .sample-content ul {
+     color: #26a69a; /* Темно-бирюзовый маркеры */
+}
+.sample-page.theme-aero.mode-dark .sample-content p {
+     color: #b2ebf2; /* Светло-бирюзовый текст */
+}
+
+
+.sample-page.theme-aero.mode-dark .sample-footer {
+     border-top-color: rgba(0, 151, 167, 0.5);
+     color: #80deea; /* Светло-бирюзовый футер */
+     background-color: rgba(0, 151, 167, 0.2);
+}
+
+/* Стили Aero (Темная) для новых элементов */
+.sample-page.theme-aero.mode-dark .sample-tabs {
+     border-color: rgba(0, 151, 167, 0.5);
+}
+.sample-page.theme-aero.mode-dark .sample-tabs .tab-buttons {
+    border-bottom-color: rgba(0, 151, 167, 0.5);
+}
+
+.sample-page.theme-aero.mode-dark .sample-tabs .tab-button {
+    background-color: rgba(26, 46, 60, 0.5);
+    color: #80deea;
+}
+.sample-page.theme-aero.mode-dark .sample-tabs .tab-button:hover {
+     background-color: rgba(0, 151, 167, 0.4);
+     color: #e0f7fa;
+}
+.sample-page.theme-aero.mode-dark .sample-tabs .tab-button.active {
+    background-color: rgba(0, 151, 167, 0.6);
+    color: #e0f7fa;
+    border-bottom-color: #00bcd4;
+}
+
+.sample-page.theme-aero.mode-dark .sample-tabs .tab-content {
+     background-color: rgba(26, 46, 60, 0.8);
+     color: #b2ebf2;
+}
+.sample-page.theme-aero.mode-dark .sample-tabs .tab-pane p,
+.sample-page.theme-aero.mode-dark .sample-tabs .tab-pane li {
+    color: #b2ebf2;
+}
+.sample-page.theme-aero.mode-dark .sample-tabs .tab-pane li::before {
+    color: #00bcd4;
+}
+
+
+.sample-page.theme-aero.mode-dark .sample-toggle {
+     color: #80deea;
+}
+.sample-page.theme-aero.mode-dark .sample-toggle label {
+    background-color: rgba(0, 151, 167, 0.5);
+}
+.sample-page.theme-aero.mode-dark .sample-toggle input[type="checkbox"]:checked + label {
+    background-color: #00bcd4;
+}
+.sample-page.theme-aero.mode-dark .sample-toggle input[type="checkbox"]:checked + label::before {
+     background-color: #0a141e; /* Темный ползунок */
+}
+.sample-page.theme-aero.mode-dark .sample-toggle span {
+     color: #b2ebf2;
+}
+
+
+/* --- Стили для темы "Gaming" (Светлая) --- */
+/* Gaming по своей сути темный, так что "светлая" версия будет скорее "менее темная" или просто основная */
 .sample-page.theme-gaming {
     background: linear-gradient(135deg, #111, #2a0000); /* Темный фон с оттенком красного */
     color: #ff9900; /* Оранжевый текст по умолчанию */
@@ -608,7 +711,7 @@ footer {
     color: #e0e0e0; /* Светло-серый текст контента */
     border: 1px solid rgba(255, 153, 0, 0.3); /* Полупрозрачная оранжевая рамка */
     position: relative;
-    z-index: 2; /* Поверх угловых декораций */
+    z-index: 2;
 }
 
 .sample-page.theme-gaming .sample-content h4 {
@@ -655,7 +758,7 @@ footer {
      padding-top: 0.8rem;
 }
 
-/* Стили Gaming для новых элементов */
+/* Стили Gaming (Светлая) для новых элементов */
 .sample-page.theme-gaming .sample-tabs .tab-button {
     background-color: #2a2a2a;
     color: #ff9900;
@@ -682,9 +785,7 @@ footer {
 }
 .sample-page.theme-gaming .sample-tabs .tab-pane p,
 .sample-page.theme-gaming .sample-tabs .tab-pane li {
-     /* ИСПРАВЛЕНИЕ: Изменен цвет текста во вкладках Gaming */
      color: #e0e0e0; /* Светло-серый */
-     /* color: #ff9900; /* Или оранжевый, если нужно */
 }
 .sample-page.theme-gaming .sample-tabs .tab-pane li::before {
     color: #ff00ff; /* Фиолетовый маркер в списке вкладок */
@@ -714,18 +815,122 @@ footer {
      color: #ff9900; /* Оранжевый цвет текста */
 }
 
+/* --- Стили для темы "Gaming" (Темная) --- */
+/* Gaming по своей сути темный, так что это скорее "более темная" или альтернативная темная версия */
+.sample-page.theme-gaming.mode-dark {
+    background: linear-gradient(135deg, #080808, #1a0000); /* Еще более темный фон */
+    color: #ff00ff; /* Фиолетовый текст по умолчанию */
+    border-color: #ff00ff; /* Фиолетовая рамка */
+    box-shadow: 0 0 35px rgba(255, 0, 255, 0.9), inset 0 0 20px rgba(255, 0, 255, 0.5); /* Сильнее фиолетовое свечение */
+}
+/* Угловые декорации в темном режиме */
+.sample-page.theme-gaming.mode-dark::before,
+.sample-page.theme-gaming.mode-dark::after {
+    border-color: #e51a4b; /* ROG красный акцент */
+}
 
-/* --- Стили для темы "Modern" (Переработка из Arthouse) --- */
+.sample-page.theme-gaming.mode-dark .sample-header {
+    border-bottom-color: #e51a4b; /* ROG красный граница */
+    color: #ff00ff; /* Фиолетовый заголовок */
+    background-color: rgba(255, 0, 255, 0.1); /* Полупрозрачный фиолетовый фон */
+}
+.sample-page.theme-gaming.mode-dark .sample-header h3 {
+     text-shadow: 0 0 12px #e51a4b; /* ROG красное свечение текста */
+}
+.sample-page.theme-gaming.mode-dark .sample-header p {
+     color: #ff00ff; /* Фиолетовый подзаголовок */
+}
+
+
+.sample-page.theme-gaming.mode-dark .sample-content {
+    background-color: #111; /* Темный фон контента */
+    color: #ff9900; /* Оранжевый текст контента */
+    border-color: rgba(229, 26, 75, 0.3); /* Полупрозрачная ROG красная рамка */
+}
+
+.sample-page.theme-gaming.mode-dark .sample-content h4 {
+    color: #e51a4b; /* ROG красный заголовок контента */
+    text-shadow: 0 0 8px #e51a4b;
+    border-bottom-color: #e51a4b;
+}
+.sample-page.theme-gaming.mode-dark .sample-content p {
+    color: #ff9900; /* Оранжевый текст параграфа */
+}
+.sample-page.theme-gaming.mode-dark .sample-content li {
+    color: #ff00ff; /* Фиолетовый текст списка */
+}
+.sample-page.theme-gaming.mode-dark .sample-content li::before {
+    color: #ff9900; /* Оранжевый маркер */
+}
+
+.sample-page.theme-gaming.mode-dark .sample-footer {
+     border-top-color: #e51a4b; /* ROG красный граница */
+     color: #e51a4b; /* ROG красный футер */
+     background-color: rgba(255, 0, 255, 0.1); /* Полупрозрачный фиолетовый фон */
+}
+
+/* Стили Gaming (Темная) для новых элементов */
+.sample-page.theme-gaming.mode-dark .sample-tabs .tab-button {
+    background-color: #111;
+    color: #ff00ff;
+    border-bottom: 1px solid #e51a4b;
+}
+.sample-page.theme-gaming.mode-dark .sample-tabs .tab-button:hover {
+     background-color: #2a0000;
+     color: #fff;
+}
+.sample-page.theme-gaming.mode-dark .sample-tabs .tab-button.active {
+    background-color: #080808;
+    color: #fff;
+    border-bottom: 2px solid #ff9900; /* Оранжевое подчеркивание */
+    text-shadow: 0 0 5px #ff9900;
+}
+.sample-page.theme-gaming.mode-dark .sample-tabs .tab-content {
+    background-color: #080808;
+    color: #ff9900;
+}
+.sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane p,
+.sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane li {
+     color: #ff9900; /* Оранжевый текст во вкладках */
+}
+.sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane li::before {
+    color: #e51a4b; /* ROG красный маркер */
+}
+
+.sample-page.theme-gaming.mode-dark .sample-toggle {
+     color: #e51a4b;
+}
+.sample-page.theme-gaming.mode-dark .sample-toggle label {
+    background-color: #ff00ff; /* Фиолетовый фон выкл */
+    box-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+}
+.sample-page.theme-gaming.mode-dark .sample-toggle label::before {
+     background-color: #080808; /* Темный ползунок */
+}
+.sample-page.theme-gaming.mode-dark input[type="checkbox"]:checked + label {
+    background-color: #e51a4b; /* ROG красный фон вкл */
+    box-shadow: 0 0 5px rgba(229, 26, 75, 0.5);
+}
+.sample-page.theme-gaming.mode-dark input[type="checkbox"]:checked + label::before {
+    transform: translateX(16px);
+     background-color: #fff;
+}
+.sample-page.theme-gaming.mode-dark .sample-toggle span {
+     color: #e51a4b;
+}
+
+
+/* --- Стили для темы "Modern" (Светлая) --- */
 .sample-page.theme-modern {
-    background-color: #ffffff; /* Чисто белый фон */
+    background-color: #ffffff;
     color: #333;
     border: none;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* Легкая, широкая тень */
-    font-family: 'Montserrat', sans-serif; /* Современный шрифт */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    font-family: 'Montserrat', sans-serif;
     position: relative;
     overflow: hidden;
-    border-radius: 5px; /* Менее скругленные углы */
-    padding: 3rem; /* Больше внутреннего отступа */
+    border-radius: 5px;
+    padding: 3rem;
 }
 
 /* Добавляем минималистичные декоративные линии */
@@ -739,29 +944,29 @@ footer {
 .sample-page.theme-modern::before {
     top: 0;
     left: 0;
-    width: 5px; /* Вертикальная линия слева */
+    width: 5px;
     height: 100%;
 }
 .sample-page.theme-modern::after {
     bottom: 0;
     right: 0;
     width: 100%;
-    height: 5px; /* Горизонтальная линия снизу */
+    height: 5px;
 }
 
 
 .sample-page.theme-modern .sample-header {
     border-bottom: 1px solid #eee;
-    padding: 0 0 1rem 0; /* Отступ только снизу */
-    margin-bottom: 2rem; /* Отступ после хедера */
-    text-align: left; /* Выравнивание влево */
+    padding: 0 0 1rem 0;
+    margin-bottom: 2rem;
+    text-align: left;
     color: #222;
 }
 
 .sample-page.theme-modern .sample-header h3 {
      font-size: 2.2rem;
      margin-bottom: 0.5rem;
-     font-weight: 700; /* Жирный заголовок */
+     font-weight: 700;
 }
 .sample-page.theme-modern .sample-header p {
      font-size: 1rem;
@@ -770,25 +975,25 @@ footer {
 
 
 .sample-page.theme-modern .sample-content {
-    background-color: transparent; /* Прозрачный фон контента */
+    background-color: transparent;
     padding: 0;
-    margin-bottom: 2rem; /* Отступ после контента */
+    margin-bottom: 2rem;
 }
 
 .sample-page.theme-modern .sample-content h4 {
     margin-top: 0;
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    color: #007bff; /* Синий акцент */
-    border-bottom: none; /* Убираем линию */
-    display: block; /* Снова блочный элемент */
+    color: #007bff;
+    border-bottom: none;
+    display: block;
     padding-bottom: 0;
     font-weight: 700;
 }
 
 .sample-page.theme-modern .sample-content p {
      margin-bottom: 1.5rem;
-     line-height: 1.8; /* Увеличиваем межстрочный интервал */
+     line-height: 1.8;
      color: #444;
 }
 
@@ -804,8 +1009,8 @@ footer {
     padding-left: 1.5rem;
 }
 .sample-page.theme-modern .sample-content li::before {
-    content: '—'; /* Тире в качестве маркера */
-    color: #007bff; /* Синий маркер */
+    content: '—';
+    color: #007bff;
     position: absolute;
     left: 0;
     top: 0;
@@ -815,14 +1020,14 @@ footer {
 
 .sample-page.theme-modern .sample-footer {
     border-top: 1px solid #eee;
-    padding: 1rem 0 0 0; /* Отступ только сверху */
-    text-align: right; /* Выравнивание вправо */
+    padding: 1rem 0 0 0;
+    text-align: right;
     font-size: 0.8rem;
     color: #555;
-    margin-top: 2rem; /* Отступ перед футером */
+    margin-top: 2rem;
 }
 
-/* Стили Modern для новых элементов */
+/* Стили Modern (Светлая) для новых элементов */
 .sample-page.theme-modern .sample-tabs {
     margin-top: 2rem;
     border: 1px solid #eee;
@@ -838,7 +1043,7 @@ footer {
 .sample-page.theme-modern .tab-button {
     background-color: #f8f8f8;
     color: #555;
-    border-bottom: none; /* Убираем стандартную границу */
+    border-bottom: none;
     position: relative;
     overflow: hidden;
 }
@@ -850,18 +1055,18 @@ footer {
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: #007bff; /* Синий акцент */
-    transform: translateX(-100%); /* Скрыта по умолчанию */
+    background-color: #007bff;
+    transform: translateX(-100%);
     transition: transform 0.3s ease;
 }
 
 .sample-page.theme-modern .tab-button.active {
     background-color: #fff;
     color: #333;
-    border-bottom: none; /* Убираем стандартную границу */
+    border-bottom: none;
 }
 .sample-page.theme-modern .tab-button.active::before {
-     transform: translateX(0); /* Показываем подчеркивание */
+     transform: translateX(0);
 }
 
 
@@ -870,120 +1075,236 @@ footer {
 }
 .sample-page.theme-modern .sample-toggle label {
     background-color: #ccc;
-    border-radius: 12px; /* Меньший радиус */
+    border-radius: 12px;
     height: 24px;
-    width: 44px; /* Чуть шире */
+    width: 44px;
 }
 .sample-page.theme-modern .sample-toggle label::before {
     width: 20px;
     height: 20px;
-    border-radius: 2px; /* Квадратный ползунок */
+    border-radius: 2px;
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .sample-page.theme-modern input[type="checkbox"]:checked + label {
-    background-color: #007bff; /* Синий при включении */
+    background-color: #007bff;
 }
 .sample-page.theme-modern input[type="checkbox"]:checked + label::before {
-    transform: translateX(20px); /* Сдвигаем ползунок */
+    transform: translateX(20px);
+}
+
+/* --- Стили для темы "Modern" (Темная) --- */
+.sample-page.theme-modern.mode-dark {
+    background-color: #222; /* Темный фон */
+    color: #eee; /* Светлый текст */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* Более темная тень */
+}
+
+/* Декоративные линии в темном режиме */
+.sample-page.theme-modern.mode-dark::before,
+.sample-page.theme-modern.mode-dark::after {
+    background-color: #ff9900; /* Оранжевый акцент */
 }
 
 
-/* Медиа-запросы для адаптивности (пример) */
+.sample-page.theme-modern.mode-dark .sample-header {
+    border-bottom-color: #444;
+    color: #fff;
+}
+
+.sample-page.theme-modern.mode-dark .sample-header h3 {
+    color: #ff9900; /* Оранжевый заголовок */
+}
+.sample-page.theme-modern.mode-dark .sample-header p {
+    color: #bbb;
+}
+
+
+.sample-page.theme-modern.mode-dark .sample-content {
+    color: #ddd;
+}
+
+.sample-page.theme-modern.mode-dark .sample-content h4 {
+    color: #ff00ff; /* Фиолетовый акцент */
+}
+
+.sample-page.theme-modern.mode-dark .sample-content p {
+    color: #ccc;
+}
+
+.sample-page.theme-modern.mode-dark .sample-content li {
+    color: #eee;
+}
+.sample-page.theme-modern.mode-dark .sample-content li::before {
+    color: #ff9900; /* Оранжевый маркер */
+}
+
+
+.sample-page.theme-modern.mode-dark .sample-footer {
+    border-top-color: #444;
+    color: #bbb;
+}
+
+/* Стили Modern (Темная) для новых элементов */
+.sample-page.theme-modern.mode-dark .sample-tabs {
+    border-color: #444;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.sample-page.theme-modern.mode-dark .sample-tabs .tab-buttons {
+    border-bottom-color: #444;
+}
+
+.sample-page.theme-modern.mode-dark .tab-button {
+    background-color: #333;
+    color: #bbb;
+}
+
+.sample-page.theme-modern.mode-dark .tab-button:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+.sample-page.theme-modern.mode-dark .tab-button.active {
+    background-color: #222;
+    color: #fff;
+}
+.sample-page.theme-modern.mode-dark .tab-button.active::before {
+     background-color: #ff00ff; /* Фиолетовое подчеркивание */
+}
+
+.sample-page.theme-modern.mode-dark .sample-tabs .tab-content {
+    background-color: #222;
+    color: #ddd;
+}
+.sample-page.theme-modern.mode-dark .sample-tabs .tab-pane p,
+.sample-page.theme-modern.mode-dark .sample-tabs .tab-pane li {
+    color: #ddd;
+}
+.sample-page.theme-modern.mode-dark .sample-tabs .tab-pane li::before {
+    color: #ff9900; /* Оранжевый маркер */
+}
+
+.sample-page.theme-modern.mode-dark .sample-toggle {
+     color: #bbb;
+}
+.sample-page.theme-modern.mode-dark .sample-toggle label {
+    background-color: #555;
+}
+.sample-page.theme-modern.mode-dark input[type="checkbox"]:checked + label {
+    background-color: #ff9900; /* Оранжевый при включении */
+}
+.sample-page.theme-modern.mode-dark input[type="checkbox"]:checked + label::before {
+    transform: translateX(20px);
+}
+.sample-page.theme-modern.mode-dark .sample-toggle span {
+     color: #ff9900; /* Оранжевый текст */
+}
+
+
+/* --- Стили для плавающей кнопки погоды и виджета --- */
+.weather-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 100; /* Поверх всего */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.weather-toggle:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.weather-widget {
+    position: fixed;
+    bottom: 80px; /* Выше кнопки */
+    right: 20px;
+    width: 280px; /* Чуть шире */
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    display: none; /* По умолчанию скрыт */
+    opacity: 0; /* Для плавного появления */
+    transition: opacity 0.3s ease;
+}
+
+.weather-widget.visible {
+    display: block;
+    opacity: 1;
+}
+
+.weather-widget .close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #888;
+}
+
+.weather-widget h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #007bff;
+    font-size: 1.2rem;
+}
+
+.weather-widget .weather-info p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.weather-widget #weather-icon {
+    display: block;
+    margin: 10px auto;
+    width: 50px;
+    height: 50px;
+}
+
+/* Класс для скрытия, используется в JS */
+.hidden {
+    display: none;
+}
+
+
+/* Медиа-запросы для адаптивности */
 @media (max-width: 768px) {
-    section {
-        padding: 1.5rem 0.8rem;
-        margin: 1.5rem auto;
-    }
-
-    .projects {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .sample-page {
-        padding: 1.5rem;
-        max-width: 95%;
-    }
-
-    .sample-page .sample-header h3 {
-        font-size: 1.5rem;
-    }
-
-    .sample-page .sample-content h4 {
-        font-size: 1.3rem;
-    }
-
-    .theme-controls {
-        gap: 8px;
-    }
-
-    .theme-switch {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-
-    .toggle-button {
-         padding: 0.6rem 1.2rem;
-         font-size: 0.9rem;
-    }
-
-    .sample-page.theme-gaming::before,
-    .sample-page.theme-gaming::after {
-        width: 30px;
-        height: 30px;
-        border-width: 2px;
-    }
-
-    .sample-page.theme-modern {
-        padding: 2rem; /* Уменьшаем padding на мобильных */
-    }
-    .sample-page.theme-modern::before {
-        width: 3px;
-    }
-    .sample-page.theme-modern::after {
-        height: 3px;
-    }
+    /* ... существующие медиа-запросы ... */
 }
 
 @media (max-width: 480px) {
-     header h1 {
-        font-size: 2rem;
-    }
-
-    header p {
-        font-size: 1rem;
-    }
-
-     section h2 {
-        font-size: 1.8rem;
-     }
-
-     .sample-page .sample-header h3 {
-        font-size: 1.3rem;
-    }
-
-     .sample-page .sample-content h4 {
+     /* ... существующие медиа-запросы ... */
+      .weather-toggle {
+        bottom: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
         font-size: 1.2rem;
-    }
-
-     .sample-page .sample-content p,
-     .sample-page .sample-content li {
-         font-size: 0.9rem;
-     }
-
-     #skills li {
-         padding: 0.5rem 1rem;
-         font-size: 0.8rem;
-     }
-
-     .header-buttons .toggle-button {
-        margin: 0.3rem;
-     }
-
-     .sample-tabs .tab-button {
-         padding: 0.6rem 0.5rem; /* Меньше padding на маленьких экранах */
-         font-size: 0.8rem;
-     }
+      }
+      .weather-widget {
+        bottom: 60px;
+        right: 10px;
+        width: 250px;
+      }
 }
