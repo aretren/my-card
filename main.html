@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> </head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> </head>
 <body>
 
     <header>
@@ -73,9 +73,15 @@
         <h2>Примеры Дизайнов</h2>
 
         <div class="theme-controls">
-            <button data-theme="aero" class="theme-switch">Aero</button>
-            <button data-theme="gaming" class="theme-switch">Gaming</button>
-            <button data-theme="modern" class="theme-switch">Modern</button>
+            <div class="base-themes">
+                 <button data-base-theme="aero" class="base-theme-switch active">Aero</button>
+                 <button data-base-theme="gaming" class="base-theme-switch">Gaming</button>
+                 <button data-base-theme="modern" class="base-theme-switch">Modern</button>
+            </div>
+             <div class="mode-toggle">
+                 <button data-mode="light" class="mode-switch active">Светлая</button>
+                 <button data-mode="dark" class="mode-switch">Темная</button>
+             </div>
         </div>
 
         <div id="sample-page" class="sample-page">
@@ -95,7 +101,7 @@
                     </div>
                     <div class="tab-content">
                         <div id="tab1-content" class="tab-pane">
-                            <p>Содержимое **первой** вкладки. Здесь может быть дополнительная информация или другой пример контента, специфичный для этой вкладки.</p>
+                            <p>Содержимое **первой** вкладки. Здесь можно показать дополнительную информацию или другой пример контента, специфичный для этой вкладки.</p>
                         </div>
                         <div id="tab2-content" class="tab-pane">
                             <p>Содержимое **второй** вкладки. Можно продемонстрировать, как выглядят списки или текст с разными стилями.</p>
@@ -126,6 +132,19 @@
     <footer>
         <p>&copy; <span id="current-year"></span> Ваше Имя. Все права защищены.</p>
     </footer>
+
+    <button id="weather-toggle" class="weather-toggle">
+        ☀️
+    </button>
+
+    <div id="weather-widget" class="weather-widget hidden">
+        <button class="close-button">&times;</button>
+        <h3>Погода</h3>
+        <div class="weather-info">
+            <p>Загрузка...</p>
+            </div>
+    </div>
+
 
     <script src="main.js"></script>
 </body>
