@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> </head>
 <body>
 
     <header>
@@ -75,8 +75,7 @@
         <div class="theme-controls">
             <button data-theme="aero" class="theme-switch">Aero</button>
             <button data-theme="gaming" class="theme-switch">Gaming</button>
-            <button data-theme="arthouse" class="theme-switch">Arthouse</button>
-        </div>
+            <button data-theme="modern" class="theme-switch">Modern</button> </div>
 
         <div id="sample-page" class="sample-page">
             <div class="sample-header">
@@ -85,13 +84,35 @@
             </div>
             <div class="sample-content">
                 <h4>Заголовок секции контента</h4>
-                <p>Это пример текстового блока, демонстрирующий основной стиль типографики и оформления. Здесь может быть несколько предложений для наглядности.</p>
+                <p>Это пример текстового блока, демонстрирующий основной стиль типографики и оформления.</p>
                 <p>Прозрачность может быть использована для фонов блоков или элементов интерфейса, создавая эффект глубины.</p>
-                <ul>
-                    <li>Пункт списка 1</li>
-                    <li>Пункт списка 2</li>
-                    <li>Пункт списка 3</li>
-                </ul>
+
+                <div class="sample-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-button" data-tab="tab1">Вкладка 1</button>
+                        <button class="tab-button" data-tab="tab2">Вкладка 2</button>
+                    </div>
+                    <div class="tab-content">
+                        <div id="tab1-content" class="tab-pane">
+                            <p>Содержимое **первой** вкладки. Здесь можно показать дополнительную информацию или другой пример контента, специфичный для этой вкладки.</p>
+                        </div>
+                        <div id="tab2-content" class="tab-pane">
+                            <p>Содержимое **второй** вкладки. Можно продемонстрировать, как выглядят списки или другие элементы внутри вкладок.</p>
+                            <ul>
+                                <li>Пункт списка во вкладке</li>
+                                <li>Еще один пункт</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sample-toggle">
+                    <span>Статус:</span>
+                    <input type="checkbox" id="sample-switch">
+                    <label for="sample-switch"></label>
+                    <span>Включено/Выключено</span>
+                </div>
+
             </div>
             <div class="sample-footer">
                 <p>&copy; Пример Футера | 2023</p>
