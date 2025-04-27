@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> </head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> </head>
 <body>
 
     <header>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="tab-content">
                         <div id="tab1-content" class="tab-pane">
-                            <p>Содержимое **первой** вкладки. Здесь можно показать дополнительную информацию или другой пример контента, специфичный для этой вкладки.</p>
+                            <p>Содержимое **первой** вкладки. Здесь может быть дополнительная информация или другой пример контента, специфичный для этой вкладки.</p>
                         </div>
                         <div id="tab2-content" class="tab-pane">
                             <p>Содержимое **второй** вкладки. Можно продемонстрировать, как выглядят списки или текст с разными стилями.</p>
@@ -133,16 +133,34 @@
         <p>&copy; <span id="current-year"></span> Ваше Имя. Все права защищены.</p>
     </footer>
 
-    <button id="weather-toggle" class="weather-toggle">
-        ☀️
+    <button id="calculator-toggle" class="calculator-toggle">
+        🧮
     </button>
 
-    <div id="weather-widget" class="weather-widget hidden">
+    <div id="calculator-widget" class="calculator-widget hidden">
         <button class="close-button">&times;</button>
-        <h3>Погода</h3>
-        <div class="weather-info">
-            <p>Загрузка...</p>
-            </div>
+        <div class="calculator-display">0</div>
+        <div class="calculator-buttons">
+            <button class="btn clear">C</button>
+            <button class="btn operator" data-value="/">÷</button>
+            <button class="btn operator" data-value="*">×</button>
+            <button class="btn operator" data-value="-">−</button>
+
+            <button class="btn number" data-value="7">7</button>
+            <button class="btn number" data-value="8">8</button>
+            <button class="btn number" data-value="9">9</button>
+            <button class="btn operator" data-value="+">+</button>
+
+            <button class="btn number" data-value="4">4</button>
+            <button class="btn number" data-value="5">5</button>
+            <button class="btn number" data-value="6">6</button>
+
+            <button class="btn equals" data-value="=">=</button> <button class="btn number" data-value="1">1</button>
+            <button class="btn number" data-value="2">2</button>
+            <button class="btn number" data-value="3">3</button>
+
+            <button class="btn number zero" data-value="0">0</button> <button class="btn decimal" data-value=".">.</button>
+        </div>
     </div>
 
 
