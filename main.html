@@ -11,54 +11,77 @@
     <header>
         <h1>Ваше Имя</h1>
         <p>Web Разработчик</p>
-        </header>
+        <button id="toggle-designs" class="toggle-button">Показать Примеры Дизайнов</button>
+    </header>
 
-    <section id="about">
-        <h2>О себе</h2>
-        <p>
-            Написать краткое описание?
-        </p>
-    </section>
+    <div id="main-content">
+        <section id="about">
+            <h2>О себе</h2>
+            <p>
+                Здесь вы можете написать краткое описание своего опыта...
+            </p>
+        </section>
 
-    <section id="skills">
-        <h2>Навыки</h2>
-        <ul>
-            <li>HTML5</li>
-            <li>CSS3</li>
-            <li>JavaScript</li>
-            <li>[Укажите другие языки/фреймворки: React, Vue, Angular, Node.js, Python, PHP, SQL, и т.д.]</li>
-            <li>[Укажите инструменты: Git, Webpack, Babel, Docker, и т.д.]</li>
-            <li>[Укажите области знаний: Адаптивная верстка, Кроссбраузерность, SEO-оптимизация, и т.д.]</li>
-        </ul>
-    </section>
+        <section id="skills">
+            <h2>Навыки</h2>
+            <ul>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+                </ul>
+        </section>
 
-    <section id="portfolio">
-        <h2>Портфолио</h2>
-        <div class="projects">
-            <div class="project-item">
-                <h3>Название проекта 1</h3>
-                <p>Краткое описание проекта. Использованные технологии: [Список технологий]</p>
-                <a href="#" target="_blank">Ссылка на проект (если есть)</a>
+        <section id="portfolio">
+            <h2>Портфолио</h2>
+            <div class="projects">
                 </div>
-            <div class="project-item">
-                <h3>Название проекта 2</h3>
-                <p>Краткое описание проекта. Использованные технологии: [Список технологий]</p>
-                <a href="#" target="_blank">Ссылка на проект (если есть)</a>
-                </div>
+        </section>
+
+        <section id="contact">
+            <h2>Контакты</h2>
+            <p>Со мной можно связаться по:</p>
+            <ul>
+                <li>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></li>
+                </ul>
+        </section>
+    </div>
+
+    <section id="design-showcase" class="hidden">
+        <h2>Примеры Дизайнов</h2>
+
+        <div class="theme-controls">
+            <button data-theme="default" class="theme-switch active">Стандартный</button>
+            <button data-theme="aero" class="theme-switch">Aero</button>
+            <button data-theme="gaming" class="theme-switch">Gaming</button>
+            <button data-theme="arthouse" class="theme-switch">Arthouse</button>
+        </div>
+
+        <div id="sample-page" class="sample-page">
+            <div class="sample-header">
+                <h3>Пример Заголовка</h3>
+                <p>Пример подзаголовка</p>
             </div>
+            <div class="sample-content">
+                <h4>Пример Контента</h4>
+                <p>Это пример текстового блока, который покажет, как выглядит основной контент страницы в выбранном стиле.</p>
+                <ul>
+                    <li>Пункт списка 1</li>
+                    <li>Пункт списка 2</li>
+                    <li>Пункт списка 3</li>
+                </ul>
+            </div>
+            <div class="sample-footer">
+                <p>&copy; Пример Футера</p>
+            </div>
+        </div>
+
+        <button id="toggle-main" class="toggle-button">Вернуться к Портфолио</button>
+
     </section>
 
-    <section id="contact">
-        <h2>Контакты</h2>
-        <p>Со мной можно связаться по:</p>
-        <ul>
-            <li>Email: <a href="mailto:your.email@example.com">aretren@gmail.com</a></li>
-            <li>Telegram: <a href="https://t.me/your_telegram" target="_blank">https://t.me/Arent_Likes_Web</a></li>
-            </ul>
-    </section>
 
     <footer>
-        <p>&copy; <span id="current-year"></span> Aren'tLikeWeb. Все права защищены.</p>
+        <p>&copy; <span id="current-year"></span> Ваше Имя. Все права защищены.</p>
     </footer>
 
     <script src="main.js"></script>
