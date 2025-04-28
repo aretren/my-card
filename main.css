@@ -17,26 +17,38 @@ header {
     z-index: 10;
     transition: background-color 0.5s ease, color 0.5s ease;
     margin-bottom: 0;
-    display: flex; /* Используем flexbox для расположения элементов */
-    align-items: center; /* Выравниваем элементы по вертикали (центр по высоте контейнера header) */
-    justify-content: space-between; /* Распределяем пространство между элементами */
-    flex-wrap: wrap; /* Позволяем элементам переноситься на новую строку на маленьких экранах */
+    display: flex;
+    flex-direction: column; /* Размещаем элементы в столбец */
+    align-items: center; /* Центрируем элементы по горизонтали в header */
+}
+
+/* Новый контейнер для текста и фото */
+.header-top-row {
+    display: flex; /* Делаем этот контейнер флексбоксом */
+    align-items: center; /* Выравниваем текст и фото по центру по вертикали */
+    justify-content: center; /* Центрируем текст и фото как группу */
+    flex-wrap: wrap; /* Позволяем переноситься на новую строку на маленьких экранах */
+    margin-bottom: 1.5rem; /* Отступ между верхней частью и кнопками */
 }
 
 .header-content { /* Контейнер для текста */
-    flex-grow: 1; /* Растягиваем на доступное пространство */
+    /* flex-grow: 1; - Удалено, чтобы не растягивал, позволяем контенту определять ширину */
     margin-right: 2rem; /* Отступ справа от текста к фото */
-    /* Добавим margin снизу, чтобы отделить от кнопок на мобильных, если wrap сработал */
-    margin-bottom: 1rem;
+    text-align: right; /* Выравниваем текст справа, чтобы он был ближе к фото */
+    /* Убираем margin-bottom, так как есть margin на .header-top-row */
+     margin-bottom: 0;
 }
 
-/* На маленьких экранах центрируем текст */
-@media (max-width: 480px) {
+/* На маленьких экранах центрируем текст и убираем margin-right */
+@media (max-width: 768px) { /* Можно скорректировать брейкпоинт при необходимости */
      .header-content {
-         flex-basis: 100%; /* Занимает всю ширину */
          text-align: center;
          margin-right: 0;
+         margin-bottom: 1rem; /* Добавляем отступ снизу на мобильных */
      }
+      .header-top-row {
+          flex-direction: column; /* На маленьких экранах располагаем фото и текст в столбец */
+      }
 }
 
 
@@ -57,14 +69,15 @@ header p {
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #fff;
-    margin-left: 1rem; /* Отступ слева от фото к тексту на широких экранах */
-    /* Добавим margin снизу, если flex-wrap сработал */
-    margin-bottom: 1rem;
+    margin-left: 1rem; /* Отступ слева от фото к тексту */
+    /* Убираем margin-bottom, так как есть margin на .header-top-row */
+    margin-bottom: 0;
 }
-/* Центрируем фото на маленьких экранах */
-@media (max-width: 480px) {
+/* На маленьких экранах убираем margin-left */
+@media (max-width: 768px) { /* Можно скорректировать брейкпоинт при необходимости */
     .profile-photo {
          margin-left: 0;
+         margin-bottom: 1rem; /* Добавляем отступ снизу на мобильных */
     }
 }
 
@@ -74,7 +87,8 @@ header p {
     margin-top: 1.5rem;
     text-align: center;
     margin-bottom: 0;
-    flex-basis: 100%; /* Кнопки всегда занимают всю ширину под фото и текстом */
+    /* flex-basis: 100%; - Удалено, так как родитель flex-direction: column */
+    width: 100%; /* Занимаем всю ширину для центрирования кнопок */
 }
 
 
@@ -424,10 +438,25 @@ footer {
     transition: background-color 0.3s ease, color 0.3s ease, border-bottom-color 0.3s ease;
     font-size: 1rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.sample-tabs .tab-button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #007bff;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
 }
 
 .sample-tabs .tab-button:hover {
     background-color: #eee;
+    color: #222;
 }
 
 .sample-tabs .tab-button.active {
@@ -435,18 +464,21 @@ footer {
     color: #333;
     border-bottom: 2px solid #007bff;
 }
+.sample-tabs .tab-button.active::before {
+     transform: translateX(0);
+}
 
 .sample-tabs .tab-content {
-    padding: 1rem;
-    transition: background-color 0.8s ease, color 0.8s ease;
+     padding: 1rem; /* Добавим padding */
+     transition: background-color 0.8s ease, color 0.8s ease;
+     color: #333; /* Цвет текста по умолчанию */
 }
-
-.sample-tabs .tab-pane {
-    display: none;
+.sample-tabs .tab-pane p,
+.sample-tabs .tab-pane li {
+    color: #333; /* Цвет текста параграфов и списков по умолчанию */
 }
-
-.sample-tabs .tab-pane.active {
-    display: block;
+.sample-tabs .tab-pane li::before {
+     color: #007bff; /* Синий маркер по умолчанию */
 }
 
 
@@ -473,7 +505,7 @@ footer {
     border-radius: 24px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    flex-shrink: 0; /* Запрещаем сжиматься */
+    flex-shrink: 0;
 }
 
 .theme-controls .mode-toggle-control label::before {
@@ -497,25 +529,25 @@ footer {
 }
 
 .theme-controls .mode-toggle-control span {
-    white-space: nowrap; /* Запрещаем перенос текста у спанов */
+    white-space: nowrap;
 }
 
 
 /* --- Стили для темы "Aero" (Светлая) --- */
 .sample-page.theme-aero {
-    background: linear-gradient(135deg, rgba(240, 248, 255, 0.9), rgba(173, 216, 230, 0.7)); /* AliceBlue к LightBlue */
+    background: linear-gradient(135deg, rgba(240, 248, 255, 0.9), rgba(173, 216, 230, 0.7));
     color: #333;
     border: none;
-    box-shadow: 0 15px 30px rgba(70, 130, 180, 0.2); /* SteelBlue тень */
+    box-shadow: 0 15px 30px rgba(70, 130, 180, 0.2);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
 
 .sample-page.theme-aero .sample-header {
-    border-bottom: 1px solid rgba(176, 196, 222, 0.5); /* LightSteelBlue граница */
-    color: #4682b4; /* SteelBlue заголовок */
-    background-color: rgba(176, 196, 222, 0.3); /* LightSteelBlue фон */
+    border-bottom: 1px solid rgba(176, 196, 222, 0.5);
+    color: #4682b4;
+    background-color: rgba(176, 196, 222, 0.3);
     margin-bottom: 1rem;
     border-radius: 5px 5px 0 0;
 }
@@ -524,54 +556,46 @@ footer {
      text-shadow: 1px 1px 2px rgba(70, 130, 180, 0.1);
 }
 .sample-page.theme-aero .sample-header p {
-    color: #778899; /* LightSlateGray подзаголовок */
+    color: #778899;
 }
 
 
 .sample-page.theme-aero .sample-content {
-    background-color: rgba(255, 255, 255, 0.7); /* Полупрозрачный белый */
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    color: #333; /* Цвет текста контента */
 }
 
 .sample-page.theme-aero .sample-content h4 {
-     color: #6495ed; /* CornflowerBlue заголовок контента */
+     color: #6495ed;
 }
 
 .sample-page.theme-aero .sample-content ul {
      list-style: circle;
-     color: #add8e6; /* LightBlue маркеры */
+     color: #add8e6;
 }
 .sample-page.theme-aero .sample-content p {
      color: #555;
 }
 
-
-.sample-page.theme-aero .sample-footer {
-     border-top: 1px solid rgba(176, 196, 222, 0.5); /* LightSteelBlue граница */
-     color: #4682b4; /* SteelBlue футер */
-     background-color: rgba(176, 196, 222, 0.3); /* LightSteelBlue фон */
-     margin-top: 1rem;
-     border-radius: 0 0 5px 5px;
-}
-
-/* Стили Aero (Светлая) для новых элементов */
+/* Aero Светлая: Стили для новых элементов */
 .sample-page.theme-aero .sample-tabs .tab-button {
-    background-color: rgba(240, 248, 255, 0.5); /* Полупрозрачный AliceBlue */
-    color: #4682b4; /* SteelBlue текст */
-    border-bottom: 1px solid rgba(173, 216, 230, 0.5); /* LightBlue граница */
+    background-color: rgba(240, 248, 255, 0.5);
+    color: #4682b4;
+    border-bottom: 1px solid rgba(173, 216, 230, 0.5);
 }
 .sample-page.theme-aero .sample-tabs .tab-button:hover {
-     background-color: rgba(173, 216, 230, 0.7); /* LightBlue при наведении */
+     background-color: rgba(173, 216, 230, 0.7);
 }
 .sample-page.theme-aero .sample-tabs .tab-button.active {
     background-color: rgba(255, 255, 255, 0.8);
-    color: #2f4f4f; /* DarkSlateGray текст */
-    border-bottom: 2px solid #4682b4; /* SteelBlue подчеркивание */
+    color: #2f4f4f;
+    border-bottom: 2px solid #4682b4;
 }
-
 .sample-page.theme-aero .sample-tabs .tab-content {
+     background-color: rgba(255, 255, 255, 0.8);
      color: #333;
 }
 .sample-page.theme-aero .sample-tabs .tab-pane p,
@@ -583,49 +607,52 @@ footer {
 }
 
 
+.sample-page.theme-aero .sample-footer {
+     border-top: 1px solid rgba(176, 196, 222, 0.5);
+     color: #4682b4;
+     background-color: rgba(176, 196, 222, 0.3);
+     margin-top: 1rem;
+     border-radius: 0 0 5px 5px;
+}
+
+
 /* --- Стили для темы "Aero" (Темная) --- */
 .sample-page.theme-aero.mode-dark {
-    background: linear-gradient(135deg, #0a141e, #1a2e3c); /* Темно-синий градиент */
-    color: #e0f7fa; /* Светло-бирюзовый текст */
-    box-shadow: 0 15px 30px rgba(0, 121, 107, 0.4); /* Темно-бирюзовая тень */
+    background: linear-gradient(135deg, #0a141e, #1a2e3c);
+    color: #e0f7fa;
+    box-shadow: 0 15px 30px rgba(0, 121, 107, 0.4);
 }
 
 .sample-page.theme-aero.mode-dark .sample-header {
     border-bottom-color: rgba(0, 151, 167, 0.5);
-    color: #80deea; /* Светло-бирюзовый заголовок */
+    color: #80deea;
     background-color: rgba(0, 151, 167, 0.2);
 }
 .sample-page.theme-aero.mode-dark .sample-header h3 {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 .sample-page.theme-aero.mode-dark .sample-header p {
-    color: #4db6ac; /* Пастельный цвет подзаголовка */
+    color: #4db6ac;
 }
 
 
 .sample-page.theme-aero.mode-dark .sample-content {
-    background-color: rgba(26, 46, 60, 0.7); /* Полупрозрачный темно-синий */
+    background-color: rgba(26, 46, 60, 0.7);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    color: #b2ebf2;
 }
 
 .sample-page.theme-aero.mode-dark .sample-content h4 {
-     color: #00bcd4; /* Бирюзовый заголовок */
+     color: #00bcd4;
 }
 .sample-page.theme-aero.mode-dark .sample-content ul {
-     color: #26a69a; /* Темно-бирюзовый маркеры */
+     color: #26a69a;
 }
 .sample-page.theme-aero.mode-dark .sample-content p {
-     color: #b2ebf2; /* Светло-бирюзовый текст */
+     color: #b2ebf2;
 }
 
-
-.sample-page.theme-aero.mode-dark .sample-footer {
-     border-top-color: rgba(0, 151, 167, 0.5);
-     color: #80deea; /* Светло-бирюзовый футер */
-     background-color: rgba(0, 151, 167, 0.2);
-}
-
-/* Стили Aero (Темная) для новых элементов */
+/* Aero Темная: Стили для новых элементов */
 .sample-page.theme-aero.mode-dark .sample-tabs {
      border-color: rgba(0, 151, 167, 0.5);
 }
@@ -657,6 +684,15 @@ footer {
 }
 .sample-page.theme-aero.mode-dark .sample-tabs .tab-pane li::before {
     color: #00bcd4;
+}
+
+
+.sample-page.theme-aero.mode-dark .sample-footer {
+     border-top-color: rgba(0, 151, 167, 0.5);
+     color: #80deea;
+     background-color: rgba(0, 151, 167, 0.2);
+     margin-top: 1rem;
+     border-radius: 0 0 5px 5px;
 }
 
 
@@ -757,17 +793,7 @@ footer {
     font-weight: bold;
 }
 
-
-.sample-page.theme-gaming .sample-footer {
-     border-top: 1px dashed #ff00ff;
-     background-color: rgba(229, 26, 75, 0.1);
-     text-align: right;
-     font-size: 0.9rem;
-     padding-top: 0.8rem;
-     color: #e51a4b; /* ROG красный футер */
-}
-
-/* Стили Gaming (Светлая) для новых элементов */
+/* Gaming Светлая: Стили для новых элементов */
 .sample-page.theme-gaming .sample-tabs .tab-button {
     background-color: #2a2a2a;
     color: #ff9900;
@@ -802,6 +828,15 @@ footer {
 }
 
 
+.sample-page.theme-gaming .sample-footer {
+     border-top: 1px dashed #ff00ff;
+     background-color: rgba(229, 26, 75, 0.1);
+     text-align: right;
+     font-size: 0.9rem;
+     padding-top: 0.8rem;
+     color: #e51a4b;
+}
+
 /* --- Стили для темы "Gaming" (Темная) --- */
 .sample-page.theme-gaming.mode-dark {
     background: linear-gradient(135deg, #000, #110000);
@@ -811,10 +846,10 @@ footer {
 }
 /* Угловые декорации в темном режиме */
 .sample-page.theme-gaming.mode-dark::before {
-    border-color: #e51a4b transparent transparent #e51a4b; /* ROG красный верх/лево */
+    border-color: #e51a4b transparent transparent #e51a4b;
 }
 .sample-page.theme-gaming.mode-dark::after {
-     border-color: transparent #e51a4b #e51a4b transparent; /* ROG красный право/низ */
+     border-color: transparent #e51a4b #e51a4b transparent;
 }
 
 
@@ -835,15 +870,20 @@ footer {
 
 .sample-page.theme-gaming.mode-dark .sample-content {
     background-color: #080808;
+    padding: 2rem;
+    border-radius: 5px;
     color: #ff9900;
-    border-color: rgba(229, 26, 75, 0.3);
+    border: 1px solid rgba(229, 26, 75, 0.3);
+    position: relative;
+    z-index: 2;
 }
 
 .sample-page.theme-gaming.mode-dark .sample-content h4 {
     color: #e51a4b;
     text-shadow: 0 0 8px #e51a4b;
-    border-bottom-color: #e51a4b;
-    display: inline-block; /* Убедимся */
+    border-bottom: 1px dashed #e51a4b;
+    display: inline-block;
+    padding-bottom: 0.3rem;
 }
 .sample-page.theme-gaming.mode-dark .sample-content p {
     color: #ff9900;
@@ -874,7 +914,7 @@ footer {
      text-align: right;
 }
 
-/* Стили Gaming (Темная) для новых элементов */
+/* Gaming Темная: Стили для новых элементов */
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-button {
     background-color: #080808;
     color: #ff00ff;
@@ -1063,13 +1103,14 @@ footer {
 .sample-page.theme-modern .tab-button.active {
     background-color: #fff;
     color: #333;
-    border-bottom: none;
+    border-bottom: 2px solid #007bff;
 }
 .sample-page.theme-modern .tab-button.active::before {
      transform: translateX(0);
 }
 
 .sample-page.theme-modern .sample-tabs .tab-content {
+     background-color: #fff; /* Цвет фона контента вкладок */
      color: #333;
 }
 .sample-page.theme-modern .sample-tabs .tab-pane p,
@@ -1191,16 +1232,22 @@ footer {
 @media (max-width: 768px) {
     header {
         padding: 1.5rem 0.8rem;
-        /* Убираем justify-content, чтобы элементы шли по центру на всю ширину */
-        justify-content: center;
+        /* Убираем justify-content, так как header-top-row и header-buttons теперь в колонке */
+        /* justify-content: center; - Удалено */
     }
      .header-content {
          text-align: center;
-         margin-right: 0; /* Убираем отступ справа */
+         margin-right: 0;
          margin-bottom: 1rem;
      }
+      .header-top-row {
+          flex-direction: column;
+          /* Центрируем содержимое header-top-row по горизонтали, когда оно в колонке */
+          align-items: center;
+          margin-bottom: 1rem; /* Уменьшаем отступ между текстом+фото и кнопками */
+      }
      .profile-photo {
-         margin-left: 0; /* Убираем отступ слева */
+         margin-left: 0;
          margin-bottom: 1rem;
      }
 
@@ -1281,7 +1328,7 @@ footer {
 @media (max-width: 480px) {
      header h1 {
         font-size: 2rem;
-    }
+     }
 
     header p {
         font-size: 1rem;
