@@ -267,16 +267,15 @@ footer {
     gap: 15px; /* Расстояние между блоками управления */
 }
 
-.theme-controls .base-themes,
-.theme-controls .mode-toggle {
+.theme-controls .base-themes { /* Стили только для блока базовых тем */
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px; /* Расстояние между кнопками внутри блока */
 }
 
-
-.theme-controls button {
+/* Стили для всех кнопок внутри theme-controls */
+.theme-controls .base-themes button {
     padding: 0.6rem 1.2rem;
     border: 1px solid #007bff;
     border-radius: 20px;
@@ -288,18 +287,18 @@ footer {
     outline: none;
 }
 
-.theme-controls button:hover {
+.theme-controls .base-themes button:hover {
     background-color: #e9ecef;
     transform: translateY(-2px);
 }
 
-.theme-controls button.active {
+.theme-controls .base-themes button.active {
     background-color: #007bff;
     color: #fff;
     transform: translateY(0);
 }
 
-.theme-controls button:active {
+.theme-controls .base-themes button:active {
      transform: translateY(0);
 }
 
@@ -426,9 +425,9 @@ footer {
 }
 
 
-/* Стили для переключателя (тумблера) */
-.sample-toggle {
-    margin-top: 2rem;
+/* Стили для переключателя режима (переиспользуем sample-toggle) */
+.theme-controls .mode-toggle-control {
+    margin-top: 0; /* Убираем верхний отступ, так как он уже есть от gap в theme-controls */
     display: flex;
     align-items: center;
     gap: 10px;
@@ -436,11 +435,11 @@ footer {
     color: #555;
 }
 
-.sample-toggle input[type="checkbox"] {
+.theme-controls .mode-toggle-control input[type="checkbox"] {
     display: none;
 }
 
-.sample-toggle label {
+.theme-controls .mode-toggle-control label {
     position: relative;
     display: inline-block;
     width: 40px;
@@ -451,7 +450,7 @@ footer {
     transition: background-color 0.3s ease;
 }
 
-.sample-toggle label::before {
+.theme-controls .mode-toggle-control label::before {
     content: '';
     position: absolute;
     top: 2px;
@@ -463,11 +462,11 @@ footer {
     transition: transform 0.3s ease;
 }
 
-.sample-toggle input[type="checkbox"]:checked + label {
+.theme-controls .mode-toggle-control input[type="checkbox"]:checked + label {
     background-color: #007bff;
 }
 
-.sample-toggle input[type="checkbox"]:checked + label::before {
+.theme-controls .mode-toggle-control input[type="checkbox"]:checked + label::before {
     transform: translateX(16px);
 }
 
@@ -542,17 +541,15 @@ footer {
     border-bottom: 2px solid #4682b4; /* SteelBlue подчеркивание */
 }
 
-.sample-page.theme-aero .sample-toggle label {
-    background-color: rgba(173, 216, 230, 0.5); /* LightBlue фон */
+.sample-page.theme-aero .sample-tabs .tab-content {
+     color: #333; /* Цвет текста внутри вкладок */
 }
-.sample-page.theme-aero .sample-toggle input[type="checkbox"]:checked + label {
-    background-color: #4682b4; /* SteelBlue при включении */
+.sample-page.theme-aero .sample-tabs .tab-pane p,
+.sample-page.theme-aero .sample-tabs .tab-pane li {
+    color: #555; /* Цвет текста параграфов и списков */
 }
-.sample-page.theme-aero .sample-toggle input[type="checkbox"]:checked + label::before {
-     background-color: #f0f8ff; /* AliceBlue ползунок */
-}
-.sample-page.theme-aero .sample-toggle span {
-     color: #4682b4; /* SteelBlue текст */
+.sample-page.theme-aero .sample-tabs .tab-pane li::before {
+    color: #add8e6; /* LightBlue маркеры */
 }
 
 
@@ -633,56 +630,38 @@ footer {
 }
 
 
-.sample-page.theme-aero.mode-dark .sample-toggle {
-     color: #80deea;
-}
-.sample-page.theme-aero.mode-dark .sample-toggle label {
-    background-color: rgba(0, 151, 167, 0.5);
-}
-.sample-page.theme-aero.mode-dark .sample-toggle input[type="checkbox"]:checked + label {
-    background-color: #00bcd4;
-}
-.sample-page.theme-aero.mode-dark .sample-toggle input[type="checkbox"]:checked + label::before {
-     background-color: #0a141e; /* Темный ползунок */
-}
-.sample-page.theme-aero.mode-dark .sample-toggle span {
-     color: #b2ebf2;
-}
-
-
 /* --- Стили для темы "Gaming" (Светлая - основная) --- */
 .sample-page.theme-gaming {
-    background: linear-gradient(135deg, #111, #2a0000); /* Темный фон с оттенком красного */
-    color: #ff9900; /* Оранжевый текст по умолчанию */
+    background: linear-gradient(135deg, #1a1a1a, #331a1a); /* Чуть менее темный фон */
+    color: #e0e0e0; /* Светло-серый текст по умолчанию для лучшего контраста */
     border: 2px solid #e51a4b; /* ROG красный рамка */
-    box-shadow: 0 0 30px rgba(229, 26, 75, 0.8), inset 0 0 15px rgba(229, 26, 75, 0.4); /* Сильное красное свечение снаружи и внутри */
+    box-shadow: 0 0 30px rgba(229, 26, 75, 0.6), inset 0 0 15px rgba(229, 26, 75, 0.3); /* Менее сильное свечение */
     font-family: 'Orbitron', sans-serif; /* Футуристический шрифт */
     position: relative;
     overflow: hidden;
     border-radius: 8px;
 }
 
-/* Добавляем угловые декорации */
+/* Угловые декорации (Исправлено) */
 .sample-page.theme-gaming::before,
 .sample-page.theme-gaming::after {
     content: '';
     position: absolute;
-    width: 50px;
-    height: 50px;
-    border: 3px solid #ff00ff; /* Фиолетовый акцент */
+    width: 20px; /* Уменьшен размер */
+    height: 20px; /* Уменьшен размер */
     z-index: 1;
+    border-style: solid;
+    border-width: 3px;
 }
 .sample-page.theme-gaming::before {
-    top: -3px;
-    left: -3px;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
+    top: 0;
+    left: 0;
+    border-color: #ff00ff transparent transparent #ff00ff; /* Фиолетовая верхняя и левая */
 }
 .sample-page.theme-gaming::after {
-    bottom: -3px;
-    right: -3px;
-    border-top-color: transparent;
-    border-left-color: transparent;
+    bottom: 0;
+    right: 0;
+    border-color: transparent #ff00ff #ff00ff transparent; /* Фиолетовая правая и нижняя */
 }
 
 
@@ -695,11 +674,12 @@ footer {
 }
 
 .sample-page.theme-gaming .sample-header h3 {
-     text-shadow: 0 0 10px #ff00ff; /* Фиолетовое свечение текста */
-     font-size: 2.2rem; /* Чуть больше заголовок */
+     text-shadow: 0 0 8px #ff00ff; /* Фиолетовое свечение текста */
+     font-size: 2.2rem;
+     color: #ff9900; /* Оранжевый заголовок хедера */
 }
 .sample-page.theme-gaming .sample-header p {
-    color: #ff9900; /* Оранжевый подзаголовок */
+    color: #e51a4b; /* ROG красный подзаголовок */
 }
 
 
@@ -715,8 +695,8 @@ footer {
 
 .sample-page.theme-gaming .sample-content h4 {
     color: #ff00ff; /* Фиолетовый заголовок контента */
-    text-shadow: 0 0 5px #ff00ff; /* Фиолетовое свечение */
-    border-bottom: 1px dashed #ff00ff; /* Пунктирная фиолетовая линия */
+    text-shadow: 0 0 5px #ff00ff;
+    border-bottom: 1px dashed #ff00ff;
     display: inline-block;
     padding-bottom: 0.3rem;
 }
@@ -755,6 +735,7 @@ footer {
      text-align: right;
      font-size: 0.9rem;
      padding-top: 0.8rem;
+     color: #e51a4b; /* ROG красный футер */
 }
 
 /* Стили Gaming (Светлая) для новых элементов */
@@ -791,43 +772,23 @@ footer {
 }
 
 
-.sample-page.theme-gaming .sample-toggle {
-     color: #ff00ff; /* Фиолетовый текст тумблера */
-}
-.sample-page.theme-gaming .sample-toggle label {
-    background-color: #e51a4b; /* Красный фон выключенного тумблера */
-    box-shadow: 0 0 5px rgba(229, 26, 75, 0.5);
-}
-.sample-page.theme-gaming .sample-toggle label::before {
-     background-color: #111; /* Темный ползунок */
-     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-.sample-page.theme-gaming input[type="checkbox"]:checked + label {
-    background-color: #ff9900; /* Оранжевый фон включенного тумблера */
-    box-shadow: 0 0 5px rgba(255, 153, 0, 0.5);
-}
-.sample-page.theme-gaming input[type="checkbox"]:checked + label::before {
-    transform: translateX(16px);
-     background-color: #fff; /* Белый ползунок */
-}
-.sample-page.theme-gaming .sample-toggle span {
-     color: #ff9900; /* Оранжевый цвет текста */
-}
-
-
 /* --- Стили для темы "Gaming" (Темная) --- */
-/* Gaming по своей сути темный, так что это скорее "более темная" или альтернативная темная версия */
 .sample-page.theme-gaming.mode-dark {
-    background: linear-gradient(135deg, #080808, #1a0000); /* Еще более темный фон */
+    background: linear-gradient(135deg, #000, #110000); /* Еще более темный фон */
     color: #ff00ff; /* Фиолетовый текст по умолчанию */
     border-color: #ff00ff; /* Фиолетовая рамка */
-    box-shadow: 0 0 35px rgba(255, 0, 255, 0.9), inset 0 0 20px rgba(255, 0, 255, 0.5); /* Сильнее фиолетовое свечение */
+    box-shadow: 0 0 35px rgba(255, 0, 255, 0.8), inset 0 0 20px rgba(255, 0, 255, 0.4); /* Сильнее фиолетовое свечение */
 }
 /* Угловые декорации в темном режиме */
 .sample-page.theme-gaming.mode-dark::before,
 .sample-page.theme-gaming.mode-dark::after {
-    border-color: #e51a4b; /* ROG красный акцент */
+    border-color: #e51a4b transparent transparent #e51a4b; /* ROG красный верх/лево */
+     /* Дополнительный стиль для after, если нужно */
 }
+.sample-page.theme-gaming.mode-dark::after {
+     border-color: transparent #e51a4b #e51a4b transparent; /* ROG красный право/низ */
+}
+
 
 .sample-page.theme-gaming.mode-dark .sample-header {
     border-bottom-color: #e51a4b; /* ROG красный граница */
@@ -835,15 +796,16 @@ footer {
     background-color: rgba(255, 0, 255, 0.1); /* Полупрозрачный фиолетовый фон */
 }
 .sample-page.theme-gaming.mode-dark .sample-header h3 {
-     text-shadow: 0 0 12px #e51a4b; /* ROG красное свечение текста */
+     text-shadow: 0 0 10px #e51a4b; /* ROG красное свечение текста */
+     color: #ff00ff; /* Фиолетовый заголовок хедера */
 }
 .sample-page.theme-gaming.mode-dark .sample-header p {
-     color: #ff00ff; /* Фиолетовый подзаголовок */
+     color: #ff9900; /* Оранжевый подзаголовок */
 }
 
 
 .sample-page.theme-gaming.mode-dark .sample-content {
-    background-color: #111; /* Темный фон контента */
+    background-color: #080808; /* Темный фон контента */
     color: #ff9900; /* Оранжевый текст контента */
     border-color: rgba(229, 26, 75, 0.3); /* Полупрозрачная ROG красная рамка */
 }
@@ -856,20 +818,11 @@ footer {
 .sample-page.theme-gaming.mode-dark .sample-content p {
     color: #ff9900; /* Оранжевый текст параграфа */
 }
-.sample-page.theme-gaming.mode-dark .sample-content ul {
-    list-style: none;
-    padding-left: 0;
-}
 .sample-page.theme-gaming.mode-dark .sample-content li {
     color: #ff00ff; /* Фиолетовый текст списка */
 }
 .sample-page.theme-gaming.mode-dark .sample-content li::before {
-    content: '\203A'; /* Угловая скобка */
     color: #ff9900; /* Оранжевый маркер */
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-weight: bold;
 }
 
 .sample-page.theme-gaming.mode-dark .sample-footer {
@@ -880,24 +833,26 @@ footer {
 
 /* Стили Gaming (Темная) для новых элементов */
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-button {
-    background-color: #111;
+    background-color: #080808;
     color: #ff00ff;
     border: none;
     border-bottom: 1px solid #e51a4b;
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-button:hover {
-     background-color: #2a0000;
+     background-color: #1a0000;
      color: #fff;
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-button.active {
-    background-color: #080808;
+    background-color: #000;
     color: #fff;
     border-bottom: 2px solid #ff9900; /* Оранжевое подчеркивание */
     text-shadow: 0 0 5px #ff9900;
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-content {
-    background-color: #080808;
-    color: #ff9900;
+    background-color: #000; /* Черный фон контента вкладок */
+    border-radius: 0 0 5px 5px;
+    padding: 1.5rem;
+    color: #ff9900; /* Оранжевый текст контента вкладок */
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane p,
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane li {
@@ -905,28 +860,6 @@ footer {
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane li::before {
     color: #e51a4b; /* ROG красный маркер */
-}
-
-.sample-page.theme-gaming.mode-dark .sample-toggle {
-     color: #e51a4b;
-}
-.sample-page.theme-gaming.mode-dark .sample-toggle label {
-    background-color: #ff00ff; /* Фиолетовый фон выкл */
-    box-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
-}
-.sample-page.theme-gaming.mode-dark .sample-toggle label::before {
-     background-color: #080808; /* Темный ползунок */
-}
-.sample-page.theme-gaming.mode-dark input[type="checkbox"]:checked + label {
-    background-color: #e51a4b; /* ROG красный фон вкл */
-    box-shadow: 0 0 5px rgba(229, 26, 75, 0.5);
-}
-.sample-page.theme-gaming.mode-dark input[type="checkbox"]:checked + label::before {
-    transform: translateX(16px);
-     background-color: #fff;
-}
-.sample-page.theme-gaming.mode-dark .sample-toggle span {
-     color: #e51a4b;
 }
 
 
@@ -1058,18 +991,6 @@ footer {
     overflow: hidden;
 }
 
-.sample-page.theme-modern .tab-button::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #007bff;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-}
-
 .sample-page.theme-modern .tab-button:hover {
     background-color: #eee;
     color: #222;
@@ -1085,39 +1006,14 @@ footer {
 }
 
 .sample-page.theme-modern .sample-tabs .tab-content {
-     color: #333;
+     color: #333; /* Цвет текста внутри вкладок */
 }
 .sample-page.theme-modern .sample-tabs .tab-pane p,
 .sample-page.theme-modern .sample-tabs .tab-pane li {
-    color: #333;
+    color: #333; /* Цвет текста параграфов и списков */
 }
 .sample-page.theme-modern .sample-tabs .tab-pane li::before {
-    color: #007bff;
-}
-
-
-.sample-page.theme-modern .sample-toggle {
-     color: #444;
-}
-.sample-page.theme-modern .sample-toggle label {
-    background-color: #ccc;
-    border-radius: 12px;
-    height: 24px;
-    width: 44px;
-}
-.sample-page.theme-modern .sample-toggle label::before {
-    width: 20px;
-    height: 20px;
-    border-radius: 2px;
-    background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-}
-
-.sample-page.theme-modern input[type="checkbox"]:checked + label {
-    background-color: #007bff;
-}
-.sample-page.theme-modern input[type="checkbox"]:checked + label::before {
-    transform: translateX(20px);
+    color: #007bff; /* Синий маркер */
 }
 
 
@@ -1162,13 +1058,13 @@ footer {
 }
 
 .sample-page.theme-modern.mode-dark .sample-content ul {
-     list-style: none; /* Убедимся */
+     list-style: none;
      padding-left: 0;
 }
 .sample-page.theme-modern.mode-dark .sample-content li {
     color: #eee;
     position: relative;
-    padding-left: 1.5rem; /* Отступ для маркера */
+    padding-left: 1.5rem;
 }
 .sample-page.theme-modern.mode-dark .sample-content li::before {
     content: '—';
@@ -1225,21 +1121,8 @@ footer {
     color: #ff9900; /* Оранжевый маркер */
 }
 
-.sample-page.theme-modern.mode-dark .sample-toggle {
-     color: #bbb;
-}
-.sample-page.theme-modern.mode-dark .sample-toggle label {
-    background-color: #555;
-}
-.sample-page.theme-modern.mode-dark input[type="checkbox"]:checked + label {
-    background-color: #ff9900; /* Оранжевый при включении */
-}
-.sample-page.theme-modern.mode-dark input[type="checkbox"]:checked + label::before {
-    transform: translateX(20px);
-}
-.sample-page.theme-modern.mode-dark .sample-toggle span {
-     color: #ff9900; /* Оранжевый текст */
-}
+
+/* --- Удалены стили калькулятора --- */
 
 
 /* Медиа-запросы для адаптивности */
@@ -1271,10 +1154,27 @@ footer {
         gap: 8px;
     }
 
-    .theme-controls button {
+    .theme-controls .base-themes button {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
     }
+
+    .theme-controls .mode-toggle-control { /* Стили переключателя режима в адаптиве */
+         font-size: 0.9rem;
+         gap: 8px;
+    }
+    .theme-controls .mode-toggle-control label {
+         width: 35px;
+         height: 20px;
+    }
+    .theme-controls .mode-toggle-control label::before {
+         width: 16px;
+         height: 16px;
+    }
+     .theme-controls .mode-toggle-control input[type="checkbox"]:checked + label::before {
+        transform: translateX(15px); /* Сдвиг ползунка */
+    }
+
 
     .toggle-button {
          padding: 0.6rem 1.2rem;
@@ -1283,13 +1183,13 @@ footer {
 
     .sample-page.theme-gaming::before,
     .sample-page.theme-gaming::after {
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         border-width: 2px;
     }
 
     .sample-page.theme-modern {
-        padding: 2rem; /* Уменьшаем padding на мобильных */
+        padding: 2rem;
     }
     .sample-page.theme-modern::before {
         width: 3px;
@@ -1335,7 +1235,7 @@ footer {
      }
 
      .sample-tabs .tab-button {
-         padding: 0.6rem 0.5rem; /* Меньше padding на маленьких экранах */
+         padding: 0.6rem 0.5rem;
          font-size: 0.8rem;
      }
 }
