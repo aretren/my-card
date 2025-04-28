@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
              designShowcase.style.opacity = 1;
              mainContent.style.opacity = 0;
 
-             // Если дизайны видны при загрузке, активируем первую тему и режим по чекбоксу
+             // Если дизайны видны при загрузке, активируем первую тему и режим по чекбоку
              const firstBaseThemeButton = document.querySelector('.base-theme-switch');
              if (firstBaseThemeButton) {
                  currentBaseTheme = firstBaseThemeButton.getAttribute('data-base-theme');
