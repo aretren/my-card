@@ -13,13 +13,12 @@ header {
     background-color: #333;
     color: #fff;
     padding: 2rem 1rem;
-    /* text-align: left; - удалено, теперь flexbox */
     position: relative;
     z-index: 10;
     transition: background-color 0.5s ease, color 0.5s ease;
     margin-bottom: 0;
     display: flex; /* Используем flexbox для расположения элементов */
-    align-items: center; /* Выравниваем элементы по вертикали */
+    align-items: center; /* Выравниваем элементы по вертикали (центр по высоте контейнера header) */
     justify-content: space-between; /* Распределяем пространство между элементами */
     flex-wrap: wrap; /* Позволяем элементам переноситься на новую строку на маленьких экранах */
 }
@@ -27,7 +26,7 @@ header {
 .header-content { /* Контейнер для текста */
     flex-grow: 1; /* Растягиваем на доступное пространство */
     margin-right: 2rem; /* Отступ справа от текста к фото */
-    /* Добавим margin снизу, чтобы отделить от кнопок на мобильных */
+    /* Добавим margin снизу, чтобы отделить от кнопок на мобильных, если wrap сработал */
     margin-bottom: 1rem;
 }
 
@@ -58,9 +57,9 @@ header p {
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #fff;
-    /* Удалены абсолютные позиционирование */
     margin-left: 1rem; /* Отступ слева от фото к тексту на широких экранах */
-    margin-bottom: 1rem; /* Отступ снизу, если flex-wrap сработал */
+    /* Добавим margin снизу, если flex-wrap сработал */
+    margin-bottom: 1rem;
 }
 /* Центрируем фото на маленьких экранах */
 @media (max-width: 480px) {
@@ -226,7 +225,7 @@ footer {
 /* Стили для переключающих кнопок секций (в хедере) */
 .toggle-button {
     display: inline-block;
-    margin: 0.5rem; /* Увеличиваем отступ */
+    margin: 0.5rem;
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
     color: #fff;
@@ -470,7 +469,7 @@ footer {
     display: inline-block;
     width: 40px;
     height: 24px;
-    background-color: #ccc; /* Светлый фон выкл */
+    background-color: #ccc;
     border-radius: 24px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -485,12 +484,12 @@ footer {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #fff; /* Белый ползунок */
+    background-color: #fff;
     transition: transform 0.3s ease;
 }
 
 .theme-controls .mode-toggle-control input[type="checkbox"]:checked + label {
-    background-color: #007bff; /* Синий фон вкл */
+    background-color: #007bff;
 }
 
 .theme-controls .mode-toggle-control input[type="checkbox"]:checked + label::before {
@@ -792,6 +791,7 @@ footer {
     background-color: #1a1a1a;
     border-radius: 0 0 5px 5px;
     padding: 1.5rem;
+    color: #e0e0e0;
 }
 .sample-page.theme-gaming .sample-tabs .tab-pane p,
 .sample-page.theme-gaming .sample-tabs .tab-pane li {
@@ -843,6 +843,7 @@ footer {
     color: #e51a4b;
     text-shadow: 0 0 8px #e51a4b;
     border-bottom-color: #e51a4b;
+    display: inline-block; /* Убедимся */
 }
 .sample-page.theme-gaming.mode-dark .sample-content p {
     color: #ff9900;
@@ -867,7 +868,7 @@ footer {
 
 
 .sample-page.theme-gaming.mode-dark .sample-footer {
-     border-top-color: #e51a4b;
+     border-top: 1px dashed #e51a4b;
      color: #e51a4b;
      background-color: rgba(255, 0, 255, 0.1);
      text-align: right;
@@ -879,6 +880,8 @@ footer {
     color: #ff00ff;
     border: none;
     border-bottom: 1px solid #e51a4b;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-button:hover {
      background-color: #1a0000;
@@ -1022,15 +1025,34 @@ footer {
 }
 
 .sample-page.theme-modern .sample-tabs .tab-buttons {
+    display: flex;
     border-bottom: 1px solid #eee;
 }
 
 .sample-page.theme-modern .tab-button {
+    flex-grow: 1;
+    padding: 0.8rem 1rem;
+    border: none;
     background-color: #f8f8f8;
     color: #555;
-    border-bottom: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-bottom-color 0.3s ease;
+    font-size: 1rem;
+    text-align: center;
     position: relative;
     overflow: hidden;
+}
+
+.sample-page.theme-modern .tab-button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #007bff;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
 }
 
 .sample-page.theme-modern .tab-button:hover {
@@ -1130,7 +1152,8 @@ footer {
 }
 
 .sample-page.theme-modern.mode-dark .sample-tabs .tab-buttons {
-    border-bottom-color: #444;
+    display: flex;
+    border-bottom: 1px solid #444;
 }
 
 .sample-page.theme-modern.mode-dark .tab-button {
@@ -1166,6 +1189,21 @@ footer {
 
 /* Медиа-запросы для адаптивности */
 @media (max-width: 768px) {
+    header {
+        padding: 1.5rem 0.8rem;
+        /* Убираем justify-content, чтобы элементы шли по центру на всю ширину */
+        justify-content: center;
+    }
+     .header-content {
+         text-align: center;
+         margin-right: 0; /* Убираем отступ справа */
+         margin-bottom: 1rem;
+     }
+     .profile-photo {
+         margin-left: 0; /* Убираем отступ слева */
+         margin-bottom: 1rem;
+     }
+
     section {
         padding: 1.5rem 0.8rem;
         margin: 1.5rem auto;
@@ -1213,7 +1251,7 @@ footer {
          left: 2px;
     }
      .theme-controls .mode-toggle-control input[type="checkbox"]:checked + label::before {
-        transform: translateX(13px); /* Сдвиг ползунка адаптирован */
+        transform: translateX(13px);
     }
 
 
@@ -1224,7 +1262,7 @@ footer {
 
     .sample-page.theme-gaming::before,
     .sample-page.theme-gaming::after {
-        width: 15px; /* Еще уменьшаем на планшетах */
+        width: 15px;
         height: 15px;
         border-width: 2px;
     }
@@ -1259,7 +1297,7 @@ footer {
 
      .sample-page .sample-content h4 {
         font-size: 1.2rem;
-    }
+     }
 
      .sample-page .sample-content p,
      .sample-page .sample-content li {
@@ -1281,7 +1319,7 @@ footer {
      }
      .sample-page.theme-gaming::before,
      .sample-page.theme-gaming::after {
-        width: 10px; /* Еще уменьшаем на телефонах */
+        width: 10px;
         height: 10px;
         border-width: 1px;
      }
@@ -1294,6 +1332,6 @@ footer {
          height: 14px;
       }
        .theme-controls .mode-toggle-control input[type="checkbox"]:checked + label::before {
-        transform: translateX(12px); /* Сдвиг ползунка адаптирован */
+        transform: translateX(12px);
     }
 }
