@@ -1,25 +1,45 @@
 /* Сброс стандартных стилей */
 body {
     margin: 0;
-    font-family: 'Roboto', sans-serif; /* Изменим шрифт на более универсальный */
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4; /* Светлый фон */
-    color: #333; /* Темный текст */
-    padding-bottom: 80px; /* Отступ снизу, чтобы футер не налезал */
-    transition: background-color 0.5s ease, color 0.5s ease; /* Плавный переход для body */
+    background-color: #f4f4f4;
+    color: #333;
+    padding-bottom: 80px;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
-
 
 header {
-    background-color: #333; /* Темный фон для хедера */
-    color: #fff; /* Белый текст */
+    background-color: #333;
+    color: #fff;
     padding: 2rem 1rem;
-    text-align: center;
-    position: relative; /* Для позиционирования кнопки переключения */
-    z-index: 10; /* Чтобы хедер был поверх других элементов, если нужно */
+    /* text-align: left; - удалено, теперь flexbox */
+    position: relative;
+    z-index: 10;
     transition: background-color 0.5s ease, color 0.5s ease;
-    margin-bottom: 0; /* Сброс нижнего margin у хедера */
+    margin-bottom: 0;
+    display: flex; /* Используем flexbox для расположения элементов */
+    align-items: center; /* Выравниваем элементы по вертикали */
+    justify-content: space-between; /* Распределяем пространство между элементами */
+    flex-wrap: wrap; /* Позволяем элементам переноситься на новую строку на маленьких экранах */
 }
+
+.header-content { /* Контейнер для текста */
+    flex-grow: 1; /* Растягиваем на доступное пространство */
+    margin-right: 2rem; /* Отступ справа от текста к фото */
+    /* Добавим margin снизу, чтобы отделить от кнопок на мобильных */
+    margin-bottom: 1rem;
+}
+
+/* На маленьких экранах центрируем текст */
+@media (max-width: 480px) {
+     .header-content {
+         flex-basis: 100%; /* Занимает всю ширину */
+         text-align: center;
+         margin-right: 0;
+     }
+}
+
 
 header h1 {
     margin: 0;
@@ -29,42 +49,50 @@ header h1 {
 header p {
     margin-top: 0.5rem;
     font-size: 1.2rem;
-    color: #bbb; /* Чуть светлее подзаголовок */
+    color: #bbb;
 }
 
 .profile-photo {
     width: 150px;
     height: 150px;
-    border-radius: 50%; /* Круглое фото */
-    margin-top: 1rem;
-    object-fit: cover; /* Обрезка фото, чтобы оно было круглым */
-    border: 3px solid #fff; /* Белая рамка вокруг фото */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    /* Удалены абсолютные позиционирование */
+    margin-left: 1rem; /* Отступ слева от фото к тексту на широких экранах */
+    margin-bottom: 1rem; /* Отступ снизу, если flex-wrap сработал */
 }
+/* Центрируем фото на маленьких экранах */
+@media (max-width: 480px) {
+    .profile-photo {
+         margin-left: 0;
+    }
+}
+
 
 /* Стили для контейнера кнопок в хедере */
 .header-buttons {
-    margin-top: 1.5rem; /* Отступ сверху, чтобы отделить от заголовков хедера */
+    margin-top: 1.5rem;
     text-align: center;
-    margin-bottom: 0; /* Сброс нижнего margin у контейнера кнопок */
+    margin-bottom: 0;
+    flex-basis: 100%; /* Кнопки всегда занимают всю ширину под фото и текстом */
 }
 
 
 section {
     padding: 2rem 1rem;
-    max-width: 800px; /* Ограничиваем ширину контента */
-    margin: 2rem auto; /* Центрируем блоки и добавляем отступы сверху/снизу */
-    background-color: #fff; /* Белый фон для секций */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Легкая тень */
-    border-radius: 8px; /* Скругленные углы */
-    opacity: 1; /* Базовая прозрачность */
-    transition: opacity 0.5s ease, background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease; /* Плавный переход */
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    opacity: 1;
+    transition: opacity 0.5s ease, background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
 }
 
 /* Секции основного контента, когда скрыты */
 #main-content.hidden section {
     opacity: 0;
-    /* display: none; - можно использовать display: none в JS вместо opacity для полного скрытия,
-                       но opacity + transition дает плавный эффект */
 }
 
 
@@ -77,53 +105,53 @@ section h2 {
 }
 
 #skills ul {
-    list-style: none; /* Убираем стандартные маркеры списка */
+    list-style: none;
     padding: 0;
-    display: flex; /* Используем Flexbox для расположения навыков */
-    flex-wrap: wrap; /* Перенос элементов на новую строку при необходимости */
-    justify-content: center; /* Центрируем навыки */
-    gap: 10px; /* Расстояние между элементами списка */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
 #skills li {
     background-color: #eee;
     color: #333;
     padding: 0.6rem 1.2rem;
-    border-radius: 20px; /* Более скругленные углы */
+    border-radius: 20px;
     font-size: 0.9rem;
     transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
 }
 
 #skills li:hover {
     background-color: #ddd;
-    transform: translateY(-3px); /* Небольшой эффект при наведении */
+    transform: translateY(-3px);
 }
 
 
 .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Чуть шире минимальная колонка */
-    gap: 2rem; /* Расстояние между проектами */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
 }
 
 .project-item {
     border: 1px solid #ddd;
-    padding: 1.5rem; /* Увеличиваем padding */
-    border-radius: 8px; /* Скругленные углы */
+    padding: 1.5rem;
+    border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .project-item:hover {
-    transform: translateY(-5px); /* Эффект подъема при наведении */
+    transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 
 .project-item h3 {
     margin-top: 0;
-    color: #007bff; /* Синий цвет для заголовков проектов */
+    color: #007bff;
     font-size: 1.4rem;
     transition: color 0.3s ease;
 }
@@ -137,7 +165,7 @@ section h2 {
 
 .project-item a {
     display: inline-block;
-    margin-top: 1rem; /* Увеличиваем отступ */
+    margin-top: 1rem;
     color: #007bff;
     text-decoration: none;
     font-weight: bold;
@@ -149,7 +177,6 @@ section h2 {
     color: #0056b3;
 }
 
-/* Стиль для скриншотов проектов */
 .project-item img {
     max-width: 100%;
     height: auto;
@@ -167,7 +194,7 @@ section h2 {
 }
 
 #contact li {
-    margin-bottom: 1rem; /* Увеличиваем отступ */
+    margin-bottom: 1rem;
     font-size: 1.1rem;
     transition: color 0.3s ease;
 }
@@ -188,7 +215,7 @@ footer {
     padding: 1.5rem;
     background-color: #333;
     color: #fff;
-    margin-top: 3rem; /* Увеличиваем отступ сверху */
+    margin-top: 3rem;
     position: relative;
     bottom: 0;
     width: 100%;
@@ -199,7 +226,7 @@ footer {
 /* Стили для переключающих кнопок секций (в хедере) */
 .toggle-button {
     display: inline-block;
-    margin: 0 0.5rem; /* Отступы между кнопками в хедере */
+    margin: 0.5rem; /* Увеличиваем отступ */
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
     color: #fff;
@@ -208,7 +235,7 @@ footer {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    outline: none; /* Убираем синюю обводку при фокусе */
+    outline: none;
 }
 
 .toggle-button:hover {
@@ -223,10 +250,9 @@ footer {
 
 /* Стили для секции дизайнов */
 #design-showcase {
-    margin-top: 0; /* Сброс верхнего margin */
-    /* Добавляем padding-top, чтобы контролировать отступ от верха секции до ее содержимого */
+    margin-top: 0;
     padding-top: 2rem;
-    padding-bottom: 2rem; /* Добавляем нижний padding как у других секций */
+    padding-bottom: 2rem;
     padding-left: 1rem;
     padding-right: 1rem;
     max-width: 800px;
@@ -247,9 +273,9 @@ footer {
 
 /* Исправляем отступ заголовка внутри секции дизайнов */
 #design-showcase h2 {
-     margin-top: 0; /* Убираем верхний margin, т.к. padding секции уже есть */
+     margin-top: 0;
      padding-top: 0;
-     margin-bottom: 1rem; /* Уменьшаем нижний отступ */
+     margin-bottom: 1rem;
      text-align: center;
      color: #333;
      font-size: 2rem;
@@ -262,19 +288,19 @@ footer {
     text-align: center;
     margin-bottom: 2rem;
     display: flex;
-    flex-direction: column; /* Располагаем блоки управления вертикально */
-    align-items: center; /* Центрируем по горизонтали */
-    gap: 15px; /* Расстояние между блоками управления */
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
-.theme-controls .base-themes { /* Стили только для блока базовых тем */
+.theme-controls .base-themes {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px; /* Расстояние между кнопками внутри блока */
+    gap: 10px;
 }
 
-/* Стили для всех кнопок внутри theme-controls */
+/* Стили для всех кнопок внутри .base-themes */
 .theme-controls .base-themes button {
     padding: 0.6rem 1.2rem;
     border: 1px solid #007bff;
@@ -425,9 +451,9 @@ footer {
 }
 
 
-/* Стили для переключателя режима (переиспользуем sample-toggle) */
+/* Стили для переключателя режима (который теперь в theme-controls) */
 .theme-controls .mode-toggle-control {
-    margin-top: 0; /* Убираем верхний отступ, так как он уже есть от gap в theme-controls */
+    margin-top: 0;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -444,10 +470,11 @@ footer {
     display: inline-block;
     width: 40px;
     height: 24px;
-    background-color: #ccc;
+    background-color: #ccc; /* Светлый фон выкл */
     border-radius: 24px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    flex-shrink: 0; /* Запрещаем сжиматься */
 }
 
 .theme-controls .mode-toggle-control label::before {
@@ -458,16 +485,20 @@ footer {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: #fff; /* Белый ползунок */
     transition: transform 0.3s ease;
 }
 
 .theme-controls .mode-toggle-control input[type="checkbox"]:checked + label {
-    background-color: #007bff;
+    background-color: #007bff; /* Синий фон вкл */
 }
 
 .theme-controls .mode-toggle-control input[type="checkbox"]:checked + label::before {
     transform: translateX(16px);
+}
+
+.theme-controls .mode-toggle-control span {
+    white-space: nowrap; /* Запрещаем перенос текста у спанов */
 }
 
 
@@ -542,14 +573,14 @@ footer {
 }
 
 .sample-page.theme-aero .sample-tabs .tab-content {
-     color: #333; /* Цвет текста внутри вкладок */
+     color: #333;
 }
 .sample-page.theme-aero .sample-tabs .tab-pane p,
 .sample-page.theme-aero .sample-tabs .tab-pane li {
-    color: #555; /* Цвет текста параграфов и списков */
+    color: #555;
 }
 .sample-page.theme-aero .sample-tabs .tab-pane li::before {
-    color: #add8e6; /* LightBlue маркеры */
+    color: #add8e6;
 }
 
 
@@ -632,11 +663,11 @@ footer {
 
 /* --- Стили для темы "Gaming" (Светлая - основная) --- */
 .sample-page.theme-gaming {
-    background: linear-gradient(135deg, #1a1a1a, #331a1a); /* Чуть менее темный фон */
-    color: #e0e0e0; /* Светло-серый текст по умолчанию для лучшего контраста */
-    border: 2px solid #e51a4b; /* ROG красный рамка */
-    box-shadow: 0 0 30px rgba(229, 26, 75, 0.6), inset 0 0 15px rgba(229, 26, 75, 0.3); /* Менее сильное свечение */
-    font-family: 'Orbitron', sans-serif; /* Футуристический шрифт */
+    background: linear-gradient(135deg, #1a1a1a, #331a1a);
+    color: #e0e0e0;
+    border: 2px solid #e51a4b;
+    box-shadow: 0 0 30px rgba(229, 26, 75, 0.6), inset 0 0 15px rgba(229, 26, 75, 0.3);
+    font-family: 'Orbitron', sans-serif;
     position: relative;
     overflow: hidden;
     border-radius: 8px;
@@ -647,8 +678,8 @@ footer {
 .sample-page.theme-gaming::after {
     content: '';
     position: absolute;
-    width: 20px; /* Уменьшен размер */
-    height: 20px; /* Уменьшен размер */
+    width: 20px;
+    height: 20px;
     z-index: 1;
     border-style: solid;
     border-width: 3px;
@@ -666,15 +697,15 @@ footer {
 
 
 .sample-page.theme-gaming .sample-header {
-    border-bottom: 1px dashed #ff00ff; /* Фиолетовая пунктирная граница */
-    color: #fff; /* Белый заголовок */
-    background-color: rgba(229, 26, 75, 0.1); /* Полупрозрачный ROG красный фон */
+    border-bottom: 1px dashed #ff00ff;
+    color: #fff;
+    background-color: rgba(229, 26, 75, 0.1);
     text-align: left;
     padding-bottom: 0.8rem;
 }
 
 .sample-page.theme-gaming .sample-header h3 {
-     text-shadow: 0 0 8px #ff00ff; /* Фиолетовое свечение текста */
+     text-shadow: 0 0 8px #ff00ff;
      font-size: 2.2rem;
      color: #ff9900; /* Оранжевый заголовок хедера */
 }
@@ -684,17 +715,17 @@ footer {
 
 
 .sample-page.theme-gaming .sample-content {
-    background-color: #2a2a2a; /* Чуть светлее темный фон контента */
+    background-color: #2a2a2a;
     padding: 2rem;
     border-radius: 5px;
-    color: #e0e0e0; /* Светло-серый текст контента */
-    border: 1px solid rgba(255, 153, 0, 0.3); /* Полупрозрачная оранжевая рамка */
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 153, 0, 0.3);
     position: relative;
     z-index: 2;
 }
 
 .sample-page.theme-gaming .sample-content h4 {
-    color: #ff00ff; /* Фиолетовый заголовок контента */
+    color: #ff00ff;
     text-shadow: 0 0 5px #ff00ff;
     border-bottom: 1px dashed #ff00ff;
     display: inline-block;
@@ -702,7 +733,7 @@ footer {
 }
 
 .sample-page.theme-gaming .sample-content p {
-     color: #e0e0e0; /* Светло-серый текст параграфа */
+     color: #e0e0e0;
 }
 
 
@@ -713,14 +744,14 @@ footer {
 
 .sample-page.theme-gaming .sample-content li {
     margin-bottom: 0.8rem;
-    color: #ff9900; /* Оранжевый текст списка */
+    color: #ff9900;
     position: relative;
     padding-left: 1.5rem;
 }
 
 .sample-page.theme-gaming .sample-content li::before {
-    content: '\203A'; /* Угловая скобка */
-    color: #e51a4b; /* ROG красный цвет маркера */
+    content: '\203A';
+    color: #e51a4b;
     position: absolute;
     left: 0;
     top: 0;
@@ -729,9 +760,8 @@ footer {
 
 
 .sample-page.theme-gaming .sample-footer {
-     border-top: 1px dashed #ff00ff; /* Фиолетовая пунктирная граница */
-     color: #ff00ff; /* Фиолетовый футер */
-     background-color: rgba(229, 26, 75, 0.1); /* Полупрозрачный ROG красный фон */
+     border-top: 1px dashed #ff00ff;
+     background-color: rgba(229, 26, 75, 0.1);
      text-align: right;
      font-size: 0.9rem;
      padding-top: 0.8rem;
@@ -754,36 +784,34 @@ footer {
 .sample-page.theme-gaming .sample-tabs .tab-button.active {
     background-color: #1a1a1a;
     color: #fff;
-    border-bottom: 2px solid #ff00ff; /* Фиолетовое подчеркивание */
+    border-bottom: 2px solid #ff00ff;
     text-shadow: 0 0 5px #ff00ff;
 }
 
 .sample-page.theme-gaming .sample-tabs .tab-content {
-    background-color: #1a1a1a; /* Фон контента вкладок */
+    background-color: #1a1a1a;
     border-radius: 0 0 5px 5px;
     padding: 1.5rem;
 }
 .sample-page.theme-gaming .sample-tabs .tab-pane p,
 .sample-page.theme-gaming .sample-tabs .tab-pane li {
-     color: #e0e0e0; /* Светло-серый */
+     color: #e0e0e0;
 }
 .sample-page.theme-gaming .sample-tabs .tab-pane li::before {
-    color: #ff00ff; /* Фиолетовый маркер в списке вкладок */
+    color: #ff00ff;
 }
 
 
 /* --- Стили для темы "Gaming" (Темная) --- */
 .sample-page.theme-gaming.mode-dark {
-    background: linear-gradient(135deg, #000, #110000); /* Еще более темный фон */
-    color: #ff00ff; /* Фиолетовый текст по умолчанию */
-    border-color: #ff00ff; /* Фиолетовая рамка */
-    box-shadow: 0 0 35px rgba(255, 0, 255, 0.8), inset 0 0 20px rgba(255, 0, 255, 0.4); /* Сильнее фиолетовое свечение */
+    background: linear-gradient(135deg, #000, #110000);
+    color: #ff00ff;
+    border-color: #ff00ff;
+    box-shadow: 0 0 35px rgba(255, 0, 255, 0.8), inset 0 0 20px rgba(255, 0, 255, 0.4);
 }
 /* Угловые декорации в темном режиме */
-.sample-page.theme-gaming.mode-dark::before,
-.sample-page.theme-gaming.mode-dark::after {
+.sample-page.theme-gaming.mode-dark::before {
     border-color: #e51a4b transparent transparent #e51a4b; /* ROG красный верх/лево */
-     /* Дополнительный стиль для after, если нужно */
 }
 .sample-page.theme-gaming.mode-dark::after {
      border-color: transparent #e51a4b #e51a4b transparent; /* ROG красный право/низ */
@@ -791,44 +819,58 @@ footer {
 
 
 .sample-page.theme-gaming.mode-dark .sample-header {
-    border-bottom-color: #e51a4b; /* ROG красный граница */
-    color: #ff00ff; /* Фиолетовый заголовок */
-    background-color: rgba(255, 0, 255, 0.1); /* Полупрозрачный фиолетовый фон */
+    border-bottom-color: #e51a4b;
+    color: #ff00ff;
+    background-color: rgba(255, 0, 255, 0.1);
+    text-align: left;
 }
 .sample-page.theme-gaming.mode-dark .sample-header h3 {
-     text-shadow: 0 0 10px #e51a4b; /* ROG красное свечение текста */
-     color: #ff00ff; /* Фиолетовый заголовок хедера */
+     text-shadow: 0 0 10px #e51a4b;
+     color: #ff00ff;
 }
 .sample-page.theme-gaming.mode-dark .sample-header p {
-     color: #ff9900; /* Оранжевый подзаголовок */
+     color: #ff9900;
 }
 
 
 .sample-page.theme-gaming.mode-dark .sample-content {
-    background-color: #080808; /* Темный фон контента */
-    color: #ff9900; /* Оранжевый текст контента */
-    border-color: rgba(229, 26, 75, 0.3); /* Полупрозрачная ROG красная рамка */
+    background-color: #080808;
+    color: #ff9900;
+    border-color: rgba(229, 26, 75, 0.3);
 }
 
 .sample-page.theme-gaming.mode-dark .sample-content h4 {
-    color: #e51a4b; /* ROG красный заголовок контента */
+    color: #e51a4b;
     text-shadow: 0 0 8px #e51a4b;
     border-bottom-color: #e51a4b;
 }
 .sample-page.theme-gaming.mode-dark .sample-content p {
-    color: #ff9900; /* Оранжевый текст параграфа */
+    color: #ff9900;
+}
+.sample-page.theme-gaming.mode-dark .sample-content ul {
+    list-style: none;
+    padding-left: 0;
 }
 .sample-page.theme-gaming.mode-dark .sample-content li {
-    color: #ff00ff; /* Фиолетовый текст списка */
+    color: #ff00ff;
+    position: relative;
+    padding-left: 1.5rem;
 }
 .sample-page.theme-gaming.mode-dark .sample-content li::before {
-    color: #ff9900; /* Оранжевый маркер */
+    content: '\203A';
+    color: #ff9900;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
 }
 
+
 .sample-page.theme-gaming.mode-dark .sample-footer {
-     border-top-color: #e51a4b; /* ROG красный граница */
-     color: #e51a4b; /* ROG красный футер */
-     background-color: rgba(255, 0, 255, 0.1); /* Полупрозрачный фиолетовый фон */
+     border-top-color: #e51a4b;
+     color: #e51a4b;
+     background-color: rgba(255, 0, 255, 0.1);
+     text-align: right;
 }
 
 /* Стили Gaming (Темная) для новых элементов */
@@ -845,21 +887,21 @@ footer {
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-button.active {
     background-color: #000;
     color: #fff;
-    border-bottom: 2px solid #ff9900; /* Оранжевое подчеркивание */
+    border-bottom: 2px solid #ff9900;
     text-shadow: 0 0 5px #ff9900;
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-content {
-    background-color: #000; /* Черный фон контента вкладок */
+    background-color: #000;
     border-radius: 0 0 5px 5px;
     padding: 1.5rem;
-    color: #ff9900; /* Оранжевый текст контента вкладок */
+    color: #ff9900;
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane p,
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane li {
-    color: #ff9900; /* Оранжевый текст во вкладках */
+    color: #ff9900;
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane li::before {
-    color: #e51a4b; /* ROG красный маркер */
+    color: #e51a4b;
 }
 
 
@@ -881,7 +923,7 @@ footer {
 .sample-page.theme-modern::after {
     content: '';
     position: absolute;
-    background-color: #007bff; /* Синий акцент */
+    background-color: #007bff;
     z-index: 0;
 }
 .sample-page.theme-modern::before {
@@ -1006,28 +1048,28 @@ footer {
 }
 
 .sample-page.theme-modern .sample-tabs .tab-content {
-     color: #333; /* Цвет текста внутри вкладок */
+     color: #333;
 }
 .sample-page.theme-modern .sample-tabs .tab-pane p,
 .sample-page.theme-modern .sample-tabs .tab-pane li {
-    color: #333; /* Цвет текста параграфов и списков */
+    color: #333;
 }
 .sample-page.theme-modern .sample-tabs .tab-pane li::before {
-    color: #007bff; /* Синий маркер */
+    color: #007bff;
 }
 
 
 /* --- Стили для темы "Modern" (Темная) --- */
 .sample-page.theme-modern.mode-dark {
-    background-color: #222; /* Темный фон */
-    color: #eee; /* Светлый текст */
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* Более темная тень */
+    background-color: #222;
+    color: #eee;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* Декоративные линии в темном режиме */
 .sample-page.theme-modern.mode-dark::before,
 .sample-page.theme-modern.mode-dark::after {
-    background-color: #ff9900; /* Оранжевый акцент */
+    background-color: #ff9900;
 }
 
 
@@ -1037,7 +1079,7 @@ footer {
 }
 
 .sample-page.theme-modern.mode-dark .sample-header h3 {
-    color: #ff9900; /* Оранжевый заголовок */
+    color: #ff9900;
 }
 .sample-page.theme-modern.mode-dark .sample-header p {
     color: #bbb;
@@ -1050,7 +1092,7 @@ footer {
 }
 
 .sample-page.theme-modern.mode-dark .sample-content h4 {
-    color: #ff00ff; /* Фиолетовый акцент */
+    color: #ff00ff;
 }
 
 .sample-page.theme-modern.mode-dark .sample-content p {
@@ -1068,7 +1110,7 @@ footer {
 }
 .sample-page.theme-modern.mode-dark .sample-content li::before {
     content: '—';
-    color: #ff9900; /* Оранжевый маркер */
+    color: #ff9900;
     position: absolute;
     left: 0;
     top: 0;
@@ -1106,7 +1148,7 @@ footer {
     color: #fff;
 }
 .sample-page.theme-modern.mode-dark .tab-button.active::before {
-     background-color: #ff00ff; /* Фиолетовое подчеркивание */
+     background-color: #ff00ff;
 }
 
 .sample-page.theme-modern.mode-dark .sample-tabs .tab-content {
@@ -1118,11 +1160,8 @@ footer {
     color: #ddd;
 }
 .sample-page.theme-modern.mode-dark .sample-tabs .tab-pane li::before {
-    color: #ff9900; /* Оранжевый маркер */
+    color: #ff9900;
 }
-
-
-/* --- Удалены стили калькулятора --- */
 
 
 /* Медиа-запросы для адаптивности */
@@ -1159,7 +1198,7 @@ footer {
         font-size: 0.9rem;
     }
 
-    .theme-controls .mode-toggle-control { /* Стили переключателя режима в адаптиве */
+    .theme-controls .mode-toggle-control {
          font-size: 0.9rem;
          gap: 8px;
     }
@@ -1170,9 +1209,11 @@ footer {
     .theme-controls .mode-toggle-control label::before {
          width: 16px;
          height: 16px;
+         top: 2px;
+         left: 2px;
     }
      .theme-controls .mode-toggle-control input[type="checkbox"]:checked + label::before {
-        transform: translateX(15px); /* Сдвиг ползунка */
+        transform: translateX(13px); /* Сдвиг ползунка адаптирован */
     }
 
 
@@ -1183,8 +1224,8 @@ footer {
 
     .sample-page.theme-gaming::before,
     .sample-page.theme-gaming::after {
-        width: 20px;
-        height: 20px;
+        width: 15px; /* Еще уменьшаем на планшетах */
+        height: 15px;
         border-width: 2px;
     }
 
@@ -1238,4 +1279,21 @@ footer {
          padding: 0.6rem 0.5rem;
          font-size: 0.8rem;
      }
+     .sample-page.theme-gaming::before,
+     .sample-page.theme-gaming::after {
+        width: 10px; /* Еще уменьшаем на телефонах */
+        height: 10px;
+        border-width: 1px;
+     }
+     .theme-controls .mode-toggle-control label {
+         width: 30px;
+         height: 18px;
+     }
+      .theme-controls .mode-toggle-control label::before {
+         width: 14px;
+         height: 14px;
+      }
+       .theme-controls .mode-toggle-control input[type="checkbox"]:checked + label::before {
+        transform: translateX(12px); /* Сдвиг ползунка адаптирован */
+    }
 }
