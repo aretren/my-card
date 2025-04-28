@@ -15,19 +15,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const mainContent = document.getElementById('main-content');
     const designShowcase = document.getElementById('design-showcase');
     const baseThemeSwitches = document.querySelectorAll('.base-theme-switch'); // Кнопки выбора стиля
-    const modeSwitches = document.querySelectorAll('.mode-switch');         // Кнопки выбора режима
+    const modeSwitchCheckbox = document.getElementById('sample-switch'); // Чекбокс переключателя режима
     const samplePage = document.getElementById('sample-page');
 
-    // Переменные для хранения текущего выбранного стиля и режима
+    // Переменная для хранения текущего выбранного стиля
     let currentBaseTheme = 'aero'; // Стиль по умолчанию
-    let currentMode = 'light';     // Режим по умолчанию
 
-    console.log("Elements obtained:", { toggleDesignsButton, toggleMainHeaderButton, mainContent, designShowcase, baseThemeSwitches, modeSwitches, samplePage }); // Проверяем, найдены ли элементы
+
+    console.log("Elements obtained:", { toggleDesignsButton, toggleMainHeaderButton, mainContent, designShowcase, baseThemeSwitches, modeSwitchCheckbox, samplePage }); // Проверяем, найдены ли элементы
 
 
     // Функция для применения текущего выбранного стиля и режима к примеру страницы
     function applyCurrentTheme() {
-        console.log(`Applying theme: ${currentBaseTheme}, mode: ${currentMode}`);
+        // Определяем текущий режим по состоянию чекбокса
+        const currentMode = modeSwitchCheckbox && modeSwitchCheckbox.checked ? 'dark' : 'light';
+        console.log(`Applying theme: ${currentBaseTheme}, mode: ${currentMode}`); // Лог
 
         // Удаляем все классы тем и режимов у примера страницы
         samplePage.className = 'sample-page';
@@ -37,22 +39,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
             samplePage.classList.add('theme-' + currentBaseTheme);
         }
 
-        // Добавляем класс режима (только если это не режим по умолчанию 'light')
-        if (currentMode && currentMode !== 'light') {
-             samplePage.classList.add('mode-' + currentMode);
+        // Добавляем класс темного режима, если он активен
+        if (currentMode === 'dark') {
+             samplePage.classList.add('mode-dark');
         }
+        // Класс 'mode-light' не добавляем, так как светлый режим - это базовое состояние без 'mode-dark'
 
-        // Обновляем активные состояния кнопок управления
+
+        // Обновляем активные состояния кнопок базовых стилей
         baseThemeSwitches.forEach(button => {
             if (button.getAttribute('data-base-theme') === currentBaseTheme) {
-                button.classList.add('active');
-            } else {
-                button.classList.remove('active');
-            }
-        });
-
-        modeSwitches.forEach(button => {
-            if (button.getAttribute('data-mode') === currentMode) {
                 button.classList.add('active');
             } else {
                 button.classList.remove('active');
@@ -91,18 +87,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
              console.log("No base theme switches found, defaulting to 'aero'."); // Лог
          }
 
-         const activeModeButton = document.querySelector('.mode-switch.active');
-         if (activeModeButton) {
-             currentMode = activeModeButton.getAttribute('data-mode');
-             console.log("Active mode found:", currentMode); // Лог
-         } else if (modeSwitches.length > 0) {
-             currentMode = modeSwitches[0].getAttribute('data-mode');
-             console.log("No active mode, defaulting to first:", currentMode); // Лог
-         } else {
-             currentMode = 'light'; // Fallback
-             console.log("No mode switches found, defaulting to 'light'."); // Лог
-         }
-
+        // Режим определяется состоянием чекбокса, applyCurrentTheme это прочитает
 
         applyCurrentTheme(); // Применяем текущий стиль и режим
         console.log("applyCurrentTheme called from showDesigns."); // Лог
@@ -210,7 +195,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             if (updatedTabButtons.length > 0 && tabPanes.length > 0) {
                  const activeTabButton = sampleTabs.querySelector('.tab-button.active');
                  if (activeTabButton) {
-                     // Если уже есть активная вкладка, просто убедимся, что соответствующая панель видна
                       const targetTab = activeTabButton.getAttribute('data-tab');
                       const activePane = document.getElementById(targetTab + '-content');
                       if (activePane) {
@@ -236,7 +220,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
 
-    // --- Обработчики кликов для кнопок переключения секций ---
+    // --- Удалена логика для виджета калькулятора ---
+
+
+    // Обработчики кликов для кнопок переключения секций
     console.log("Attempting to add click listener to toggleDesignsButton."); // Лог
     if (toggleDesignsButton) {
         toggleDesignsButton.addEventListener('click', showDesigns);
@@ -254,7 +241,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
 
-    // Обработчики кликов для кнопок выбора стиля и режима
+    // Обработчики кликов для кнопок выбора базового стиля
     if (baseThemeSwitches.length > 0 && samplePage) {
         baseThemeSwitches.forEach(button => {
             button.addEventListener('click', () => {
@@ -268,21 +255,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
          console.warn("Кнопки выбора базового стиля не найдены или samplePage отсутствует.");
     }
 
-    if (modeSwitches.length > 0 && samplePage) {
-        modeSwitches.forEach(button => {
-            button.addEventListener('click', () => {
-                currentMode = button.getAttribute('data-mode');
-                 console.log("Mode switch clicked:", currentMode); // Лог
-                applyCurrentTheme(); // Применяем текущий стиль и режим
-            });
+    // Обработчик изменения состояния чекбокса режима (Светлая/Темная)
+    if (modeSwitchCheckbox && samplePage) {
+        modeSwitchCheckbox.addEventListener('change', () => {
+            console.log("Mode switch checkbox changed."); // Лог
+            applyCurrentTheme(); // Применяем текущий стиль и режим
         });
-         console.log("Mode switch listeners added."); // Лог
+         console.log("Mode switch checkbox listener added."); // Лог
     } else {
-         console.warn("Кнопки выбора режима (светлая/темная) не найдены или samplePage отсутствует.");
+         console.warn("Чекбокс переключателя режима не найден или samplePage отсутствует.");
     }
-
-
-    // --- Удалена логика для виджета калькулятора ---
 
 
     // Управление видимостью кнопок в хедере при загрузке и начальное состояние opacity
@@ -303,13 +285,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
              designShowcase.style.opacity = 1; // Убедимся, что дизайны видны
              mainContent.style.opacity = 0; // И основной контент скрыт
 
-             // Если дизайны видны при загрузке, активируем первую тему и светлый режим
+             // Если дизайны видны при загрузке, активируем первую тему и режим по чекбоксу
              const firstBaseThemeButton = document.querySelector('.base-theme-switch');
              if (firstBaseThemeButton) {
                  currentBaseTheme = firstBaseThemeButton.getAttribute('data-base-theme');
-                 const activeModeButton = document.querySelector('.mode-switch.active');
-                 currentMode = activeModeButton ? activeModeButton.getAttribute('data-mode') : 'light';
-                 console.log(`Initial design state theme: ${currentBaseTheme}, mode: ${currentMode}`); // Лог
+                 // Режим определяется состоянием чекбокса, applyCurrentTheme прочитает его
+                 console.log(`Initial design state theme: ${currentBaseTheme}. Mode will be read from checkbox.`); // Лог
                  applyCurrentTheme(); // Применяем текущий стиль и режим
              } else {
                   console.warn("No base theme switches found for initial design state."); // Лог
@@ -329,23 +310,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
         console.error("Не найдены все необходимые элементы DOM для переключения секций при загрузке!"); // Лог критической ошибки
     }
 
-     // Изначально применяем стиль по умолчанию (Aero Light), если секция дизайнов скрыта
-     // Это нужно, чтобы initializeSampleTabs корректно сработала для базового состояния
-    if (designShowcase.classList.contains('hidden')) {
+     // При загрузке страницы, если секция дизайнов скрыта, явно устанавливается
+     // базовый стиль и режим по умолчанию (светлый, чекбокс выключен),
+     // а также активируются кнопки и инициализируются вкладки.
+    if (designShowcase && designShowcase.classList.contains('hidden')) {
         console.log("Design showcase is hidden on load, setting default theme state."); // Лог
         samplePage.className = 'sample-page'; // Убедимся, что базовый стиль применен
-        // Активируем первую кнопку стиля и светлого режима при загрузке, если секция скрыта
-         const firstBaseThemeButton = document.querySelector('.base-theme-switch');
-         const firstModeButton = document.querySelector('.mode-switch');
-         if(firstBaseThemeButton) firstBaseThemeButton.classList.add('active');
-         if(firstModeButton) firstModeButton.classList.add('active');
 
-         // Установим начальные переменные
+        // Активируем первую кнопку стиля при загрузке
+         const firstBaseThemeButton = document.querySelector('.base-theme-switch');
+         if(firstBaseThemeButton) firstBaseThemeButton.classList.add('active');
+
+        // Убедимся, что чекбокс режима выключен для светлого режима по умолчанию
+         if (modeSwitchCheckbox) {
+             modeSwitchCheckbox.checked = false;
+         }
+
+         // Установим начальную переменную baseTheme
          currentBaseTheme = firstBaseThemeButton ? firstBaseThemeButton.getAttribute('data-base-theme') : 'aero';
-         currentMode = firstModeButton ? firstModeButton.getAttribute('data-mode') : 'light';
 
          initializeSampleTabs(); // Инициализируем вкладки
-         console.log("Initial theme/mode set and tabs initialized for hidden design section."); // Лог
+         console.log("Initial theme/mode state set and tabs initialized for hidden design section."); // Лог
     }
 
 
