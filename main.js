@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function applyCurrentTheme() {
         // Определяем текущий режим по состоянию чекбокса
         const currentMode = modeSwitchCheckbox && modeSwitchCheckbox.checked ? 'dark' : 'light';
-        console.log(`Applying theme: ${currentBaseTheme}, mode: ${currentMode}`); // Лог
+        console.log(`Applying theme: ${currentBaseTheme}, mode: ${currentMode}`);
 
-        // Удаляем все классы тем и режимов у примера страницы
+        // Удаляем все классы тем и режимов у примера страницы, кроме базового 'sample-page'
         samplePage.className = 'sample-page';
 
         // Добавляем класс базового стиля
@@ -57,19 +57,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         // После смены темы/режима, переинициализируем вкладки для нового стиля
         initializeSampleTabs();
-        console.log("Theme applied and tabs initialized."); // Лог после применения темы
+        console.log("Theme applied and tabs initialized.");
     }
 
 
     // Функция для показа секции дизайнов
     function showDesigns() {
-        console.log("showDesigns function called"); // Лог при вызове
+        console.log("showDesigns function called");
 
         // Скрываем кнопку "Показать Дизайны", показываем кнопку "Вернуться"
         if (toggleDesignsButton && toggleMainHeaderButton) {
             toggleDesignsButton.classList.add('hidden');
             toggleMainHeaderButton.classList.remove('hidden');
-            console.log("Header buttons visibility toggled."); // Лог
+            console.log("Header buttons visibility toggled.");
         }
 
         // Перед показом секции, применяем текущий выбранный стиль и режим
@@ -77,69 +77,68 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const activeBaseThemeButton = document.querySelector('.base-theme-switch.active');
          if (activeBaseThemeButton) {
               currentBaseTheme = activeBaseThemeButton.getAttribute('data-base-theme');
-              console.log("Active base theme found:", currentBaseTheme); // Лог
+              console.log("Active base theme found:", currentBaseTheme);
          } else if (baseThemeSwitches.length > 0) {
-             // Если нет активных, выберем первую как активную по умолчанию
              currentBaseTheme = baseThemeSwitches[0].getAttribute('data-base-theme');
-             console.log("No active base theme, defaulting to first:", currentBaseTheme); // Лог
+             console.log("No active base theme, defaulting to first:", currentBaseTheme);
          } else {
              currentBaseTheme = 'aero'; // Fallback
-             console.log("No base theme switches found, defaulting to 'aero'."); // Лог
+             console.log("No base theme switches found, defaulting to 'aero'.");
          }
 
         // Режим определяется состоянием чекбокса, applyCurrentTheme это прочитает
 
         applyCurrentTheme(); // Применяем текущий стиль и режим
-        console.log("applyCurrentTheme called from showDesigns."); // Лог
+        console.log("applyCurrentTheme called from showDesigns.");
 
 
         // Используем opacity и затем display none после перехода
         if (mainContent) mainContent.style.opacity = 0;
-        console.log("mainContent opacity set to 0."); // Лог
+        console.log("mainContent opacity set to 0.");
 
         setTimeout(() => {
-            console.log("setTimeout callback executed."); // Лог внутри таймаута
+            console.log("setTimeout callback executed.");
             if (mainContent) mainContent.classList.add('hidden'); // Скрываем основной контент
-            console.log("mainContent hidden class added."); // Лог
+            console.log("mainContent hidden class added.");
             if (designShowcase) designShowcase.classList.remove('hidden'); // Показываем секцию дизайнов
-            console.log("designShowcase hidden class removed."); // Лог
+            console.log("designShowcase hidden class removed.");
             if (designShowcase) designShowcase.style.opacity = 1; // Показываем с плавным переходом
-            console.log("designShowcase opacity set to 1."); // Лог
+            console.log("designShowcase opacity set to 1.");
             window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокручиваем вверх
-            console.log("Scrolled to top."); // Лог
+            console.log("Scrolled to top.");
 
         }, 500); // Время должно совпадать с transition opacity в CSS
-         console.log("setTimeout scheduled."); // Лог после планирования таймаута
+         console.log("setTimeout scheduled.");
     }
 
     // Функция для показа основного контента
     function showMainContent() {
-        console.log("showMainContent function called"); // Лог
+        console.log("showMainContent function called");
 
          // Скрываем кнопку "Вернуться", показываем кнопку "Показать Дизайны"
          if (toggleDesignsButton && toggleMainHeaderButton) {
             toggleMainHeaderButton.classList.add('hidden');
             toggleDesignsButton.classList.remove('hidden');
-            console.log("Header buttons visibility toggled."); // Лог
+            console.log("Header buttons visibility toggled.");
          }
 
         // Используем opacity и затем display none после перехода
         if (designShowcase) designShowcase.style.opacity = 0;
-        console.log("designShowcase opacity set to 0."); // Лог
+        console.log("designShowcase opacity set to 0.");
 
         setTimeout(() => {
-             console.log("setTimeout callback executed (showMainContent)."); // Лог внутри таймаута
+             console.log("setTimeout callback executed (showMainContent).");
             if (designShowcase) designShowcase.classList.add('hidden'); // Скрываем секцию дизайнов
-            console.log("designShowcase hidden class added."); // Лог
+            console.log("designShowcase hidden class added.");
             if (mainContent) mainContent.classList.remove('hidden'); // Показываем основной контент
-            console.log("mainContent hidden class removed."); // Лог
+            console.log("mainContent hidden class removed.");
             if (mainContent) mainContent.style.opacity = 1; // Показываем с плавным переходом
-            console.log("mainContent opacity set to 1."); // Лог
+            console.log("mainContent opacity set to 1.");
             window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокручиваем вверх
-            console.log("Scrolled to top."); // Лог
+            console.log("Scrolled to top.");
 
         }, 500); // Время должно совпадать с transition opacity в CSS
-         console.log("setTimeout scheduled (showMainContent)."); // Лог
+         console.log("setTimeout scheduled (showMainContent).");
     }
 
 
@@ -147,12 +146,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function initializeSampleTabs() {
         const sampleTabs = samplePage ? samplePage.querySelector('.sample-tabs') : null; // Проверяем, что samplePage существует
         if (sampleTabs) {
-             console.log("Initializing sample tabs."); // Лог
+             console.log("Initializing sample tabs.");
             const tabButtons = sampleTabs.querySelectorAll('.tab-button');
             const tabPanes = sampleTabs.querySelectorAll('.tab-pane');
 
              if (tabButtons.length === 0 || tabPanes.length === 0) {
-                 console.warn("Sample tabs or panes not found."); // Лог
+                 console.warn("Sample tabs or panes not found.");
                  return;
              }
 
@@ -163,7 +162,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                  if (button.parentNode) {
                      button.parentNode.replaceChild(newButton, button);
                  } else {
-                     console.warn("Button parent not found, cannot replace child."); // Лог
+                     console.warn("Button parent not found, cannot replace child.");
                  }
             });
 
@@ -173,7 +172,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             updatedTabButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const targetTab = button.getAttribute('data-tab');
-                     console.log(`Tab button clicked: ${targetTab}`); // Лог
+                     console.log(`Tab button clicked: ${targetTab}`);
 
                     // Удаляем активный класс у всех кнопок и панелей
                     updatedTabButtons.forEach(btn => btn.classList.remove('active'));
@@ -184,9 +183,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     const activePane = document.getElementById(targetTab + '-content');
                     if (activePane) {
                         activePane.classList.add('active');
-                        console.log(`Pane activated: ${targetTab}-content`); // Лог
+                        console.log(`Pane activated: ${targetTab}-content`);
                     } else {
-                         console.warn(`Target pane not found: ${targetTab}-content`); // Лог
+                         console.warn(`Target pane not found: ${targetTab}-content`);
                     }
                 });
             });
@@ -195,49 +194,47 @@ document.addEventListener('DOMContentLoaded', (event) => {
             if (updatedTabButtons.length > 0 && tabPanes.length > 0) {
                  const activeTabButton = sampleTabs.querySelector('.tab-button.active');
                  if (activeTabButton) {
+                     // Если уже есть активная вкладка, просто убедимся, что соответствующая панель видна
                       const targetTab = activeTabButton.getAttribute('data-tab');
                       const activePane = document.getElementById(targetTab + '-content');
                       if (activePane) {
                            activePane.classList.add('active');
-                           console.log(`Keeping existing active pane: ${targetTab}-content`); // Лог
+                           console.log(`Keeping existing active pane: ${targetTab}-content`);
                       } else {
                          // Fallback: если активная кнопка есть, но панель не найдена, активируем первую
                          updatedTabButtons[0].classList.add('active');
                          tabPanes[0].classList.add('active');
-                          console.warn("Active tab button found but pane not found. Defaulting to first tab."); // Лог
+                          console.warn("Active tab button found but pane not found. Defaulting to first tab.");
                       }
                  } else {
                     // Если активной вкладки нет, активируем первую
                     updatedTabButtons[0].classList.add('active');
                     tabPanes[0].classList.add('active');
-                    console.log("No active tab found, defaulting to first tab."); // Лог
+                    console.log("No active tab found, defaulting to first tab.");
                  }
             }
-             console.log("Sample tabs initialization complete."); // Лог
+             console.log("Sample tabs initialization complete.");
         } else {
-            console.warn("Sample tabs container not found."); // Лог
+            console.warn("Sample tabs container not found.");
         }
     }
 
 
-    // --- Удалена логика для виджета калькулятора ---
-
-
-    // Обработчики кликов для кнопок переключения секций
-    console.log("Attempting to add click listener to toggleDesignsButton."); // Лог
+    // --- Обработчики кликов для кнопок переключения секций ---
+    console.log("Attempting to add click listener to toggleDesignsButton.");
     if (toggleDesignsButton) {
         toggleDesignsButton.addEventListener('click', showDesigns);
-        console.log("Click listener added to toggleDesignsButton."); // Лог
+        console.log("Click listener added to toggleDesignsButton.");
     } else {
-         console.error("toggleDesignsButton not found."); // Лог ошибки
+         console.error("toggleDesignsButton not found.");
     }
 
-    console.log("Attempting to add click listener to toggleMainHeaderButton."); // Лог
+    console.log("Attempting to add click listener to toggleMainHeaderButton.");
     if (toggleMainHeaderButton) {
         toggleMainHeaderButton.addEventListener('click', showMainContent);
-        console.log("Click listener added to toggleMainHeaderButton."); // Лог
+        console.log("Click listener added to toggleMainHeaderButton.");
     } else {
-         console.error("toggleMainHeaderButton not found."); // Лог ошибки
+         console.error("toggleMainHeaderButton not found.");
     }
 
 
@@ -246,11 +243,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         baseThemeSwitches.forEach(button => {
             button.addEventListener('click', () => {
                 currentBaseTheme = button.getAttribute('data-base-theme');
-                console.log("Base theme switch clicked:", currentBaseTheme); // Лог
+                console.log("Base theme switch clicked:", currentBaseTheme);
                 applyCurrentTheme(); // Применяем текущий стиль и режим
             });
         });
-        console.log("Base theme switch listeners added."); // Лог
+        console.log("Base theme switch listeners added.");
     } else {
          console.warn("Кнопки выбора базового стиля не найдены или samplePage отсутствует.");
     }
@@ -258,63 +255,63 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Обработчик изменения состояния чекбокса режима (Светлая/Темная)
     if (modeSwitchCheckbox && samplePage) {
         modeSwitchCheckbox.addEventListener('change', () => {
-            console.log("Mode switch checkbox changed."); // Лог
+            console.log("Mode switch checkbox changed.");
             applyCurrentTheme(); // Применяем текущий стиль и режим
         });
-         console.log("Mode switch checkbox listener added."); // Лог
+         console.log("Mode switch checkbox listener added.");
     } else {
          console.warn("Чекбокс переключателя режима не найден или samplePage отсутствует.");
     }
 
 
     // Управление видимостью кнопок в хедере при загрузке и начальное состояние opacity
-    console.log("Checking initial state..."); // Лог
+    console.log("Checking initial state...");
     if (mainContent && designShowcase && toggleDesignsButton && toggleMainHeaderButton) {
         if (!mainContent.classList.contains('hidden')) {
              // Виден основной контент
-             console.log("Initial state: Main content visible."); // Лог
+             console.log("Initial state: Main content visible.");
              toggleDesignsButton.classList.remove('hidden');
              toggleMainHeaderButton.classList.add('hidden');
-             mainContent.style.opacity = 1; // Убедимся, что основной контент видим
-             designShowcase.style.opacity = 0; // И дизайны скрыты
+             mainContent.style.opacity = 1;
+             designShowcase.style.opacity = 0;
         } else if (!designShowcase.classList.contains('hidden')) {
              // Видны дизайны
-              console.log("Initial state: Design showcase visible."); // Лог
+              console.log("Initial state: Design showcase visible.");
              toggleDesignsButton.classList.add('hidden');
              toggleMainHeaderButton.classList.remove('hidden');
-             designShowcase.style.opacity = 1; // Убедимся, что дизайны видны
-             mainContent.style.opacity = 0; // И основной контент скрыт
+             designShowcase.style.opacity = 1;
+             mainContent.style.opacity = 0;
 
              // Если дизайны видны при загрузке, активируем первую тему и режим по чекбоксу
              const firstBaseThemeButton = document.querySelector('.base-theme-switch');
              if (firstBaseThemeButton) {
                  currentBaseTheme = firstBaseThemeButton.getAttribute('data-base-theme');
                  // Режим определяется состоянием чекбокса, applyCurrentTheme прочитает его
-                 console.log(`Initial design state theme: ${currentBaseTheme}. Mode will be read from checkbox.`); // Лог
-                 applyCurrentTheme(); // Применяем текущий стиль и режим
+                 console.log(`Initial design state theme: ${currentBaseTheme}. Mode will be read from checkbox.`);
+                 applyCurrentTheme();
              } else {
-                  console.warn("No base theme switches found for initial design state."); // Лог
-                 initializeSampleTabs(); // Инициализируем вкладки даже без темы
+                  console.warn("No base theme switches found for initial design state.");
+                 initializeSampleTabs();
              }
 
         } else {
             // Обе секции скрыты (неожиданно, но на всякий случай)
-             console.log("Initial state: Both sections hidden?"); // Лог
+             console.log("Initial state: Both sections hidden?");
              toggleDesignsButton.classList.remove('hidden');
              toggleMainHeaderButton.classList.add('hidden');
              mainContent.style.opacity = 1;
              designShowcase.style.opacity = 0;
-             initializeSampleTabs(); // Инициализируем вкладки
+             initializeSampleTabs();
         }
     } else {
-        console.error("Не найдены все необходимые элементы DOM для переключения секций при загрузке!"); // Лог критической ошибки
+        console.error("Не найдены все необходимые элементы DOM для переключения секций при загрузке!");
     }
 
      // При загрузке страницы, если секция дизайнов скрыта, явно устанавливается
      // базовый стиль и режим по умолчанию (светлый, чекбокс выключен),
      // а также активируются кнопки и инициализируются вкладки.
     if (designShowcase && designShowcase.classList.contains('hidden')) {
-        console.log("Design showcase is hidden on load, setting default theme state."); // Лог
+        console.log("Design showcase is hidden on load, setting default theme state.");
         samplePage.className = 'sample-page'; // Убедимся, что базовый стиль применен
 
         // Активируем первую кнопку стиля при загрузке
@@ -329,8 +326,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
          // Установим начальную переменную baseTheme
          currentBaseTheme = firstBaseThemeButton ? firstBaseThemeButton.getAttribute('data-base-theme') : 'aero';
 
-         initializeSampleTabs(); // Инициализируем вкладки
-         console.log("Initial theme/mode state set and tabs initialized for hidden design section."); // Лог
+         initializeSampleTabs();
+         console.log("Initial theme/mode state set and tabs initialized for hidden design section.");
     }
 
 
