@@ -1,7 +1,7 @@
 /* Сброс стандартных стилей */
 body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif; /* Базовый шрифт для остальной страницы */
     line-height: 1.6;
     background-color: #f4f4f4;
     color: #333;
@@ -29,14 +29,13 @@ header {
     justify-content: center; /* Центрируем текст и фото как группу */
     flex-wrap: wrap; /* Позволяем переноситься на новую строку на маленьких экранах */
     margin-bottom: 1.5rem; /* Отступ между верхней частью и кнопками */
+    width: 100%; /* Занимаем всю ширину, чтобы justify-content: center работал в родителе */
 }
 
 .header-content { /* Контейнер для текста */
-    /* flex-grow: 1; - Удалено, чтобы не растягивал, позволяем контенту определять ширину */
     margin-right: 2rem; /* Отступ справа от текста к фото */
     text-align: right; /* Выравниваем текст справа, чтобы он был ближе к фото */
-    /* Убираем margin-bottom, так как есть margin на .header-top-row */
-     margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 /* На маленьких экранах центрируем текст и убираем margin-right */
@@ -48,6 +47,7 @@ header {
      }
       .header-top-row {
           flex-direction: column; /* На маленьких экранах располагаем фото и текст в столбец */
+          align-items: center; /* Центрируем содержимое header-top-row по горизонтали, когда оно в колонке */
       }
 }
 
@@ -70,7 +70,6 @@ header p {
     object-fit: cover;
     border: 3px solid #fff;
     margin-left: 1rem; /* Отступ слева от фото к тексту */
-    /* Убираем margin-bottom, так как есть margin на .header-top-row */
     margin-bottom: 0;
 }
 /* На маленьких экранах убираем margin-left */
@@ -87,7 +86,6 @@ header p {
     margin-top: 1.5rem;
     text-align: center;
     margin-bottom: 0;
-    /* flex-basis: 100%; - Удалено, так как родитель flex-direction: column */
     width: 100%; /* Занимаем всю ширину для центрирования кнопок */
 }
 
@@ -353,7 +351,7 @@ footer {
     color: #333;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     transition: all 0.8s ease;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif; /* Базовый шрифт примера страницы */
     position: relative;
     overflow: hidden;
 }
@@ -456,7 +454,6 @@ footer {
 
 .sample-tabs .tab-button:hover {
     background-color: #eee;
-    color: #222;
 }
 
 .sample-tabs .tab-button.active {
@@ -469,16 +466,16 @@ footer {
 }
 
 .sample-tabs .tab-content {
-     padding: 1rem; /* Добавим padding */
+     padding: 1rem;
      transition: background-color 0.8s ease, color 0.8s ease;
-     color: #333; /* Цвет текста по умолчанию */
+     color: #333;
 }
 .sample-tabs .tab-pane p,
 .sample-tabs .tab-pane li {
-    color: #333; /* Цвет текста параграфов и списков по умолчанию */
+    color: #333;
 }
 .sample-tabs .tab-pane li::before {
-     color: #007bff; /* Синий маркер по умолчанию */
+     color: #007bff;
 }
 
 
@@ -539,9 +536,17 @@ footer {
     color: #333;
     border: none;
     box-shadow: 0 15px 30px rgba(70, 130, 180, 0.2);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Oxanium', sans-serif; /* Шрифт для Aero */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+}
+.sample-page.theme-aero h3,
+.sample-page.theme-aero h4 {
+    font-family: 'Oxanium', sans-serif; /* Заголовки */
+}
+.sample-page.theme-aero p,
+.sample-page.theme-aero li {
+     font-family: 'Roboto', sans-serif; /* Текст */
 }
 
 .sample-page.theme-aero .sample-header {
@@ -565,7 +570,7 @@ footer {
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    color: #333; /* Цвет текста контента */
+    color: #333;
 }
 
 .sample-page.theme-aero .sample-content h4 {
@@ -585,6 +590,7 @@ footer {
     background-color: rgba(240, 248, 255, 0.5);
     color: #4682b4;
     border-bottom: 1px solid rgba(173, 216, 230, 0.5);
+    font-family: 'Oxanium', sans-serif; /* Шрифт кнопок вкладок */
 }
 .sample-page.theme-aero .sample-tabs .tab-button:hover {
      background-color: rgba(173, 216, 230, 0.7);
@@ -597,6 +603,7 @@ footer {
 .sample-page.theme-aero .sample-tabs .tab-content {
      background-color: rgba(255, 255, 255, 0.8);
      color: #333;
+     font-family: 'Roboto', sans-serif; /* Шрифт контента вкладок */
 }
 .sample-page.theme-aero .sample-tabs .tab-pane p,
 .sample-page.theme-aero .sample-tabs .tab-pane li {
@@ -613,6 +620,7 @@ footer {
      background-color: rgba(176, 196, 222, 0.3);
      margin-top: 1rem;
      border-radius: 0 0 5px 5px;
+     font-family: 'Roboto', sans-serif; /* Шрифт футера */
 }
 
 
@@ -702,10 +710,14 @@ footer {
     color: #e0e0e0;
     border: 2px solid #e51a4b;
     box-shadow: 0 0 30px rgba(229, 26, 75, 0.6), inset 0 0 15px rgba(229, 26, 75, 0.3);
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Share Tech Mono', monospace; /* Шрифт для текста в Gaming */
     position: relative;
     overflow: hidden;
     border-radius: 8px;
+}
+.sample-page.theme-gaming h3,
+.sample-page.theme-gaming h4 {
+    font-family: 'Orbitron', sans-serif; /* Заголовки */
 }
 
 /* Угловые декорации (Исправлено) */
@@ -799,7 +811,7 @@ footer {
     color: #ff9900;
     border: none;
     border-bottom: 1px solid #e51a4b;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif; /* Шрифт кнопок вкладок */
     font-size: 0.9rem;
 }
 .sample-page.theme-gaming .sample-tabs .tab-button:hover {
@@ -818,6 +830,7 @@ footer {
     border-radius: 0 0 5px 5px;
     padding: 1.5rem;
     color: #e0e0e0;
+    font-family: 'Share Tech Mono', monospace; /* Шрифт контента вкладок */
 }
 .sample-page.theme-gaming .sample-tabs .tab-pane p,
 .sample-page.theme-gaming .sample-tabs .tab-pane li {
@@ -835,7 +848,9 @@ footer {
      font-size: 0.9rem;
      padding-top: 0.8rem;
      color: #e51a4b;
+     font-family: 'Share Tech Mono', monospace; /* Шрифт футера */
 }
+
 
 /* --- Стили для темы "Gaming" (Темная) --- */
 .sample-page.theme-gaming.mode-dark {
@@ -906,22 +921,13 @@ footer {
     font-weight: bold;
 }
 
-
-.sample-page.theme-gaming.mode-dark .sample-footer {
-     border-top: 1px dashed #e51a4b;
-     color: #e51a4b;
-     background-color: rgba(255, 0, 255, 0.1);
-     text-align: right;
-}
-
 /* Gaming Темная: Стили для новых элементов */
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-button {
     background-color: #080808;
     color: #ff00ff;
     border: none;
     border-bottom: 1px solid #e51a4b;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.9rem;
+    font-family: 'Orbitron', sans-serif; /* Шрифт кнопок вкладок */
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-button:hover {
      background-color: #1a0000;
@@ -938,6 +944,7 @@ footer {
     border-radius: 0 0 5px 5px;
     padding: 1.5rem;
     color: #ff9900;
+    font-family: 'Share Tech Mono', monospace; /* Шрифт контента вкладок */
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane p,
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane li {
@@ -948,17 +955,30 @@ footer {
 }
 
 
+.sample-page.theme-gaming.mode-dark .sample-footer {
+     border-top: 1px dashed #e51a4b;
+     color: #e51a4b;
+     background-color: rgba(255, 0, 255, 0.1);
+     text-align: right;
+     font-family: 'Share Tech Mono', monospace; /* Шрифт футера */
+}
+
+
 /* --- Стили для темы "Modern" (Светлая) --- */
 .sample-page.theme-modern {
     background-color: #ffffff;
     color: #333;
     border: none;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Lato', sans-serif; /* Шрифт для текста в Modern */
     position: relative;
     overflow: hidden;
     border-radius: 5px;
     padding: 3rem;
+}
+.sample-page.theme-modern h3,
+.sample-page.theme-modern h4 {
+    font-family: 'Montserrat', sans-serif; /* Заголовки */
 }
 
 /* Добавляем минималистичные декоративные линии */
@@ -1006,6 +1026,7 @@ footer {
     background-color: transparent;
     padding: 0;
     margin-bottom: 2rem;
+    color: #444;
 }
 
 .sample-page.theme-modern .sample-content h4 {
@@ -1045,17 +1066,7 @@ footer {
     font-weight: bold;
 }
 
-
-.sample-page.theme-modern .sample-footer {
-    border-top: 1px solid #eee;
-    padding: 1rem 0 0 0;
-    text-align: right;
-    font-size: 0.8rem;
-    color: #555;
-    margin-top: 2rem;
-}
-
-/* Стили Modern (Светлая) для новых элементов */
+/* Modern Светлая: Стили для новых элементов */
 .sample-page.theme-modern .sample-tabs {
     margin-top: 2rem;
     border: 1px solid #eee;
@@ -1081,6 +1092,7 @@ footer {
     text-align: center;
     position: relative;
     overflow: hidden;
+    font-family: 'Montserrat', sans-serif; /* Шрифт кнопок вкладок */
 }
 
 .sample-page.theme-modern .tab-button::before {
@@ -1103,15 +1115,16 @@ footer {
 .sample-page.theme-modern .tab-button.active {
     background-color: #fff;
     color: #333;
-    border-bottom: 2px solid #007bff;
+    border-bottom: none;
 }
 .sample-page.theme-modern .tab-button.active::before {
      transform: translateX(0);
 }
 
 .sample-page.theme-modern .sample-tabs .tab-content {
-     background-color: #fff; /* Цвет фона контента вкладок */
+     background-color: #fff;
      color: #333;
+     font-family: 'Lato', sans-serif; /* Шрифт контента вкладок */
 }
 .sample-page.theme-modern .sample-tabs .tab-pane p,
 .sample-page.theme-modern .sample-tabs .tab-pane li {
@@ -1119,6 +1132,17 @@ footer {
 }
 .sample-page.theme-modern .sample-tabs .tab-pane li::before {
     color: #007bff;
+}
+
+
+.sample-page.theme-modern .sample-footer {
+    border-top: 1px solid #eee;
+    padding: 1rem 0 0 0;
+    text-align: right;
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 2rem;
+    font-family: 'Lato', sans-serif; /* Шрифт футера */
 }
 
 
@@ -1180,13 +1204,7 @@ footer {
     font-weight: bold;
 }
 
-
-.sample-page.theme-modern.mode-dark .sample-footer {
-    border-top-color: #444;
-    color: #bbb;
-}
-
-/* Стили Modern (Темная) для новых элементов */
+/* Modern Темная: Стили для новых элементов */
 .sample-page.theme-modern.mode-dark .sample-tabs {
     border-color: #444;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
@@ -1232,20 +1250,18 @@ footer {
 @media (max-width: 768px) {
     header {
         padding: 1.5rem 0.8rem;
-        /* Убираем justify-content, так как header-top-row и header-buttons теперь в колонке */
-        /* justify-content: center; - Удалено */
+        align-items: center; /* Убедимся, что элементы header центрируются по горизонтали */
     }
+     .header-top-row {
+          flex-direction: column;
+          align-items: center; /* Центрируем содержимое header-top-row по горизонтали */
+          margin-bottom: 1rem;
+      }
      .header-content {
          text-align: center;
          margin-right: 0;
          margin-bottom: 1rem;
      }
-      .header-top-row {
-          flex-direction: column;
-          /* Центрируем содержимое header-top-row по горизонтали, когда оно в колонке */
-          align-items: center;
-          margin-bottom: 1rem; /* Уменьшаем отступ между текстом+фото и кнопками */
-      }
      .profile-photo {
          margin-left: 0;
          margin-bottom: 1rem;
