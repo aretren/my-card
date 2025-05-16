@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseThemeSwitches = document.querySelectorAll('.base-theme-switch');
     const modeSwitchCheckbox = document.getElementById('sample-switch');
     const samplePage = document.getElementById('sample-page');
+    const themeLabel = document.querySelector('.theme-label');
 
     let currentBaseTheme = 'aero';
 
@@ -111,7 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modeSwitchCheckbox && samplePage) {
         modeSwitchCheckbox.addEventListener('change', () => {
             applyCurrentTheme();
+            if (themeLabel) themeLabel.textContent = modeSwitchCheckbox.checked ? 'Тёмная' : 'Светлая';
         });
+        if (themeLabel) themeLabel.textContent = modeSwitchCheckbox.checked ? 'Тёмная' : 'Светлая';
     }
 
     initializeSampleTabs();
