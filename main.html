@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100..900;1,100..900&family=Montserrat:wght@400;700&family=Orbitron:wght@400..900&family=Oxanium:wght@200..800&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <!-- Основные современные шрифты для сайта -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Для дизайн-тем -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Oxanium:wght@600&family=Manrope:wght@400;700&family=Share+Tech+Mono&family=Rubik:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <header>
         <div class="header-top-row">
             <div class="header-content">
@@ -19,62 +21,54 @@
             </div>
             <img src="avatar.jpg" alt="Фото Артема" class="profile-photo">
         </div>
-
         <div class="header-buttons">
             <button id="toggle-designs" class="toggle-button">Показать Примеры Дизайнов</button>
             <button id="toggle-main-header" class="toggle-button hidden">Вернуться к Портфолио</button>
         </div>
     </header>
-
     <div id="main-content">
-        <section id="about">
+        <section id="about" class="modern-block">
             <h2>О себе</h2>
             <p>
-                Я начинающий веб-разработчик, стремящийся к созданию интуитивно понятных и функциональных веб-приложений. Обладаю базовыми знаниями HTML, CSS и JavaScript и постоянно развиваю свои навыки, изучая современные фреймворки и подходы. Готов к интересным проектам и сотрудничеству.
+                Я начинающий веб-разработчик, стремящийся к созданию интуитивно понятных и функциональных веб-приложений. Люблю аккуратный код, современные технологии и крутой UI. Готов учиться и делать классные проекты!
             </p>
         </section>
-
-        <section id="skills">
+        <section id="skills" class="modern-block">
             <h2>Навыки</h2>
             <ul>
                 <li>HTML5</li>
                 <li>CSS3</li>
                 <li>JavaScript</li>
-                <li>[Укажите другие языки/фреймворки: React, Vue, Angular, Node.js, Python, PHP, SQL, и т.д.]</li>
-                <li>[Укажите инструменты: Git, Webpack, Babel, Docker, и т.д.]</li>
-                <li>[Укажите области знаний: Адаптивная верстка, Кроссбраузерность, SEO-оптимизация, и т.д.]</li>
+                <li>React</li>
+                <li>Git</li>
+                <li>Figma</li>
             </ul>
         </section>
-
-        <section id="portfolio">
+        <section id="portfolio" class="modern-block">
             <h2>Портфолио</h2>
             <div class="projects">
                 <div class="project-item">
-                    <h3>Название проекта 1</h3>
-                    <p>Краткое описание проекта. Использованные технологии: [Список технологий]</p>
-                    <a href="#" target="_blank">Ссылка на проект (если есть)</a>
+                    <h3>Интерактивная вёрстка</h3>
+                    <p>Адаптивный лендинг с анимацией и кастомными элементами. <span class="tech-badge">HTML</span> <span class="tech-badge">CSS</span> <span class="tech-badge">JS</span></p>
+                    <a href="#" target="_blank">Посмотреть</a>
                 </div>
                 <div class="project-item">
-                    <h3>Название проекта 2</h3>
-                    <p>Краткое описание проекта. Использованные технологии: [Список технологий]</p>
-                    <a href="#" target="_blank">Ссылка на проект (если есть)</a>
+                    <h3>Мини-сервис заметок</h3>
+                    <p>SPA с хранением данных в LocalStorage. <span class="tech-badge">React</span> <span class="tech-badge">CSS</span></p>
+                    <a href="#" target="_blank">Посмотреть</a>
                 </div>
             </div>
         </section>
-
-        <section id="contact">
+        <section id="contact" class="modern-block">
             <h2>Контакты</h2>
-            <p>Со мной можно связаться по:</p>
             <ul>
                 <li>Email: <a href="mailto:aretren@gmail.com">aretren@gmail.com</a></li>
                 <li>Telegram: <a href="https://t.me/Arent_Likes_Web" target="_blank" rel="noopener noreferrer">@Arent_Likes_Web</a></li>
             </ul>
         </section>
     </div>
-
     <section id="design-showcase" class="hidden">
         <h2>Примеры Дизайнов</h2>
-
         <div class="theme-controls">
             <div class="base-themes">
                 <button data-base-theme="aero" class="base-theme-switch active">Aero</button>
@@ -89,7 +83,6 @@
                 <span>Выкл/Вкл</span>
             </div>
         </div>
-
         <div id="sample-page" class="sample-page">
             <div class="sample-header">
                 <h3>Супер-страница: шоу-кейс дизайнов</h3>
@@ -104,10 +97,7 @@
                     <b>Modern</b> — чисто, строго, минималистично.<br>
                     <b>Neumorphism</b> — модно, стильно, необычно.<br>
                 </p>
-                <p>
-                    Любишь эксперименты? Попробуй включить темный режим!
-                </p>
-
+                <p>Любишь эксперименты? Попробуй включить темный режим!</p>
                 <div class="sample-tabs">
                     <div class="tab-buttons">
                         <button class="tab-button active" data-tab="tab1">Факты</button>
@@ -134,18 +124,15 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="sample-footer">
                 <p>&#128526; Дизайн — это весело! | 2025</p>
             </div>
         </div>
     </section>
-
     <footer>
         <p>&copy; <span id="current-year"></span> Артем. Все права защищены.</p>
     </footer>
-
     <script src="main.js"></script>
 </body>
 </html>
