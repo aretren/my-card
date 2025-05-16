@@ -1,6 +1,4 @@
-// Ваш JavaScript код здесь
-
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     const yearSpan = document.getElementById('current-year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
@@ -82,58 +80,36 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function initializeSampleTabs() {
-        const sampleTabs = samplePage ? samplePage.querySelector('.sample-tabs') : null;
-        if (sampleTabs) {
-            const tabButtons = sampleTabs.querySelectorAll('.tab-button');
-            const tabPanes = sampleTabs.querySelectorAll('.tab-pane');
+        const sampleTabs = document.querySelector('.sample-tabs');
+        if (!sampleTabs) return;
+        const tabButtons = sampleTabs.querySelectorAll('.tab-button');
+        const tabPanes = sampleTabs.querySelectorAll('.tab-pane');
 
-            tabButtons.forEach(button => {
-                const newButton = button.cloneNode(true);
-                if (button.parentNode) {
-                    button.parentNode.replaceChild(newButton, button);
-                }
-            });
+        tabButtons.forEach((button, idx) => {
+            button.onclick = () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabPanes.forEach(pane => pane.classList.remove('active'));
+                button.classList.add('active');
+                tabPanes[idx].classList.add('active');
+            };
+        });
 
-            const updatedTabButtons = samplePage.querySelectorAll('.sample-tabs .tab-button');
-
-            updatedTabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetTab = button.getAttribute('data-tab');
-                    updatedTabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabPanes.forEach(pane => pane.classList.remove('active'));
-                    button.classList.add('active');
-                    const activePane = document.getElementById(targetTab + '-content');
-                    if (activePane) {
-                        activePane.classList.add('active');
-                    }
-                });
-            });
-
-            if (updatedTabButtons.length > 0 && tabPanes.length > 0) {
-                const activeTabButton = sampleTabs.querySelector('.tab-button.active');
-                if (activeTabButton) {
-                    const targetTab = activeTabButton.getAttribute('data-tab');
-                    const activePane = document.getElementById(targetTab + '-content');
-                    if (activePane) {
-                        activePane.classList.add('active');
-                    } else {
-                        updatedTabButtons[0].classList.add('active');
-                        tabPanes[0].classList.add('active');
-                    }
-                } else {
-                    updatedTabButtons[0].classList.add('active');
-                    tabPanes[0].classList.add('active');
-                }
+        // Активируем первую, если ничего не выбрано
+        let anyActive = false;
+        tabButtons.forEach((btn, idx) => {
+            if (btn.classList.contains('active')) {
+                tabPanes[idx].classList.add('active');
+                anyActive = true;
             }
+        });
+        if (!anyActive && tabButtons.length > 0 && tabPanes.length > 0) {
+            tabButtons[0].classList.add('active');
+            tabPanes[0].classList.add('active');
         }
     }
 
-    if (toggleDesignsButton) {
-        toggleDesignsButton.addEventListener('click', showDesigns);
-    }
-    if (toggleMainHeaderButton) {
-        toggleMainHeaderButton.addEventListener('click', showMainContent);
-    }
+    if (toggleDesignsButton) toggleDesignsButton.addEventListener('click', showDesigns);
+    if (toggleMainHeaderButton) toggleMainHeaderButton.addEventListener('click', showMainContent);
 
     if (baseThemeSwitches.length > 0 && samplePage) {
         baseThemeSwitches.forEach(button => {
@@ -150,41 +126,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
-    if (mainContent && designShowcase && toggleDesignsButton && toggleMainHeaderButton) {
-        if (!mainContent.classList.contains('hidden')) {
-            toggleDesignsButton.classList.remove('hidden');
-            toggleMainHeaderButton.classList.add('hidden');
-            mainContent.style.opacity = 1;
-            designShowcase.style.opacity = 0;
-        } else if (!designShowcase.classList.contains('hidden')) {
-            toggleDesignsButton.classList.add('hidden');
-            toggleMainHeaderButton.classList.remove('hidden');
-            designShowcase.style.opacity = 1;
-            mainContent.style.opacity = 0;
-            const firstBaseThemeButton = document.querySelector('.base-theme-switch');
-            if (firstBaseThemeButton) {
-                currentBaseTheme = firstBaseThemeButton.getAttribute('data-base-theme');
-                applyCurrentTheme();
-            } else {
-                initializeSampleTabs();
-            }
-        } else {
-            toggleDesignsButton.classList.remove('hidden');
-            toggleMainHeaderButton.classList.add('hidden');
-            mainContent.style.opacity = 1;
-            designShowcase.style.opacity = 0;
-            initializeSampleTabs();
-        }
-    }
-
-    if (designShowcase && designShowcase.classList.contains('hidden')) {
-        samplePage.className = 'sample-page';
-        const firstBaseThemeButton = document.querySelector('.base-theme-switch');
-        if(firstBaseThemeButton) firstBaseThemeButton.classList.add('active');
-        if (modeSwitchCheckbox) {
-            modeSwitchCheckbox.checked = false;
-        }
-        currentBaseTheme = firstBaseThemeButton ? firstBaseThemeButton.getAttribute('data-base-theme') : 'aero';
-        initializeSampleTabs();
-    }
+    // Инициализация
+    initializeSampleTabs();
 });
