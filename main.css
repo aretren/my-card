@@ -1,7 +1,7 @@
 /* Сброс стандартных стилей */
 body {
     margin: 0;
-    font-family: 'Roboto', sans-serif; /* Базовый шрифт для остальной страницы */
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4;
     color: #333;
@@ -18,39 +18,36 @@ header {
     transition: background-color 0.5s ease, color 0.5s ease;
     margin-bottom: 0;
     display: flex;
-    flex-direction: column; /* Размещаем элементы в столбец */
-    align-items: center; /* Центрируем элементы по горизонтали в header */
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Новый контейнер для текста и фото */
 .header-top-row {
-    display: flex; /* Делаем этот контейнер флексбоксом */
-    align-items: center; /* Выравниваем текст и фото по центру по вертикали */
-    justify-content: center; /* Центрируем текст и фото как группу */
-    flex-wrap: wrap; /* Позволяем переноситься на новую строку на маленьких экранах */
-    margin-bottom: 1.5rem; /* Отступ между верхней частью и кнопками */
-    width: 100%; /* Занимаем всю ширину, чтобы justify-content: center работал в родителе */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    width: 100%;
 }
 
-.header-content { /* Контейнер для текста */
-    margin-right: 2rem; /* Отступ справа от текста к фото */
-    text-align: right; /* Выравниваем текст справа, чтобы он был ближе к фото */
+.header-content {
+    margin-right: 2rem;
+    text-align: right;
     margin-bottom: 0;
 }
 
-/* На маленьких экранах центрируем текст и убираем margin-right */
-@media (max-width: 768px) { /* Можно скорректировать брейкпоинт при необходимости */
+@media (max-width: 768px) {
      .header-content {
          text-align: center;
          margin-right: 0;
-         margin-bottom: 1rem; /* Добавляем отступ снизу на мобильных */
+         margin-bottom: 1rem;
      }
       .header-top-row {
-          flex-direction: column; /* На маленьких экранах располагаем фото и текст в столбец */
-          align-items: center; /* Центрируем содержимое header-top-row по горизонтали, когда оно в колонке */
+          flex-direction: column;
+          align-items: center;
       }
 }
-
 
 header h1 {
     margin: 0;
@@ -69,26 +66,22 @@ header p {
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #fff;
-    margin-left: 1rem; /* Отступ слева от фото к тексту */
+    margin-left: 1rem;
     margin-bottom: 0;
 }
-/* На маленьких экранах убираем margin-left */
-@media (max-width: 768px) { /* Можно скорректировать брейкпоинт при необходимости */
+@media (max-width: 768px) {
     .profile-photo {
          margin-left: 0;
-         margin-bottom: 1rem; /* Добавляем отступ снизу на мобильных */
+         margin-bottom: 1rem;
     }
 }
 
-
-/* Стили для контейнера кнопок в хедере */
 .header-buttons {
     margin-top: 1.5rem;
     text-align: center;
     margin-bottom: 0;
-    width: 100%; /* Занимаем всю ширину для центрирования кнопок */
+    width: 100%;
 }
-
 
 section {
     padding: 2rem 1rem;
@@ -101,11 +94,9 @@ section {
     transition: opacity 0.5s ease, background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
 }
 
-/* Секции основного контента, когда скрыты */
 #main-content.hidden section {
     opacity: 0;
 }
-
 
 section h2 {
     text-align: center;
@@ -138,7 +129,6 @@ section h2 {
     transform: translateY(-3px);
 }
 
-
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -159,7 +149,6 @@ section h2 {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-
 .project-item h3 {
     margin-top: 0;
     color: #007bff;
@@ -173,7 +162,6 @@ section h2 {
     transition: color 0.3s ease;
 }
 
-
 .project-item a {
     display: inline-block;
     margin-top: 1rem;
@@ -182,7 +170,6 @@ section h2 {
     font-weight: bold;
     transition: color 0.3s ease;
 }
-
 .project-item a:hover {
     text-decoration: underline;
     color: #0056b3;
@@ -196,7 +183,6 @@ section h2 {
     border-radius: 5px;
     border: 1px solid #eee;
 }
-
 
 #contact ul {
     list-style: none;
@@ -215,7 +201,6 @@ section h2 {
     text-decoration: none;
     transition: color 0.3s ease;
 }
-
 #contact a:hover {
     text-decoration: underline;
     color: #0056b3;
@@ -233,8 +218,6 @@ footer {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-
-/* Стили для переключающих кнопок секций (в хедере) */
 .toggle-button {
     display: inline-block;
     margin: 0.5rem;
@@ -248,18 +231,14 @@ footer {
     transition: background-color 0.3s ease, transform 0.2s ease;
     outline: none;
 }
-
 .toggle-button:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
 }
-
 .toggle-button:active {
     transform: translateY(0);
 }
 
-
-/* Стили для секции дизайнов */
 #design-showcase {
     margin-top: 0;
     padding-top: 2rem;
@@ -276,13 +255,10 @@ footer {
     transition: opacity 0.5s ease, background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
 }
 
-
-/* Класс для скрытия, используется в JS */
 .hidden {
     display: none;
 }
 
-/* Исправляем отступ заголовка внутри секции дизайнов */
 #design-showcase h2 {
      margin-top: 0;
      padding-top: 0;
@@ -293,8 +269,6 @@ footer {
      transition: color 0.5s ease;
 }
 
-
-/* Стили для контейнера переключателей тем */
 .theme-controls {
     text-align: center;
     margin-bottom: 2rem;
@@ -303,15 +277,12 @@ footer {
     align-items: center;
     gap: 15px;
 }
-
 .theme-controls .base-themes {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
 }
-
-/* Стили для всех кнопок внутри .base-themes */
 .theme-controls .base-themes button {
     padding: 0.6rem 1.2rem;
     border: 1px solid #007bff;
@@ -323,24 +294,62 @@ footer {
     font-size: 1rem;
     outline: none;
 }
-
 .theme-controls .base-themes button:hover {
     background-color: #e9ecef;
     transform: translateY(-2px);
 }
-
 .theme-controls .base-themes button.active {
     background-color: #007bff;
     color: #fff;
     transform: translateY(0);
 }
-
 .theme-controls .base-themes button:active {
      transform: translateY(0);
 }
 
+.theme-controls .mode-toggle-control {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+.theme-controls .mode-toggle-control input[type="checkbox"] {
+    display: none;
+}
+.theme-controls .mode-toggle-control label {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0;
+}
+.theme-controls .mode-toggle-control label::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: transform 0.3s ease;
+}
+.theme-controls .mode-toggle-control input[type="checkbox"]:checked + label {
+    background-color: #007bff;
+}
+.theme-controls .mode-toggle-control input[type="checkbox"]:checked + label::before {
+    transform: translateX(16px);
+}
+.theme-controls .mode-toggle-control span {
+    white-space: nowrap;
+}
 
-/* Базовые стили для примера страницы */
 .sample-page {
     border: 1px solid #ddd;
     padding: 2rem;
@@ -351,11 +360,10 @@ footer {
     color: #333;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     transition: all 0.8s ease;
-    font-family: 'Roboto', sans-serif; /* Базовый шрифт примера страницы */
+    font-family: 'Roboto', sans-serif;
     position: relative;
     overflow: hidden;
 }
-
 .sample-page .sample-header {
     padding: 1rem;
     margin-bottom: 1.5rem;
@@ -363,43 +371,34 @@ footer {
     border-bottom: 1px solid #eee;
     transition: all 0.8s ease;
 }
-
 .sample-page .sample-header h3 {
     margin: 0 0 0.5rem 0;
     font-size: 1.8rem;
 }
-
 .sample-page .sample-header p {
     font-size: 1.1rem;
     color: #555;
 }
-
-
 .sample-page .sample-content {
     padding: 1rem;
     margin-bottom: 1.5rem;
     transition: all 0.8s ease;
 }
-
 .sample-page .sample-content h4 {
     margin-top: 0;
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
-
 .sample-page .sample-content p {
     margin-bottom: 1rem;
 }
-
 .sample-page .sample-content ul {
     padding-left: 25px;
     list-style: disc;
 }
-
 .sample-page .sample-content li {
     margin-bottom: 0.5rem;
 }
-
 .sample-page .sample-footer {
     padding: 1rem;
     text-align: center;
@@ -409,9 +408,6 @@ footer {
     transition: all 0.8s ease;
 }
 
-/* --- Стили для новых элементов внутри примера страницы --- */
-
-/* Стили для вкладок */
 .sample-tabs {
     margin-top: 2rem;
     border: 1px solid #eee;
@@ -419,13 +415,11 @@ footer {
     overflow: hidden;
     transition: border-color 0.8s ease;
 }
-
 .sample-tabs .tab-buttons {
     display: flex;
     border-bottom: 1px solid #eee;
     transition: border-color 0.8s ease;
 }
-
 .sample-tabs .tab-button {
     flex-grow: 1;
     padding: 0.8rem 1rem;
@@ -439,7 +433,6 @@ footer {
     position: relative;
     overflow: hidden;
 }
-
 .sample-tabs .tab-button::before {
     content: '';
     position: absolute;
@@ -451,11 +444,9 @@ footer {
     transform: translateX(-100%);
     transition: transform 0.3s ease;
 }
-
 .sample-tabs .tab-button:hover {
     background-color: #eee;
 }
-
 .sample-tabs .tab-button.active {
     background-color: #fff;
     color: #333;
@@ -464,7 +455,6 @@ footer {
 .sample-tabs .tab-button.active::before {
      transform: translateX(0);
 }
-
 .sample-tabs .tab-content {
      padding: 1rem;
      transition: background-color 0.8s ease, color 0.8s ease;
@@ -478,77 +468,24 @@ footer {
      color: #007bff;
 }
 
-
-/* Стили для переключателя режима (который теперь в theme-controls) */
-.theme-controls .mode-toggle-control {
-    margin-top: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1rem;
-    color: #555;
-}
-
-.theme-controls .mode-toggle-control input[type="checkbox"] {
-    display: none;
-}
-
-.theme-controls .mode-toggle-control label {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 24px;
-    background-color: #ccc;
-    border-radius: 24px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    flex-shrink: 0;
-}
-
-.theme-controls .mode-toggle-control label::before {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #fff;
-    transition: transform 0.3s ease;
-}
-
-.theme-controls .mode-toggle-control input[type="checkbox"]:checked + label {
-    background-color: #007bff;
-}
-
-.theme-controls .mode-toggle-control input[type="checkbox"]:checked + label::before {
-    transform: translateX(16px);
-}
-
-.theme-controls .mode-toggle-control span {
-    white-space: nowrap;
-}
-
-
 /* --- Стили для темы "Aero" (Светлая) --- */
 .sample-page.theme-aero {
     background: linear-gradient(135deg, rgba(240, 248, 255, 0.9), rgba(173, 216, 230, 0.7));
     color: #333;
     border: none;
     box-shadow: 0 15px 30px rgba(70, 130, 180, 0.2);
-    font-family: 'Oxanium', sans-serif; /* Шрифт для Aero */
+    font-family: 'Oxanium', sans-serif;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
 .sample-page.theme-aero h3,
 .sample-page.theme-aero h4 {
-    font-family: 'Oxanium', sans-serif; /* Заголовки */
+    font-family: 'Oxanium', sans-serif;
 }
 .sample-page.theme-aero p,
 .sample-page.theme-aero li {
-     font-family: 'Roboto', sans-serif; /* Текст */
+     font-family: 'Roboto', sans-serif;
 }
-
 .sample-page.theme-aero .sample-header {
     border-bottom: 1px solid rgba(176, 196, 222, 0.5);
     color: #4682b4;
@@ -556,15 +493,12 @@ footer {
     margin-bottom: 1rem;
     border-radius: 5px 5px 0 0;
 }
-
 .sample-page.theme-aero .sample-header h3 {
      text-shadow: 1px 1px 2px rgba(70, 130, 180, 0.1);
 }
 .sample-page.theme-aero .sample-header p {
     color: #778899;
 }
-
-
 .sample-page.theme-aero .sample-content {
     background-color: rgba(255, 255, 255, 0.7);
     padding: 1.5rem;
@@ -572,11 +506,9 @@ footer {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     color: #333;
 }
-
 .sample-page.theme-aero .sample-content h4 {
      color: #6495ed;
 }
-
 .sample-page.theme-aero .sample-content ul {
      list-style: circle;
      color: #add8e6;
@@ -584,13 +516,11 @@ footer {
 .sample-page.theme-aero .sample-content p {
      color: #555;
 }
-
-/* Aero Светлая: Стили для новых элементов */
 .sample-page.theme-aero .sample-tabs .tab-button {
     background-color: rgba(240, 248, 255, 0.5);
     color: #4682b4;
     border-bottom: 1px solid rgba(173, 216, 230, 0.5);
-    font-family: 'Oxanium', sans-serif; /* Шрифт кнопок вкладок */
+    font-family: 'Oxanium', sans-serif;
 }
 .sample-page.theme-aero .sample-tabs .tab-button:hover {
      background-color: rgba(173, 216, 230, 0.7);
@@ -603,7 +533,7 @@ footer {
 .sample-page.theme-aero .sample-tabs .tab-content {
      background-color: rgba(255, 255, 255, 0.8);
      color: #333;
-     font-family: 'Roboto', sans-serif; /* Шрифт контента вкладок */
+     font-family: 'Roboto', sans-serif;
 }
 .sample-page.theme-aero .sample-tabs .tab-pane p,
 .sample-page.theme-aero .sample-tabs .tab-pane li {
@@ -612,17 +542,14 @@ footer {
 .sample-page.theme-aero .sample-tabs .tab-pane li::before {
     color: #add8e6;
 }
-
-
 .sample-page.theme-aero .sample-footer {
      border-top: 1px solid rgba(176, 196, 222, 0.5);
      color: #4682b4;
      background-color: rgba(176, 196, 222, 0.3);
      margin-top: 1rem;
      border-radius: 0 0 5px 5px;
-     font-family: 'Roboto', sans-serif; /* Шрифт футера */
+     font-family: 'Roboto', sans-serif;
 }
-
 
 /* --- Стили для темы "Aero" (Темная) --- */
 .sample-page.theme-aero.mode-dark {
@@ -630,7 +557,6 @@ footer {
     color: #e0f7fa;
     box-shadow: 0 15px 30px rgba(0, 121, 107, 0.4);
 }
-
 .sample-page.theme-aero.mode-dark .sample-header {
     border-bottom-color: rgba(0, 151, 167, 0.5);
     color: #80deea;
@@ -642,14 +568,11 @@ footer {
 .sample-page.theme-aero.mode-dark .sample-header p {
     color: #4db6ac;
 }
-
-
 .sample-page.theme-aero.mode-dark .sample-content {
     background-color: rgba(26, 46, 60, 0.7);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     color: #b2ebf2;
 }
-
 .sample-page.theme-aero.mode-dark .sample-content h4 {
      color: #00bcd4;
 }
@@ -659,15 +582,12 @@ footer {
 .sample-page.theme-aero.mode-dark .sample-content p {
      color: #b2ebf2;
 }
-
-/* Aero Темная: Стили для новых элементов */
 .sample-page.theme-aero.mode-dark .sample-tabs {
      border-color: rgba(0, 151, 167, 0.5);
 }
 .sample-page.theme-aero.mode-dark .sample-tabs .tab-buttons {
     border-bottom-color: rgba(0, 151, 167, 0.5);
 }
-
 .sample-page.theme-aero.mode-dark .sample-tabs .tab-button {
     background-color: rgba(26, 46, 60, 0.5);
     color: #80deea;
@@ -681,7 +601,6 @@ footer {
     color: #e0f7fa;
     border-bottom-color: #00bcd4;
 }
-
 .sample-page.theme-aero.mode-dark .sample-tabs .tab-content {
      background-color: rgba(26, 46, 60, 0.8);
      color: #b2ebf2;
@@ -693,8 +612,6 @@ footer {
 .sample-page.theme-aero.mode-dark .sample-tabs .tab-pane li::before {
     color: #00bcd4;
 }
-
-
 .sample-page.theme-aero.mode-dark .sample-footer {
      border-top-color: rgba(0, 151, 167, 0.5);
      color: #80deea;
@@ -703,24 +620,21 @@ footer {
      border-radius: 0 0 5px 5px;
 }
 
-
 /* --- Стили для темы "Gaming" (Светлая - основная) --- */
 .sample-page.theme-gaming {
     background: linear-gradient(135deg, #1a1a1a, #331a1a);
     color: #e0e0e0;
     border: 2px solid #e51a4b;
     box-shadow: 0 0 30px rgba(229, 26, 75, 0.6), inset 0 0 15px rgba(229, 26, 75, 0.3);
-    font-family: 'Share Tech Mono', monospace; /* Шрифт для текста в Gaming */
+    font-family: 'Share Tech Mono', monospace;
     position: relative;
     overflow: hidden;
     border-radius: 8px;
 }
 .sample-page.theme-gaming h3,
 .sample-page.theme-gaming h4 {
-    font-family: 'Orbitron', sans-serif; /* Заголовки */
+    font-family: 'Orbitron', sans-serif;
 }
-
-/* Угловые декорации (Исправлено) */
 .sample-page.theme-gaming::before,
 .sample-page.theme-gaming::after {
     content: '';
@@ -734,15 +648,13 @@ footer {
 .sample-page.theme-gaming::before {
     top: 0;
     left: 0;
-    border-color: #ff00ff transparent transparent #ff00ff; /* Фиолетовая верхняя и левая */
+    border-color: #ff00ff transparent transparent #ff00ff;
 }
 .sample-page.theme-gaming::after {
     bottom: 0;
     right: 0;
-    border-color: transparent #ff00ff #ff00ff transparent; /* Фиолетовая правая и нижняя */
+    border-color: transparent #ff00ff #ff00ff transparent;
 }
-
-
 .sample-page.theme-gaming .sample-header {
     border-bottom: 1px dashed #ff00ff;
     color: #fff;
@@ -750,17 +662,14 @@ footer {
     text-align: left;
     padding-bottom: 0.8rem;
 }
-
 .sample-page.theme-gaming .sample-header h3 {
      text-shadow: 0 0 8px #ff00ff;
      font-size: 2.2rem;
-     color: #ff9900; /* Оранжевый заголовок хедера */
+     color: #ff9900;
 }
 .sample-page.theme-gaming .sample-header p {
-    color: #e51a4b; /* ROG красный подзаголовок */
+    color: #e51a4b;
 }
-
-
 .sample-page.theme-gaming .sample-content {
     background-color: #2a2a2a;
     padding: 2rem;
@@ -770,7 +679,6 @@ footer {
     position: relative;
     z-index: 2;
 }
-
 .sample-page.theme-gaming .sample-content h4 {
     color: #ff00ff;
     text-shadow: 0 0 5px #ff00ff;
@@ -778,24 +686,19 @@ footer {
     display: inline-block;
     padding-bottom: 0.3rem;
 }
-
 .sample-page.theme-gaming .sample-content p {
      color: #e0e0e0;
 }
-
-
 .sample-page.theme-gaming .sample-content ul {
     list-style: none;
     padding-left: 0;
 }
-
 .sample-page.theme-gaming .sample-content li {
     margin-bottom: 0.8rem;
     color: #ff9900;
     position: relative;
     padding-left: 1.5rem;
 }
-
 .sample-page.theme-gaming .sample-content li::before {
     content: '\203A';
     color: #e51a4b;
@@ -804,14 +707,12 @@ footer {
     top: 0;
     font-weight: bold;
 }
-
-/* Gaming Светлая: Стили для новых элементов */
 .sample-page.theme-gaming .sample-tabs .tab-button {
     background-color: #2a2a2a;
     color: #ff9900;
     border: none;
     border-bottom: 1px solid #e51a4b;
-    font-family: 'Orbitron', sans-serif; /* Шрифт кнопок вкладок */
+    font-family: 'Orbitron', sans-serif;
     font-size: 0.9rem;
 }
 .sample-page.theme-gaming .sample-tabs .tab-button:hover {
@@ -824,13 +725,12 @@ footer {
     border-bottom: 2px solid #ff00ff;
     text-shadow: 0 0 5px #ff00ff;
 }
-
 .sample-page.theme-gaming .sample-tabs .tab-content {
     background-color: #1a1a1a;
     border-radius: 0 0 5px 5px;
     padding: 1.5rem;
     color: #e0e0e0;
-    font-family: 'Share Tech Mono', monospace; /* Шрифт контента вкладок */
+    font-family: 'Share Tech Mono', monospace;
 }
 .sample-page.theme-gaming .sample-tabs .tab-pane p,
 .sample-page.theme-gaming .sample-tabs .tab-pane li {
@@ -839,8 +739,6 @@ footer {
 .sample-page.theme-gaming .sample-tabs .tab-pane li::before {
     color: #ff00ff;
 }
-
-
 .sample-page.theme-gaming .sample-footer {
      border-top: 1px dashed #ff00ff;
      background-color: rgba(229, 26, 75, 0.1);
@@ -848,9 +746,8 @@ footer {
      font-size: 0.9rem;
      padding-top: 0.8rem;
      color: #e51a4b;
-     font-family: 'Share Tech Mono', monospace; /* Шрифт футера */
+     font-family: 'Share Tech Mono', monospace;
 }
-
 
 /* --- Стили для темы "Gaming" (Темная) --- */
 .sample-page.theme-gaming.mode-dark {
@@ -859,15 +756,12 @@ footer {
     border-color: #ff00ff;
     box-shadow: 0 0 35px rgba(255, 0, 255, 0.8), inset 0 0 20px rgba(255, 0, 255, 0.4);
 }
-/* Угловые декорации в темном режиме */
 .sample-page.theme-gaming.mode-dark::before {
     border-color: #e51a4b transparent transparent #e51a4b;
 }
 .sample-page.theme-gaming.mode-dark::after {
      border-color: transparent #e51a4b #e51a4b transparent;
 }
-
-
 .sample-page.theme-gaming.mode-dark .sample-header {
     border-bottom-color: #e51a4b;
     color: #ff00ff;
@@ -881,8 +775,6 @@ footer {
 .sample-page.theme-gaming.mode-dark .sample-header p {
      color: #ff9900;
 }
-
-
 .sample-page.theme-gaming.mode-dark .sample-content {
     background-color: #080808;
     padding: 2rem;
@@ -892,7 +784,6 @@ footer {
     position: relative;
     z-index: 2;
 }
-
 .sample-page.theme-gaming.mode-dark .sample-content h4 {
     color: #e51a4b;
     text-shadow: 0 0 8px #e51a4b;
@@ -920,14 +811,12 @@ footer {
     top: 0;
     font-weight: bold;
 }
-
-/* Gaming Темная: Стили для новых элементов */
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-button {
     background-color: #080808;
     color: #ff00ff;
     border: none;
     border-bottom: 1px solid #e51a4b;
-    font-family: 'Orbitron', sans-serif; /* Шрифт кнопок вкладок */
+    font-family: 'Orbitron', sans-serif;
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-button:hover {
      background-color: #1a0000;
@@ -944,7 +833,7 @@ footer {
     border-radius: 0 0 5px 5px;
     padding: 1.5rem;
     color: #ff9900;
-    font-family: 'Share Tech Mono', monospace; /* Шрифт контента вкладок */
+    font-family: 'Share Tech Mono', monospace;
 }
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane p,
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane li {
@@ -953,16 +842,13 @@ footer {
 .sample-page.theme-gaming.mode-dark .sample-tabs .tab-pane li::before {
     color: #e51a4b;
 }
-
-
 .sample-page.theme-gaming.mode-dark .sample-footer {
      border-top: 1px dashed #e51a4b;
      color: #e51a4b;
      background-color: rgba(255, 0, 255, 0.1);
      text-align: right;
-     font-family: 'Share Tech Mono', monospace; /* Шрифт футера */
+     font-family: 'Share Tech Mono', monospace;
 }
-
 
 /* --- Стили для темы "Modern" (Светлая) --- */
 .sample-page.theme-modern {
@@ -970,7 +856,7 @@ footer {
     color: #333;
     border: none;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    font-family: 'Lato', sans-serif; /* Шрифт для текста в Modern */
+    font-family: 'Lato', sans-serif;
     position: relative;
     overflow: hidden;
     border-radius: 5px;
@@ -978,10 +864,8 @@ footer {
 }
 .sample-page.theme-modern h3,
 .sample-page.theme-modern h4 {
-    font-family: 'Montserrat', sans-serif; /* Заголовки */
+    font-family: 'Montserrat', sans-serif;
 }
-
-/* Добавляем минималистичные декоративные линии */
 .sample-page.theme-modern::before,
 .sample-page.theme-modern::after {
     content: '';
@@ -1001,400 +885,284 @@ footer {
     width: 100%;
     height: 5px;
 }
-
-
 .sample-page.theme-modern .sample-header {
-    border-bottom: 1px solid #eee;
-    padding: 0 0 1rem 0;
-    margin-bottom: 2rem;
+    border-bottom: 1px solid #f3f3f3;
+    background-color: #f7fafe;
+    margin-bottom: 1.5rem;
+    border-radius: 5px 5px 0 0;
+    color: #007bff;
     text-align: left;
-    color: #222;
+    padding: 1.2rem 2rem 1rem 2rem;
 }
-
 .sample-page.theme-modern .sample-header h3 {
-     font-size: 2.2rem;
-     margin-bottom: 0.5rem;
-     font-weight: 700;
+    font-size: 2rem;
+    color: #007bff;
 }
 .sample-page.theme-modern .sample-header p {
-     font-size: 1rem;
-     color: #555;
+    color: #555;
 }
-
-
 .sample-page.theme-modern .sample-content {
-    background-color: transparent;
-    padding: 0;
-    margin-bottom: 2rem;
+    background-color: #f9fafe;
+    border-radius: 6px;
+    padding: 2rem;
     color: #444;
+    box-shadow: 0 2px 12px rgba(0, 123, 255, 0.04);
 }
-
 .sample-page.theme-modern .sample-content h4 {
-    margin-top: 0;
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
     color: #007bff;
-    border-bottom: none;
-    display: block;
-    padding-bottom: 0;
+    border-bottom: 1px solid #e7e7e7;
+    padding-bottom: 0.3rem;
+    margin-bottom: 1.2rem;
     font-weight: 700;
 }
-
-.sample-page.theme-modern .sample-content p {
-     margin-bottom: 1.5rem;
-     line-height: 1.8;
-     color: #444;
-}
-
 .sample-page.theme-modern .sample-content ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.sample-page.theme-modern .sample-content li {
-    margin-bottom: 0.8rem;
-    color: #333;
-    position: relative;
-    padding-left: 1.5rem;
-}
-.sample-page.theme-modern .sample-content li::before {
-    content: '—';
+    list-style: disc inside;
     color: #007bff;
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-weight: bold;
 }
-
-/* Modern Светлая: Стили для новых элементов */
-.sample-page.theme-modern .sample-tabs {
-    margin-top: 2rem;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+.sample-page.theme-modern .sample-content p,
+.sample-page.theme-modern .sample-content li {
+    color: #444;
 }
-
-.sample-page.theme-modern .sample-tabs .tab-buttons {
-    display: flex;
-    border-bottom: 1px solid #eee;
-}
-
-.sample-page.theme-modern .tab-button {
-    flex-grow: 1;
-    padding: 0.8rem 1rem;
-    border: none;
-    background-color: #f8f8f8;
-    color: #555;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, border-bottom-color 0.3s ease;
+.sample-page.theme-modern .sample-tabs .tab-button {
+    background-color: #f7fafe;
+    color: #007bff;
+    border-bottom: 1px solid #e7e7e7;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    font-family: 'Montserrat', sans-serif; /* Шрифт кнопок вкладок */
 }
-
-.sample-page.theme-modern .tab-button::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #007bff;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
+.sample-page.theme-modern .sample-tabs .tab-button:hover {
+    background-color: #e9ecef;
+    color: #0056b3;
 }
-
-.sample-page.theme-modern .tab-button:hover {
-    background-color: #eee;
-    color: #222;
-}
-
-.sample-page.theme-modern .tab-button.active {
+.sample-page.theme-modern .sample-tabs .tab-button.active {
     background-color: #fff;
     color: #333;
-    border-bottom: none;
+    border-bottom: 2px solid #007bff;
 }
-.sample-page.theme-modern .tab-button.active::before {
-     transform: translateX(0);
-}
-
 .sample-page.theme-modern .sample-tabs .tab-content {
-     background-color: #fff;
-     color: #333;
-     font-family: 'Lato', sans-serif; /* Шрифт контента вкладок */
+    background-color: #fff;
+    color: #222;
+    font-family: 'Lato', sans-serif;
 }
 .sample-page.theme-modern .sample-tabs .tab-pane p,
 .sample-page.theme-modern .sample-tabs .tab-pane li {
-    color: #333;
+    color: #444;
 }
 .sample-page.theme-modern .sample-tabs .tab-pane li::before {
     color: #007bff;
 }
-
-
 .sample-page.theme-modern .sample-footer {
-    border-top: 1px solid #eee;
-    padding: 1rem 0 0 0;
-    text-align: right;
-    font-size: 0.8rem;
-    color: #555;
-    margin-top: 2rem;
-    font-family: 'Lato', sans-serif; /* Шрифт футера */
+    border-top: 1px solid #f3f3f3;
+    background-color: #f7fafe;
+    color: #888;
+    padding: 1rem 2rem;
+    font-family: 'Lato', sans-serif;
 }
-
 
 /* --- Стили для темы "Modern" (Темная) --- */
 .sample-page.theme-modern.mode-dark {
-    background-color: #222;
-    color: #eee;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    background-color: #23272f;
+    color: #e4e6ef;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.24);
 }
-
-/* Декоративные линии в темном режиме */
-.sample-page.theme-modern.mode-dark::before,
-.sample-page.theme-modern.mode-dark::after {
-    background-color: #ff9900;
-}
-
-
 .sample-page.theme-modern.mode-dark .sample-header {
-    border-bottom-color: #444;
-    color: #fff;
+    background-color: #23272f;
+    color: #80bdff;
+    border-bottom: 1px solid #343a40;
 }
-
 .sample-page.theme-modern.mode-dark .sample-header h3 {
-    color: #ff9900;
+    color: #80bdff;
 }
 .sample-page.theme-modern.mode-dark .sample-header p {
-    color: #bbb;
+    color: #b8b9be;
 }
-
-
 .sample-page.theme-modern.mode-dark .sample-content {
-    background-color: transparent;
-    color: #ddd;
+    background-color: #2e323a;
+    color: #e4e6ef;
+    box-shadow: 0 2px 12px rgba(0, 123, 255, 0.10);
 }
-
 .sample-page.theme-modern.mode-dark .sample-content h4 {
-    color: #ff00ff;
+    color: #80bdff;
+    border-bottom: 1px solid #343a40;
 }
-
-.sample-page.theme-modern.mode-dark .sample-content p {
-    color: #ccc;
-}
-
 .sample-page.theme-modern.mode-dark .sample-content ul {
-     list-style: none;
-     padding-left: 0;
+    color: #80bdff;
 }
+.sample-page.theme-modern.mode-dark .sample-content p,
 .sample-page.theme-modern.mode-dark .sample-content li {
-    color: #eee;
-    position: relative;
-    padding-left: 1.5rem;
+    color: #e4e6ef;
 }
-.sample-page.theme-modern.mode-dark .sample-content li::before {
-    content: '—';
-    color: #ff9900;
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-weight: bold;
+.sample-page.theme-modern.mode-dark .sample-tabs .tab-button {
+    background-color: #23272f;
+    color: #80bdff;
+    border-bottom: 1px solid #343a40;
 }
-
-/* Modern Темная: Стили для новых элементов */
-.sample-page.theme-modern.mode-dark .sample-tabs {
-    border-color: #444;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-.sample-page.theme-modern.mode-dark .sample-tabs .tab-buttons {
-    display: flex;
-    border-bottom: 1px solid #444;
-}
-
-.sample-page.theme-modern.mode-dark .tab-button {
-    background-color: #333;
-    color: #bbb;
-}
-
-.sample-page.theme-modern.mode-dark .tab-button:hover {
-    background-color: #444;
+.sample-page.theme-modern.mode-dark .sample-tabs .tab-button:hover {
+    background-color: #343a40;
     color: #fff;
 }
-
-.sample-page.theme-modern.mode-dark .tab-button.active {
-    background-color: #222;
+.sample-page.theme-modern.mode-dark .sample-tabs .tab-button.active {
+    background-color: #2e323a;
     color: #fff;
+    border-bottom: 2px solid #80bdff;
 }
-.sample-page.theme-modern.mode-dark .tab-button.active::before {
-     background-color: #ff00ff;
-}
-
 .sample-page.theme-modern.mode-dark .sample-tabs .tab-content {
-    background-color: #222;
-    color: #ddd;
+    background-color: #2e323a;
+    color: #e4e6ef;
 }
 .sample-page.theme-modern.mode-dark .sample-tabs .tab-pane p,
 .sample-page.theme-modern.mode-dark .sample-tabs .tab-pane li {
-    color: #ddd;
+    color: #e4e6ef;
 }
 .sample-page.theme-modern.mode-dark .sample-tabs .tab-pane li::before {
-    color: #ff9900;
+    color: #80bdff;
+}
+.sample-page.theme-modern.mode-dark .sample-footer {
+    background-color: #23272f;
+    color: #b8b9be;
+    border-top: 1px solid #343a40;
 }
 
-
-/* Медиа-запросы для адаптивности */
-@media (max-width: 768px) {
-    header {
-        padding: 1.5rem 0.8rem;
-        align-items: center; /* Убедимся, что элементы header центрируются по горизонтали */
-    }
-     .header-top-row {
-          flex-direction: column;
-          align-items: center; /* Центрируем содержимое header-top-row по горизонтали */
-          margin-bottom: 1rem;
-      }
-     .header-content {
-         text-align: center;
-         margin-right: 0;
-         margin-bottom: 1rem;
-     }
-     .profile-photo {
-         margin-left: 0;
-         margin-bottom: 1rem;
-     }
-
-    section {
-        padding: 1.5rem 0.8rem;
-        margin: 1.5rem auto;
-    }
-
-    .projects {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .sample-page {
-        padding: 1.5rem;
-        max-width: 95%;
-    }
-
-    .sample-page .sample-header h3 {
-        font-size: 1.5rem;
-    }
-
-    .sample-page .sample-content h4 {
-        font-size: 1.3rem;
-    }
-
-    .theme-controls {
-        gap: 8px;
-    }
-
-    .theme-controls .base-themes button {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-
-    .theme-controls .mode-toggle-control {
-         font-size: 0.9rem;
-         gap: 8px;
-    }
-    .theme-controls .mode-toggle-control label {
-         width: 35px;
-         height: 20px;
-    }
-    .theme-controls .mode-toggle-control label::before {
-         width: 16px;
-         height: 16px;
-         top: 2px;
-         left: 2px;
-    }
-     .theme-controls .mode-toggle-control input[type="checkbox"]:checked + label::before {
-        transform: translateX(13px);
-    }
-
-
-    .toggle-button {
-         padding: 0.6rem 1.2rem;
-         font-size: 0.9rem;
-    }
-
-    .sample-page.theme-gaming::before,
-    .sample-page.theme-gaming::after {
-        width: 15px;
-        height: 15px;
-        border-width: 2px;
-    }
-
-    .sample-page.theme-modern {
-        padding: 2rem;
-    }
-    .sample-page.theme-modern::before {
-        width: 3px;
-    }
-    .sample-page.theme-modern::after {
-        height: 3px;
-    }
+/* --- Стили для темы "Neumorphism" (Светлая) --- */
+.sample-page.theme-neumorphism {
+    background: #e0e5ec;
+    color: #333;
+    border-radius: 20px;
+    box-shadow:
+        8px 8px 24px #b8b9be,
+        -8px -8px 24px #ffffff;
+    font-family: 'Lato', 'Roboto', sans-serif;
+    padding: 2.5rem;
+    transition: all 0.6s cubic-bezier(.25,.8,.25,1);
+}
+.sample-page.theme-neumorphism .sample-header,
+.sample-page.theme-neumorphism .sample-footer {
+    background: #e0e5ec;
+    border-radius: 16px;
+    box-shadow:
+        3px 3px 10px #b8b9be,
+        -3px -3px 10px #ffffff;
+    color: #7b7e88;
+    margin-bottom: 1.2rem;
+    padding: 1rem;
+}
+.sample-page.theme-neumorphism .sample-header h3,
+.sample-page.theme-neumorphism .sample-header p,
+.sample-page.theme-neumorphism .sample-footer {
+    color: #7b7e88;
+}
+.sample-page.theme-neumorphism .sample-content {
+    background: #e0e5ec;
+    border-radius: 12px;
+    box-shadow:
+        2px 2px 8px #b8b9be,
+        -2px -2px 8px #ffffff;
+    padding: 1.2rem 1.6rem;
+    color: #333;
+}
+.sample-page.theme-neumorphism .sample-content h4 {
+    color: #4e566a;
+    margin-bottom: 1rem;
+}
+.sample-page.theme-neumorphism .sample-tabs {
+    background: #e0e5ec;
+    border-radius: 10px;
+    box-shadow:
+        1px 1px 5px #b8b9be,
+        -1px -1px 5px #ffffff;
+}
+.sample-page.theme-neumorphism .tab-buttons {
+    border-bottom: none;
+}
+.sample-page.theme-neumorphism .tab-button {
+    background: #e0e5ec;
+    color: #7b7e88;
+    border: none;
+    border-radius: 10px 10px 0 0;
+    margin-right: 5px;
+    box-shadow:
+        1px 1px 4px #b8b9be,
+        -1px -1px 4px #ffffff;
+    transition: background 0.3s, color 0.3s;
+}
+.sample-page.theme-neumorphism .tab-button.active,
+.sample-page.theme-neumorphism .tab-button:hover {
+    background: #f3f6fa;
+    color: #333;
+    box-shadow:
+        inset 2px 2px 6px #b8b9be,
+        inset -2px -2px 6px #ffffff;
+}
+.sample-page.theme-neumorphism .tab-content {
+    background: #e0e5ec;
+    color: #333;
+    border-radius: 0 0 10px 10px;
+}
+.sample-page.theme-neumorphism .tab-pane p,
+.sample-page.theme-neumorphism .tab-pane li {
+    color: #555;
 }
 
-@media (max-width: 480px) {
-     header h1 {
-        font-size: 2rem;
-     }
-
-    header p {
-        font-size: 1rem;
-    }
-
-     section h2 {
-        font-size: 1.8rem;
-     }
-
-     .sample-page .sample-header h3 {
-        font-size: 1.3rem;
-    }
-
-     .sample-page .sample-content h4 {
-        font-size: 1.2rem;
-     }
-
-     .sample-page .sample-content p,
-     .sample-page .sample-content li {
-         font-size: 0.9rem;
-     }
-
-     #skills li {
-         padding: 0.5rem 1rem;
-         font-size: 0.8rem;
-     }
-
-     .header-buttons .toggle-button {
-        margin: 0.3rem;
-     }
-
-     .sample-tabs .tab-button {
-         padding: 0.6rem 0.5rem;
-         font-size: 0.8rem;
-     }
-     .sample-page.theme-gaming::before,
-     .sample-page.theme-gaming::after {
-        width: 10px;
-        height: 10px;
-        border-width: 1px;
-     }
-     .theme-controls .mode-toggle-control label {
-         width: 30px;
-         height: 18px;
-     }
-      .theme-controls .mode-toggle-control label::before {
-         width: 14px;
-         height: 14px;
-      }
-       .theme-controls .mode-toggle-control input[type="checkbox"]:checked + label::before {
-        transform: translateX(12px);
-    }
+/* --- Стили для темы "Neumorphism" (Темная) --- */
+.sample-page.theme-neumorphism.mode-dark {
+    background: #23262b;
+    color: #e0e5ec;
+    box-shadow:
+        8px 8px 24px #191b1f,
+        -8px -8px 24px #2e3238;
+}
+.sample-page.theme-neumorphism.mode-dark .sample-header,
+.sample-page.theme-neumorphism.mode-dark .sample-footer {
+    background: #23262b;
+    color: #b8b9be;
+    box-shadow:
+        3px 3px 10px #191b1f,
+        -3px -3px 10px #2e3238;
+}
+.sample-page.theme-neumorphism.mode-dark .sample-header h3,
+.sample-page.theme-neumorphism.mode-dark .sample-header p,
+.sample-page.theme-neumorphism.mode-dark .sample-footer {
+    color: #b8b9be;
+}
+.sample-page.theme-neumorphism.mode-dark .sample-content {
+    background: #23262b;
+    color: #d2d6db;
+    box-shadow:
+        2px 2px 8px #191b1f,
+        -2px -2px 8px #2e3238;
+}
+.sample-page.theme-neumorphism.mode-dark .sample-content h4 {
+    color: #e0e5ec;
+}
+.sample-page.theme-neumorphism.mode-dark .sample-tabs {
+    background: #23262b;
+    box-shadow:
+        1px 1px 5px #191b1f,
+        -1px -1px 5px #2e3238;
+}
+.sample-page.theme-neumorphism.mode-dark .tab-buttons {
+    border-bottom: none;
+}
+.sample-page.theme-neumorphism.mode-dark .tab-button {
+    background: #23262b;
+    color: #b8b9be;
+    box-shadow:
+        1px 1px 4px #191b1f,
+        -1px -1px 4px #2e3238;
+}
+.sample-page.theme-neumorphism.mode-dark .tab-button.active,
+.sample-page.theme-neumorphism.mode-dark .tab-button:hover {
+    background: #191b1f;
+    color: #e0e5ec;
+    box-shadow:
+        inset 2px 2px 6px #191b1f,
+        inset -2px -2px 6px #2e3238;
+}
+.sample-page.theme-neumorphism.mode-dark .tab-content {
+    background: #23262b;
+    color: #e0e5ec;
+}
+.sample-page.theme-neumorphism.mode-dark .tab-pane p,
+.sample-page.theme-neumorphism.mode-dark .tab-pane li {
+    color: #b8b9be;
 }
