@@ -1,16 +1,18 @@
 body {
     margin: 0;
-    font-family: 'Manrope', 'Inter', 'Lato', Arial, sans-serif;
-    background: linear-gradient(135deg, #f7fafd 0%, #ecf2fa 100%);
-    color: #23272f;
+    font-family: 'Manrope', 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(135deg, #f6f8fa 0%, #e4ebf5 100%);
+    color: #222733;
     font-size: 17px;
     min-height: 100vh;
-    transition: background 0.4s, color 0.4s;
+    padding-bottom: 70px;
+    transition: background 0.3s, color 0.3s;
 }
+
 header {
     background: linear-gradient(90deg, #232b3a 0%, #4863a0 100%);
     color: #fff;
-    padding: 2.7rem 1rem 2rem 1rem;
+    padding: 2.5rem 1.2rem 2.2rem 1.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,33 +25,29 @@ header {
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
-.header-content {
-    margin-right: 2rem;
-    text-align: right;
-}
+.header-content { margin-right: 2rem; text-align: right; }
 @media (max-width: 768px) {
     .header-content { text-align: center; margin-right: 0; margin-bottom: 1rem; }
     .header-top-row { flex-direction: column; align-items: center; }
 }
 header h1 {
     margin: 0;
-    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
-    font-size: 2.9rem;
+    font-family: 'Montserrat', 'Manrope', Arial, sans-serif;
+    font-size: 2.7rem;
     font-weight: 800;
     letter-spacing: .02em;
 }
 header p {
     margin-top: 0.5rem;
-    font-size: 1.14rem;
+    font-size: 1.12rem;
     color: #eaf6fb;
-    font-family: 'Manrope', 'Inter', Arial, sans-serif;
-    letter-spacing: .03em;
+    font-family: 'Manrope', 'Montserrat', Arial, sans-serif;
+    letter-spacing: .02em;
 }
-
 .profile-photo {
-    width: 135px; height: 135px;
+    width: 120px; height: 120px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid #fff;
@@ -58,24 +56,24 @@ header p {
     background: #f6faff;
 }
 @media (max-width: 768px) { .profile-photo { margin-left: 0; margin-bottom: 1rem; } }
-
-.header-buttons { margin-top: 1.5rem; text-align: center; width: 100%; }
+.header-buttons { margin-top: 1.2rem; text-align: center; width: 100%; }
 .hi-tech-btn {
     font-family: 'Montserrat', 'Manrope', Arial, sans-serif;
     font-weight: 700;
-    padding: 0.88rem 2.1rem;
-    font-size: 1.07rem;
+    padding: 0.9rem 2.3rem;
+    font-size: 1.04rem;
     letter-spacing: .03em;
     color: #fff;
     background: linear-gradient(90deg, #0ebeff 40%, #1976d2 100%);
     border: none;
-    border-radius: 12px;
+    border-radius: 13px;
     box-shadow: 0 2px 16px #0ebeff33, 0 0 0 1.5px #0ebeff;
     cursor: pointer;
     transition: background 0.3s, box-shadow 0.3s, transform 0.18s;
     outline: none;
     position: relative;
     overflow: hidden;
+    user-select: none;
 }
 .hi-tech-btn:before {
     content: "";
@@ -85,7 +83,7 @@ header p {
     opacity: 0; pointer-events: none;
     background: radial-gradient(circle at 60% 40%, #00e6ff44 0%, #0ebeff00 80%);
     transition: opacity 0.4s;
-    border-radius: 12px;
+    border-radius: 13px;
 }
 .hi-tech-btn:hover:before { opacity: 1; }
 .hi-tech-btn:hover {
@@ -96,22 +94,22 @@ header p {
 .hi-tech-btn:active { transform: scale(0.97); }
 
 .modern-block {
-    background: rgba(255,255,255,0.92);
+    background: rgba(255,255,255,0.96);
     border-radius: 22px;
     box-shadow: 0 6px 32px 0 rgba(60, 80, 160, 0.10);
-    margin: 2.7rem auto;
-    padding: 2.5rem 2rem 2.1rem 2rem;
-    max-width: 700px;
+    margin: 2.5rem auto;
+    padding: 2.2rem 2rem 1.7rem 2rem;
+    max-width: 650px;
     border: none;
     position: relative;
     backdrop-filter: blur(2px);
     transition: box-shadow 0.3s, background 0.3s;
 }
 .modern-block h2 {
-    font-family: 'Montserrat', 'Inter', sans-serif;
+    font-family: 'Montserrat', 'Manrope', Arial, sans-serif;
     color: #0ebeff;
     font-weight: 800;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.4rem;
     letter-spacing: 0.01em;
 }
 .modern-block ul {
@@ -119,22 +117,22 @@ header p {
 }
 .modern-block li {
     display: inline-block;
-    margin: 0 0.5em 0.75em 0;
-    padding: 0.62em 1.3em;
+    margin: 0 0.5em 0.7em 0;
+    padding: 0.55em 1.15em;
     background: linear-gradient(90deg, #e6f7fd 30%, #eaf3fc 100%);
     border-radius: 14px;
     color: #028eb8;
     font-size: 1em;
-    font-family: 'Manrope', 'Inter', sans-serif;
-    letter-spacing: .02em;
+    font-family: 'Manrope', 'Montserrat', Arial, sans-serif;
+    letter-spacing: .01em;
 }
 #skills li { font-weight: 600; }
-#contact li, #contact a { color: #1976d2; font-size: 1.12em; font-family: 'Manrope', 'Inter', sans-serif; }
+#contact li, #contact a { color: #1976d2; font-size: 1.10em; font-family: 'Manrope', 'Montserrat', Arial, sans-serif; }
 .project-item {
     background: #f7fafd;
     border-radius: 14px;
     box-shadow: 0 1px 8px 0 rgba(30,40,90,.08);
-    padding: 1.3rem 1.1rem 1.2rem 1.1rem;
+    padding: 1.2rem 1.1rem 1.1rem 1.1rem;
     margin-bottom: 1.3rem;
     border: none;
     transition: box-shadow 0.2s;
@@ -144,46 +142,49 @@ header p {
     font-family: 'Montserrat', 'Manrope', Arial, sans-serif;
     font-weight: 700;
     color: #0a3a7a;
-    font-size: 1.22rem;
+    font-size: 1.18rem;
     margin-bottom: .6rem;
 }
 .tech-badge {
     background: #e9f3fe;
     color: #0ebeff;
     border-radius: 8px;
-    font-size: .92em;
-    margin-left: .35em;
-    padding: 0.18em 0.7em;
+    font-size: .90em;
+    margin-left: .32em;
+    padding: 0.14em 0.6em;
 }
-#portfolio .projects { gap: 1.4rem; }
+#portfolio .projects { gap: 1.2rem; }
 footer {
     text-align: center;
-    padding: 1.5rem;
+    padding: 1.4rem;
     background: #23272f;
     color: #fff;
     margin-top: 3rem;
     border-radius: 22px 22px 0 0;
-    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
-    font-size: 1.12em;
+    font-family: 'Montserrat', 'Manrope', Arial, sans-serif;
+    font-size: 1.10em;
     letter-spacing: .01em;
 }
 #main-content.hidden section { opacity: 0; }
 
 #design-showcase {
-    margin-top: 0;
+    margin: 0 auto;
     padding: 2.5rem 1.1rem 2rem 1.1rem;
-    max-width: 800px;
+    max-width: 700px;
     background: #f6fbff;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.07);
     border-radius: 17px;
     opacity: 1;
     transition: opacity 0.5s, background 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 #design-showcase h2 {
     margin-top: 0; padding-top: 0; margin-bottom: 1rem;
     text-align: center;
     color: #0ebeff;
-    font-family: 'Montserrat', 'Inter', sans-serif;
+    font-family: 'Montserrat', 'Manrope', Arial, sans-serif;
     font-size: 2.1rem;
     letter-spacing: .03em;
 }
@@ -194,6 +195,7 @@ footer {
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    width: 100%;
 }
 .theme-controls .base-themes {
     display: flex;
@@ -209,7 +211,7 @@ footer {
     color: #0ebeff;
     cursor: pointer;
     font-size: 1rem;
-    font-family: 'Manrope', 'Inter', Arial, sans-serif;
+    font-family: 'Manrope', 'Montserrat', Arial, sans-serif;
     font-weight: 600;
     outline: none;
     transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.19s;
@@ -260,17 +262,18 @@ footer {
     transform: translateX(18px);
 }
 .theme-controls .mode-toggle-control label:focus { outline: 2px solid #0ebeff; }
+.theme-label { margin-left: 4px; font-weight: 700; color: #0ebeff; }
 
 .sample-page {
     border: 1.5px solid #e6effa;
     padding: 2.1rem;
     border-radius: 16px;
     margin: 0 auto;
-    max-width: 700px;
+    max-width: 650px;
     background: #fff;
     color: #333;
     box-shadow: 0 0 15px rgba(40, 100, 200, 0.08);
-    font-family: 'Manrope', 'Inter', Arial, sans-serif;
+    font-family: 'Manrope', 'Montserrat', Arial, sans-serif;
     position: relative;
     overflow: hidden;
     transition: all 0.7s cubic-bezier(.4,0,.2,1);
@@ -329,6 +332,7 @@ footer {
     color: #7a90b2;
     letter-spacing: .01em;
 }
+
 /* --- Темы для showcase (шрифты и цвета) --- */
 .sample-page.theme-aero, .sample-page.theme-aero .sample-header, .sample-page.theme-aero .sample-content {
     font-family: 'Oxanium', 'Manrope', Arial, sans-serif;
@@ -345,18 +349,73 @@ footer {
 .sample-page.theme-aero .sample-footer { background: rgba(210,230,255,0.18); color: #2d5fa8; }
 
 .sample-page.theme-gaming, .sample-page.theme-gaming .sample-header, .sample-page.theme-gaming .sample-content {
-    font-family: 'Orbitron', 'Share Tech Mono', monospace;
+    font-family: 'Orbitron', 'Manrope', Arial, sans-serif;
 }
-.sample-page.theme-gaming h3, .sample-page.theme-gaming h4 { font-family: 'Orbitron', monospace; }
+.sample-page.theme-gaming h3, .sample-page.theme-gaming h4 { font-family: 'Orbitron', Arial, sans-serif; }
 .sample-page.theme-gaming {
-    background: linear-gradient(135deg, #18162c 0%, #2b0033 100%);
-    color: #ffe4ff;
-    border: 2px solid #e51a4b;
-    box-shadow: 0 0 30px #ff00ff80, 0 0 0 4px #1a1a1a inset;
+    background: linear-gradient(120deg, #1a1b1f 0%, #320011 100%);
+    color: #ff3c41;
+    border: none;
+    box-shadow: 0 0 30px #ff003f99, 0 0 0 4px #1a1a1a inset;
+    position: relative;
 }
-.sample-page.theme-gaming .sample-header { border-bottom: 1px dashed #ff00ff; color: #ff9900; background: rgba(229, 26, 75, 0.09);}
-.sample-page.theme-gaming .sample-content { background: #18122b; border-radius: 10px; color: #ffbaf7; }
-.sample-page.theme-gaming .sample-footer { border-top: 1px dashed #ff00ff; background: rgba(229, 26, 75, 0.05); color: #ff00ff; }
+.sample-page.theme-gaming::before, .sample-page.theme-gaming::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    border-radius: 100%;
+    pointer-events: none;
+}
+.sample-page.theme-gaming::before {
+    top: -90px; left: -90px; width: 220px; height: 220px;
+    background: radial-gradient(circle, #ff003f66 0%, #0000 80%);
+    filter: blur(12px);
+}
+.sample-page.theme-gaming::after {
+    bottom: -60px; right: -60px; width: 160px; height: 160px;
+    background: radial-gradient(circle, #ff4927bb 0%, #0000 80%);
+    filter: blur(18px);
+}
+.sample-page.theme-gaming .sample-header {
+    background: linear-gradient(90deg, #2c0014 60%, #1a1b1f 100%);
+    color: #fff;
+    border-bottom: 3.5px solid #ff003f;
+    box-shadow: 0 0 24px #ff003f22;
+}
+.sample-page.theme-gaming .sample-content {
+    background: linear-gradient(90deg, #1b1b2c 80%, #2c0014 100%);
+    border-radius: 11px;
+    color: #fff8;
+    box-shadow: 0 0 18px #ff003f22;
+}
+.sample-page.theme-gaming .sample-content h4,
+.sample-page.theme-gaming .sample-tabs .tab-button.active {
+    color: #ff003f;
+    text-shadow: 0 0 16px #ff003f88;
+}
+.sample-page.theme-gaming .sample-tabs .tab-button {
+    background: #191621;
+    color: #ff6f83;
+    border-bottom: 2px solid transparent;
+    font-family: 'Orbitron', Arial, sans-serif;
+    transition: background 0.25s, color 0.2s, border-bottom 0.25s;
+}
+.sample-page.theme-gaming .sample-tabs .tab-button:hover {
+    background: #24132a;
+    color: #fff;
+}
+.sample-page.theme-gaming .sample-tabs .tab-button.active {
+    background: #320011;
+    color: #fff;
+    border-bottom: 2px solid #ff003f;
+    text-shadow: 0 0 10px #ff003f99;
+}
+.sample-page.theme-gaming .sample-footer {
+    background: #230014;
+    color: #ff003f;
+    border-top: 2.5px solid #ff003f;
+    box-shadow: 0 0 24px #ff003f22;
+}
 
 .sample-page.theme-modern, .sample-page.theme-modern .sample-header, .sample-page.theme-modern .sample-content {
     font-family: 'Montserrat', 'Manrope', Arial, sans-serif;
@@ -373,9 +432,9 @@ footer {
 .sample-page.theme-modern .sample-footer { background: #f3f5f7; color: #1976d2; }
 
 .sample-page.theme-neumorphism, .sample-page.theme-neumorphism .sample-header, .sample-page.theme-neumorphism .sample-content {
-    font-family: 'Rubik', 'Lato', Arial, sans-serif;
+    font-family: 'Rubik', 'Manrope', Arial, sans-serif;
 }
-.sample-page.theme-neumorphism h3, .sample-page.theme-neumorphism h4 { font-family: 'Rubik', 'Lato', Arial, sans-serif; font-weight: 700; }
+.sample-page.theme-neumorphism h3, .sample-page.theme-neumorphism h4 { font-family: 'Rubik', 'Manrope', Arial, sans-serif; font-weight: 700; }
 .sample-page.theme-neumorphism {
     background: #e6eaf2;
     color: #3a4f7a;
