@@ -7,30 +7,28 @@
     <link rel="stylesheet" href="main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Основные современные шрифты для сайта -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Для дизайн-тем -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Oxanium:wght@600&family=Manrope:wght@400;700&family=Share+Tech+Mono&family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Основные шрифты и для showcase -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@600;800&family=Manrope:wght@400;700&family=Orbitron:wght@700&family=Oxanium:wght@700&family=Rubik:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="header-top-row">
             <div class="header-content">
-                <h1>Привет, меня зовут Артем!</h1>
-                <p>или будем знакомы, я web-разработчик</p>
+                <h1>Привет, я Артем!</h1>
+                <p>Web-разработчик. Люблю технологии будущего.</p>
             </div>
             <img src="avatar.jpg" alt="Фото Артема" class="profile-photo">
         </div>
         <div class="header-buttons">
-            <button id="toggle-designs" class="toggle-button">Показать Примеры Дизайнов</button>
-            <button id="toggle-main-header" class="toggle-button hidden">Вернуться к Портфолио</button>
+            <button id="toggle-designs" class="toggle-button hi-tech-btn">Показать Примеры Дизайнов</button>
+            <button id="toggle-main-header" class="toggle-button hi-tech-btn hidden">Вернуться к Портфолио</button>
         </div>
     </header>
     <div id="main-content">
         <section id="about" class="modern-block">
             <h2>О себе</h2>
             <p>
-                Я начинающий веб-разработчик, стремящийся к созданию интуитивно понятных и функциональных веб-приложений. Люблю аккуратный код, современные технологии и крутой UI. Готов учиться и делать классные проекты!
+                Я web-разработчик с тягой к технологиям будущего. Люблю лаконичный и эстетичный UI, hi-tech-атмосферу и современные подходы.
             </p>
         </section>
         <section id="skills" class="modern-block">
@@ -41,21 +39,21 @@
                 <li>JavaScript</li>
                 <li>React</li>
                 <li>Git</li>
-                <li>Figma</li>
+                <li>UI/UX</li>
             </ul>
         </section>
         <section id="portfolio" class="modern-block">
             <h2>Портфолио</h2>
             <div class="projects">
                 <div class="project-item">
-                    <h3>Интерактивная вёрстка</h3>
-                    <p>Адаптивный лендинг с анимацией и кастомными элементами. <span class="tech-badge">HTML</span> <span class="tech-badge">CSS</span> <span class="tech-badge">JS</span></p>
-                    <a href="#" target="_blank">Посмотреть</a>
+                    <h3>Landing UI</h3>
+                    <p>Современный адаптивный лендинг. <span class="tech-badge">React</span> <span class="tech-badge">Styled Components</span></p>
+                    <a href="#">Посмотреть</a>
                 </div>
                 <div class="project-item">
-                    <h3>Мини-сервис заметок</h3>
-                    <p>SPA с хранением данных в LocalStorage. <span class="tech-badge">React</span> <span class="tech-badge">CSS</span></p>
-                    <a href="#" target="_blank">Посмотреть</a>
+                    <h3>Notes App</h3>
+                    <p>Мини-сервис заметок с drag-n-drop. <span class="tech-badge">JS</span> <span class="tech-badge">CSS Grid</span></p>
+                    <a href="#">Посмотреть</a>
                 </div>
             </div>
         </section>
@@ -63,7 +61,7 @@
             <h2>Контакты</h2>
             <ul>
                 <li>Email: <a href="mailto:aretren@gmail.com">aretren@gmail.com</a></li>
-                <li>Telegram: <a href="https://t.me/Arent_Likes_Web" target="_blank" rel="noopener noreferrer">@Arent_Likes_Web</a></li>
+                <li>Telegram: <a href="https://t.me/Arent_Likes_Web" target="_blank">@Arent_Likes_Web</a></li>
             </ul>
         </section>
     </div>
@@ -79,25 +77,23 @@
             <div class="sample-toggle mode-toggle-control">
                 <span>Темный режим:</span>
                 <input type="checkbox" id="sample-switch">
-                <label for="sample-switch"></label>
+                <label for="sample-switch" tabindex="0"></label>
                 <span>Выкл/Вкл</span>
             </div>
         </div>
         <div id="sample-page" class="sample-page">
             <div class="sample-header">
-                <h3>Супер-страница: шоу-кейс дизайнов</h3>
-                <p>Каждая тема — это другое настроение. Пощёлкай кнопки и посмотри, как меняется атмосфера!</p>
+                <h3>Дизайн-Inspire</h3>
+                <p>Смени тему — вдохновись разными стилями!</p>
             </div>
             <div class="sample-content">
-                <h4>Почему тут четыре стиля?</h4>
-                <p>
-                    Потому что&nbsp;одним скучно! <br>
-                    <b>Aero</b> — будто сайт вдохнул свежего воздуха.<br>
-                    <b>Gaming</b> — для тех, кто любит неон и драму.<br>
-                    <b>Modern</b> — чисто, строго, минималистично.<br>
-                    <b>Neumorphism</b> — модно, стильно, необычно.<br>
-                </p>
-                <p>Любишь эксперименты? Попробуй включить темный режим!</p>
+                <h4>Вдохновлялись:</h4>
+                <ul class="design-refs">
+                  <li><b>Aero</b> — Windows 11 / Fluent UI</li>
+                  <li><b>Gaming</b> — ROG, Alienware, SteelSeries</li>
+                  <li><b>Modern</b> — Material You, Apple Glassmorphism</li>
+                  <li><b>Neumorphism</b> — neumorphism.io</li>
+                </ul>
                 <div class="sample-tabs">
                     <div class="tab-buttons">
                         <button class="tab-button active" data-tab="tab1">Факты</button>
@@ -107,26 +103,25 @@
                         <div id="tab1-content" class="tab-pane active">
                             <p><b>Знаешь ли ты?</b></p>
                             <ul>
-                                <li>Настоящий веб-дизайнер меняет тему быстрее, чем настроение.</li>
-                                <li>Тёмный режим экономит энергию... и нервы!</li>
-                                <li>Этот блок живёт своей жизнью — основная страница всё равно не узнает, что тут творится!</li>
+                                <li>Вдохновляющий UI поднимает настроение лучше кофе.</li>
+                                <li>В 2025 году переключатель темы — стандарт де-факто на всех сайтах.</li>
+                                <li>Hi-tech дизайн = меньше визуального шума, больше ясности.</li>
                             </ul>
                         </div>
                         <div id="tab2-content" class="tab-pane">
-                            <p>Самые распространённые мысли верстальщика:</p>
+                            <p>Мудрости front-end'ера:</p>
                             <ul>
-                                <li>«Почему всё сломалось? Ведь я ничего не трогал!»</li>
-                                <li>«Сейчас быстренько поправлю… (Спустя 3 часа)»</li>
-                                <li>«margin: 0 auto; — и пусть весь мир подождёт»</li>
-                                <li>«А если вот тут добавить transition? О, красиво!»</li>
-                                <li>«Ну и кто придумал, что padding и margin должны так работать?!»</li>
+                                <li>Если не знаешь, какой шрифт — ставь Inter или Manrope.</li>
+                                <li>Тень спасёт любой блок, если её немного.</li>
+                                <li>Больше скруглений — меньше грусти.</li>
+                                <li>Переключатель темы — лучший друг интроверта.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="sample-footer">
-                <p>&#128526; Дизайн — это весело! | 2025</p>
+                <p>HighTech UI &copy; 2025</p>
             </div>
         </div>
     </section>
