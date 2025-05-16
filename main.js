@@ -17,14 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyCurrentTheme() {
         const currentMode = modeSwitchCheckbox && modeSwitchCheckbox.checked ? 'dark' : 'light';
         samplePage.className = 'sample-page';
-
         if (currentBaseTheme && currentBaseTheme !== 'default') {
             samplePage.classList.add('theme-' + currentBaseTheme);
         }
         if (currentMode === 'dark') {
             samplePage.classList.add('mode-dark');
         }
-
         baseThemeSwitches.forEach(button => {
             if (button.getAttribute('data-base-theme') === currentBaseTheme) {
                 button.classList.add('active');
@@ -32,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.classList.remove('active');
             }
         });
-
         initializeSampleTabs();
     }
 
@@ -41,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleDesignsButton.classList.add('hidden');
             toggleMainHeaderButton.classList.remove('hidden');
         }
-
         const activeBaseThemeButton = document.querySelector('.base-theme-switch.active');
         if (activeBaseThemeButton) {
             currentBaseTheme = activeBaseThemeButton.getAttribute('data-base-theme');
@@ -50,11 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             currentBaseTheme = 'aero';
         }
-
         applyCurrentTheme();
-
         if (mainContent) mainContent.style.opacity = 0;
-
         setTimeout(() => {
             if (mainContent) mainContent.classList.add('hidden');
             if (designShowcase) designShowcase.classList.remove('hidden');
@@ -68,9 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleMainHeaderButton.classList.add('hidden');
             toggleDesignsButton.classList.remove('hidden');
         }
-
         if (designShowcase) designShowcase.style.opacity = 0;
-
         setTimeout(() => {
             if (designShowcase) designShowcase.classList.add('hidden');
             if (mainContent) mainContent.classList.remove('hidden');
@@ -84,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!sampleTabs) return;
         const tabButtons = sampleTabs.querySelectorAll('.tab-button');
         const tabPanes = sampleTabs.querySelectorAll('.tab-pane');
-
         tabButtons.forEach((button, idx) => {
             button.onclick = () => {
                 tabButtons.forEach(btn => btn.classList.remove('active'));
@@ -93,8 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 tabPanes[idx].classList.add('active');
             };
         });
-
-        // Активируем первую, если ничего не выбрано
         let anyActive = false;
         tabButtons.forEach((btn, idx) => {
             if (btn.classList.contains('active')) {
@@ -126,6 +114,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Инициализация
     initializeSampleTabs();
 });
