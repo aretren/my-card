@@ -1166,3 +1166,13 @@ footer {
 .sample-page.theme-neumorphism.mode-dark .tab-pane li {
     color: #b8b9be;
 }
+.sample-tabs .tab-pane {
+    display: none;
+}
+.sample-tabs .tab-pane.active {
+    display: block;
+}
+.sample-tabs .tab-button.active {
+    font-weight: bold;
+    border-bottom: 2px solid #007bff;
+}
