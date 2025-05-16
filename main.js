@@ -16,14 +16,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentBaseTheme = 'aero';
 
     function applyCurrentTheme() {
-        const currentMode = modeSwitchCheckbox && modeSwitchCheckbox.checked ? 'dark' : 'light';
+        // Сбрасываем классы, кроме sample-page
         samplePage.className = 'sample-page';
+
+        // Добавляем базовую тему
         if (currentBaseTheme && currentBaseTheme !== 'default') {
             samplePage.classList.add('theme-' + currentBaseTheme);
         }
-        if (currentMode === 'dark') {
+
+        // Добавляем или убираем темную тему только для sample-page
+        if (modeSwitchCheckbox && modeSwitchCheckbox.checked) {
             samplePage.classList.add('mode-dark');
+            if (themeLabel) themeLabel.textContent = 'Тёмная';
+        } else {
+            if (themeLabel) themeLabel.textContent = 'Светлая';
         }
+
+        // Активные кнопки тем
         baseThemeSwitches.forEach(button => {
             if (button.getAttribute('data-base-theme') === currentBaseTheme) {
                 button.classList.add('active');
@@ -31,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.classList.remove('active');
             }
         });
+
         initializeSampleTabs();
     }
 
@@ -97,9 +107,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Кнопки показа/скрытия дизайнов
     if (toggleDesignsButton) toggleDesignsButton.addEventListener('click', showDesigns);
     if (toggleMainHeaderButton) toggleMainHeaderButton.addEventListener('click', showMainContent);
 
+    // Переключение тем-примеров
     if (baseThemeSwitches.length > 0 && samplePage) {
         baseThemeSwitches.forEach(button => {
             button.addEventListener('click', () => {
@@ -109,13 +121,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Переключатель "Светлая/Тёмная" — только для sample-page!
     if (modeSwitchCheckbox && samplePage) {
-        modeSwitchCheckbox.addEventListener('change', () => {
-            applyCurrentTheme();
-            if (themeLabel) themeLabel.textContent = modeSwitchCheckbox.checked ? 'Тёмная' : 'Светлая';
-        });
+        modeSwitchCheckbox.addEventListener('change', applyCurrentTheme);
+        // Инициализация текста лейбла
         if (themeLabel) themeLabel.textContent = modeSwitchCheckbox.checked ? 'Тёмная' : 'Светлая';
     }
 
     initializeSampleTabs();
+    applyCurrentTheme(); // При первой загрузке — корректная тема
 });
