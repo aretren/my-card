@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(aeroButton) aeroButton.classList.add('active');
         }
 
+
         // Добавляем класс темного режима, если он активен
         if (currentMode === 'dark') {
              samplePage.classList.add('mode-dark');
@@ -55,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
              // Обновляем текст лейбла
              if (themeLabel) themeLabel.textContent = 'Светлая';
         }
+
 
         // Обновляем активные состояния кнопок базовых стилей
         baseThemeSwitches.forEach(button => {
@@ -285,22 +287,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!mainContent.classList.contains('hidden')) {
              // Виден основной контент
              console.log("Начальное состояние: основной контент видима.");
-             designShowcase.classList.add('hidden'); // Убедимся, что дизайны скрыты
+             designShowcase.classList.add('hidden');
              mainContent.style.opacity = 1;
              designShowcase.style.opacity = 0;
-             sectionToggleButton.textContent = 'Показать Примеры Дизайнов'; // Устанавливаем текст кнопки
+             sectionToggleButton.textContent = 'Показать Примеры Дизайнов';
              console.log("Начальное состояние кнопки: 'Показать Примеры Дизайнов'.");
 
         } else if (!designShowcase.classList.contains('hidden')) {
              // Видны дизайны
               console.log("Начальное состояние: секция дизайнов видима.");
-              mainContent.classList.add('hidden'); // Убедимся, что основной контент скрыт
+              mainContent.classList.add('hidden');
              designShowcase.style.opacity = 1;
              mainContent.style.opacity = 0;
-             sectionToggleButton.textContent = 'Вернуться к Портфолио'; // Устанавливаем текст кнопки
+             sectionToggleButton.textContent = 'Вернуться к Портфолио';
              console.log("Начальное состояние кнопки: 'Вернуться к Портфолио'.");
 
-             // Если дизайны видны при загрузке, применяем активную тему/режим и инициализируем вкладки
+             // Применяем активную тему/режим и инициализируем вкладки для видимой секции дизайнов
              const activeBaseThemeButton = document.querySelector('.base-theme-switch.active');
              if (activeBaseThemeButton) {
                  currentBaseTheme = activeBaseThemeButton.getAttribute('data-base-theme');
@@ -314,7 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
                  console.warn("Начальное состояние: кнопки базовых тем не найдены, по умолчанию выбрана 'aero' для видимых дизайнов.");
              }
 
-             // Режим читается из чекбокса. applyCurrentTheme все настроит.
              applyCurrentTheme();
              console.log("Начальное состояние: тема и вкладки инициализированы для видимой секции дизайнов.");
 
@@ -333,24 +334,13 @@ document.addEventListener('DOMContentLoaded', () => {
              sectionToggleButton.textContent = 'Показать Примеры Дизайнов';
              console.log("Начальное состояние кнопки: 'Показать Примеры Дизайнов' (fallback).");
 
-             // Инициализируем вкладки, даже если designShowcase скрыт
-              if (samplePage) initializeSampleTabs(); // Вкладки могут быть в DOM, даже если секция скрыта
+              if (samplePage) initializeSampleTabs();
                console.log("Начальное состояние: инициализация вкладок (fallback).");
 
         }
     } else {
          console.error("Не найдены все необходимые основные элементы DOM при загрузке!");
-         // Если samplePage не найден, initializeSampleTabs уже выведет предупреждение
-         if (samplePage) initializeSampleTabs(); // Попытка инициализации вкладок даже при ошибке
+         if (samplePage) initializeSampleTabs();
     }
-
-
-    // При загрузке страницы, если секция дизайнов скрыта, явно устанавливается
-    // базовый стиль и режим по умолчанию (светлый, чекбокс выключен),
-    // а также активируются кнопки и инициализируются вкладки.
-    // Этот блок дублирует часть логики из `else` выше, но явно устанавливает состояние для `sample-page`
-    // даже если основные контейнеры были скрыты в HTML. Убираем дублирование.
-    // Логика начального состояния в блоках `if/else if/else` выше достаточна.
-
 
 });
