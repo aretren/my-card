@@ -1,6 +1,7 @@
+/* Сброс стандартных стилей */
 body {
     margin: 0;
-    /* Основной шрифт для страницы */
+    /* Основной шрифт для страницы - Manrope */
     font-family: 'Manrope', Arial, sans-serif;
     background: linear-gradient(135deg, #f6f8fa 0%, #e4ebf5 100%);
     color: #222733;
@@ -8,6 +9,7 @@ body {
     min-height: 100vh;
     padding-bottom: 70px;
     transition: background 0.3s, color 0.3s;
+    box-sizing: border-box; /* Учитываем padding в общей высоте */
 }
 
 header {
@@ -47,18 +49,19 @@ header {
 }
 header h1 {
     margin: 0;
-    /* Шрифт для заголовка хедера */
-    font-family: 'Montserrat', 'Manrope', Arial, sans-serif;
+    /* Шрифт для заголовка хедера - Oswald */
+    font-family: 'Oswald', sans-serif;
     font-size: 2.7rem;
-    font-weight: 800;
-    letter-spacing: .02em;
+    font-weight: 700; /* Oswald 700 для броскости */
+    letter-spacing: .05em; /* Увеличим интервал */
+    text-transform: uppercase; /* В верхний регистр для "жесткости" */
 }
 header p {
     margin-top: 0.5rem;
     font-size: 1.12rem;
     color: #eaf6fb;
-    /* Шрифт для подзаголовка хедера */
-    font-family: 'Manrope', 'Montserrat', Arial, sans-serif;
+    /* Шрифт для подзаголовка хедера - Manrope */
+    font-family: 'Manrope', Arial, sans-serif;
     letter-spacing: .02em;
 }
 .profile-photo {
@@ -81,20 +84,22 @@ header p {
     text-align: center;
     width: 100%;
 }
-/* Стили для hi-tech кнопки (используется для toggle-button) */
+
+/* Переработанный стиль кнопки переключения */
 .toggle-button.hi-tech-btn {
-    font-family: 'Montserrat', 'Manrope', Arial, sans-serif;
-    font-weight: 700;
-    padding: 0.9rem 2.3rem;
-    font-size: 1.04rem;
-    letter-spacing: .03em;
-    color: #fff;
-    background: linear-gradient(90deg, #0ebeff 40%, #1976d2 100%);
-    border: none;
-    border-radius: 13px;
-    box-shadow: 0 2px 16px #0ebeff33, 0 0 0 1.5px #0ebeff;
+    font-family: 'Oswald', sans-serif; /* Шрифт Oswald */
+    font-weight: 400; /* Normal вес */
+    text-transform: uppercase; /* В верхний регистр */
+    padding: 1rem 2.5rem; /* Увеличим паддинг */
+    font-size: 1.1rem; /* Увеличим размер шрифта */
+    letter-spacing: .08em; /* Еще больше интервал */
+    color: #222; /* Темный цвет текста */
+    background: #ffffff; /* Белый фон */
+    border: 2px solid #222; /* Темная граница */
+    border-radius: 5px; /* Острые углы */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Деликатная тень */
     cursor: pointer;
-    transition: background 0.3s, box-shadow 0.3s, transform 0.18s;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.18s, color 0.3s, border-color 0.3s;
     outline: none;
     position: relative;
     overflow: hidden;
@@ -102,131 +107,190 @@ header p {
     display: inline-block;
     margin: 0.5rem;
 }
-.toggle-button.hi-tech-btn:before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    opacity: 0; pointer-events: none;
-    background: radial-gradient(circle at 60% 40%, #00e6ff44 0%, #0ebeff00 80%);
-    transition: opacity 0.4s;
-    border-radius: 13px;
+.toggle-button.hi-tech-btn:before { /* Убираем эффект свечения */
+    content: none;
 }
-.toggle-button.hi-tech-btn:hover:before { opacity: 1; }
 .toggle-button.hi-tech-btn:hover {
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 8px 30px #0ebeff55;
-    background: linear-gradient(90deg, #1976d2 0%, #0ebeff 100%);
+    background: #f0f0f0; /* Светло-серый при наведении */
+    color: #111; /* Еще темнее текст */
+    border-color: #111;
+    transform: translateY(-2px); /* Легкий подъем */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
-/* Удален эффект сжатия при клике */
-/* .toggle-button.hi-tech-btn:active { transform: scale(0.97); } */
+.toggle-button.hi-tech-btn:active {
+     transform: translateY(0); /* Убираем сжатие */
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Меньше тень при активации */
+     background: #e0e0e0; /* Темнее серый при активации */
+}
 
-/* Новый дизайн для блоков основной страницы */
+
+/* Переработанный дизайн для блоков основной страницы (стиль "Лофт") */
 .modern-block {
-    background: #ffffff; /* Чистый белый фон */
-    border-radius: 12px; /* Слегка менее скругленные углы */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Деликатная тень */
+    background: #ffffff; /* Белый фон */
+    border-radius: 8px; /* Острые углы */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.05), -4px -4px 10px rgba(0, 0, 0, 0.05); /* Деликатная тень */
     margin: 2.5rem auto;
-    padding: 2.2rem 2rem 1.7rem 2rem;
+    padding: 2.5rem; /* Увеличим внутренние отступы */
     max-width: 650px;
     border: none;
-    /* Агрессивная нижняя граница */
-    border-bottom: 6px solid #0ebeff; /* Яркий акцентный цвет */
     position: relative;
-    /* backdrop-filter: blur(2px); - Убрал, если не нужен эффект прозрачности */
-    transition: box-shadow 0.3s, background 0.3s, border-color 0.3s;
+    transition: box-shadow 0.3s, background 0.3s;
+    /* Добавляем "жесткие" линии по периметру */
+    border: 2px solid #333; /* Темная граница */
 }
-.modern-block h2 {
-    font-family: 'Montserrat', 'Manrope', Arial, sans-serif; /* Шрифт для заголовков блоков */
-    color: #23272f; /* Темный цвет для контраста */
-    font-weight: 800;
-    margin-bottom: 1.4rem;
-    letter-spacing: 0.01em;
-    text-align: left; /* Выравнивание заголовка слева */
-    position: relative;
-    display: inline-block; /* Чтобы псевдоэлемент подчеркивания работал корректно */
-    padding-bottom: 0.5rem; /* Отступ под текстом заголовка для подчеркивания */
-}
-/* Агрессивное подчеркивание для заголовков блоков */
-.modern-block h2::after {
+
+/* Добавляем декоративные "болты" или элементы крепления */
+.modern-block::before,
+.modern-block::after,
+.modern-block > :first-child::before, /* Болт слева у первого элемента */
+.modern-block > :last-child::after { /* Болт справа у последнего элемента */
     content: '';
     position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 3px;
-    width: 60%; /* Длина подчеркивания */
-    background-color: #1976d2; /* Дополнительный акцентный цвет */
-    border-radius: 2px;
+    width: 10px;
+    height: 10px;
+    background-color: #555; /* Цвет "металла" */
+    border-radius: 2px; /* Квадратные */
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+    z-index: 1; /* Над контентом */
 }
+/* Верхний левый */
+.modern-block::before { top: -5px; left: -5px; }
+/* Нижний правый */
+.modern-block::after { bottom: -5px; right: -5px; }
+/* Верхний правый (у первого дочернего элемента) */
+.modern-block > :first-child::before { top: -5px; right: -5px; left: auto; }
+/* Нижний левый (у последнего дочернего элемента) */
+.modern-block > :last-child::after { bottom: -5px; left: -5px; right: auto; }
+
+
+.modern-block h2 {
+    font-family: 'Oswald', sans-serif; /* Шрифт Oswald */
+    color: #222; /* Темный цвет */
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 1.8rem; /* Увеличим отступ под заголовком */
+    letter-spacing: 0.05em;
+    text-align: left;
+    position: relative;
+    display: block;
+    padding-bottom: 0;
+    text-transform: uppercase; /* В верхний регистр */
+}
+/* Убираем старое подчеркивание */
+.modern-block h2::after { content: none; }
+
 .modern-block p {
-     font-family: 'Manrope', Arial, sans-serif; /* Шрифт для текста в modern-block */
-     color: #444; /* Чуть темнее цвет текста */
+     font-family: 'Manrope', Arial, sans-serif;
+     color: #444;
+     line-height: 1.7;
+     margin-bottom: 1.5em;
 }
+
+/* Стиль списка навыков и контактов */
 .modern-block ul {
-    padding: 0; list-style: none; margin: 0;
+     padding: 0;
+     list-style: none;
+     margin: 0;
 }
 .modern-block li {
     display: inline-block;
-    margin: 0 0.5em 0.7em 0;
-    padding: 0.55em 1.15em;
-    /* Более яркий фон для элементов списка */
-    background: linear-gradient(90deg, #b3e5fc 30%, #bbdefb 100%); /* Яркие голубые оттенки */
-    border-radius: 14px;
-    color: #0277bd; /* Темно-голубой текст */
+    margin: 0 0.6em 0.8em 0;
+    padding: 0.6em 1.3em;
+    /* Индустриальный вид */
+    background: #eeeeee; /* Светло-серый фон */
+    border: 1px solid #cccccc; /* Серый бордюр */
+    border-radius: 5px; /* Острые углы */
+    color: #333333; /* Темный текст */
     font-size: 1em;
-    font-family: 'Manrope', 'Montserrat', Arial, sans-serif;
-    letter-spacing: .01em;
-    font-weight: 600; /* Делаем текст жирнее */
+    font-family: 'Manrope', Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: normal;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
-#skills li { font-weight: 700; /* Навыки еще жирнее */ }
-#contact li, #contact a { color: #1976d2; font-size: 1.10em; font-family: 'Manrope', 'Montserrat', Arial, sans-serif; }
-#contact a:hover { text-decoration: underline; color: #0a3a7a; } /* Цвет при наведении */
+#skills li { font-weight: 600; }
+.modern-block li:hover {
+    background: #dddddd;
+    color: #222222;
+    border-color: #bbbbbb;
+}
 
-.project-item {
-    background: #f7fafd;
-    border-radius: 14px;
-    box-shadow: 0 1px 8px 0 rgba(30,40,90,.08);
-    padding: 1.2rem 1.1rem 1.1rem 1.1rem;
-    margin-bottom: 1.3rem;
-    border: none;
-    transition: box-shadow 0.2s;
+/* Стиль контактов */
+#contact ul { text-align: left; } /* Выравнивание списка контактов */
+#contact li {
+    display: block; /* Каждый контакт на новой строке */
+    margin-bottom: 1em; /* Отступ между контактами */
+    padding: 0; /* Убираем паддинг как у бейджей */
+    background: none; /* Убираем фон как у бейджей */
+    border: none; /* Убираем границу как у бейджей */
+    color: #333; /* Темный цвет текста */
+    font-size: 1.05em;
+    font-family: 'Manrope', Arial, sans-serif;
 }
-.project-item:hover { box-shadow: 0 6px 20px 0 rgba(30,70,140,.13); }
+#contact li:last-child { margin-bottom: 0; } /* Убираем нижний отступ у последнего элемента */
+
+#contact a {
+    color: #007bff; /* Синий цвет ссылок */
+    text-decoration: none;
+    font-weight: normal;
+    transition: color 0.2s;
+}
+#contact a:hover { text-decoration: underline; color: #0056b3; }
+
+
+/* Стиль блоков проектов */
+.project-item {
+    background: #f8f8f8; /* Чуть темнее белого */
+    border-radius: 8px; /* Острые углы */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e0e0e0; /* Светлая граница */
+    transition: box-shadow 0.2s, border-color 0.2s;
+    position: relative; /* Для декоративных элементов */
+}
+.project-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: #ccc;
+}
 .project-item h3 {
-    font-family: 'Montserrat', 'Manrope', Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    color: #0a3a7a;
-    font-size: 1.18rem;
-    margin-bottom: .6rem;
+    color: #333; /* Темный цвет */
+    font-size: 1.2rem;
+    margin-bottom: .8rem;
 }
 .project-item p {
     font-size: 1em;
     color: #555;
-    margin-bottom: 0.8em;
+    margin-bottom: 1em;
     font-family: 'Manrope', Arial, sans-serif;
 }
 .project-item a {
-     color: #007bff; /* Цвет ссылок в проектах */
+     color: #007bff;
      font-weight: 600;
+     text-decoration: none;
+     transition: color 0.2s;
 }
 .project-item a:hover {
      text-decoration: underline;
-     color: #0a3a7a; /* Цвет ссылок в проектах при наведении */
+     color: #0056b3;
 }
 
+/* Стиль бейджей технологий */
 .tech-badge {
-    /* Более яркий фон для бейджей */
-    background: #e1f5fe; /* Light Cyan */
-    color: #0288d1; /* Deep Sky Blue */
-    border-radius: 8px;
-    font-size: .90em;
-    margin-left: .32em;
-    padding: 0.14em 0.6em;
+    background: #dddddd; /* Серый фон */
+    color: #444444; /* Темный текст */
+    border-radius: 4px; /* Острые углы */
+    font-size: .85em;
+    margin-left: .4em;
+    padding: 0.15em 0.7em;
     font-weight: normal;
     white-space: nowrap;
-    font-family: 'Manrope', Arial, sans-serif; /* Шрифт для бейджей */
+    font-family: 'Manrope', Arial, sans-serif;
+    border: 1px solid #cccccc;
 }
-#portfolio .projects { gap: 1.2rem; }
+#portfolio .projects { gap: 1.5rem; } /* Увеличим промежуток */
+
 footer {
     text-align: center;
     padding: 1.4rem;
@@ -253,7 +317,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-sizing: border-box; /* Учитываем padding в ширине */
+    box-sizing: border-box;
 }
 #design-showcase h2 {
     margin-top: 0; padding-top: 0; margin-bottom: 1.5rem;
@@ -363,7 +427,26 @@ footer {
 .sample-content p { margin-bottom: 1em; }
 .sample-content ul { padding-left: 1.3em; list-style: disc; }
 .sample-content li { margin-bottom: 0.45rem; }
-.design-refs li { font-size: 1.02em; color: #1976d2; margin-bottom: .3em; }
+
+/* Исправление отступа для списка "Вдохновлялись" */
+.sample-page .sample-content .design-refs {
+    list-style: disc; /* Убедимся, что маркеры списка стандартные */
+    padding-left: 20px; /* Добавляем отступ слева */
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    color: inherit; /* Наследуем цвет текста */
+    font-family: inherit; /* Наследуем шрифт */
+}
+.sample-page .sample-content .design-refs li {
+    margin-bottom: 0.5em;
+    display: list-item; /* Убедимся, что отображается как элемент списка */
+    padding: 0; /* Сбрасываем padding из общего .modern-block li */
+    background: none; /* Сбрасываем фон */
+    border: none; /* Сбрасываем границу */
+    color: inherit; /* Наследуем цвет текста */
+    font-weight: normal; /* Убираем жирность если наследуется */
+}
+
 
 .sample-tabs {
     margin-top: 2rem;
@@ -413,8 +496,9 @@ footer {
 }
 
 /* --- Темы для showcase (шрифты и цвета) --- */
+/* Aero Theme */
 .sample-page.theme-aero {
-    font-family: 'Manrope', Arial, sans-serif;
+    font-family: 'Manrope', Arial, sans-serif; /* Основной текст в Aero */
     background: linear-gradient(135deg, #eaf6ff 0%, #d7eafd 100%);
     color: #1a3470;
     box-shadow: 0 8px 32px 0 rgba(70, 130, 180, 0.14);
@@ -422,7 +506,7 @@ footer {
 }
 .sample-page.theme-aero h3,
 .sample-page.theme-aero h4,
-.sample-page.theme-aero .sample-tabs .tab-button {
+.sample-page.theme-aero .sample-tabs .tab-button { /* Заголовки и кнопки вкладок в Aero */
     font-family: 'Oxanium', Arial, sans-serif;
     font-weight: 700;
     letter-spacing: .03em;
@@ -435,12 +519,12 @@ footer {
 }
 .sample-page.theme-aero .sample-header p {
     color: #778899;
-    font-family: 'Manrope', Arial, sans-serif;
+    font-family: 'Manrope', Arial, sans-serif; /* Подзаголовок хедера в Aero */
 }
 .sample-page.theme-aero .sample-content {
     background: rgba(255,255,255,0.75);
     color: #226;
-    font-family: 'Manrope', Arial, sans-serif;
+    font-family: 'Manrope', Arial, sans-serif; /* Текст контента в Aero */
 }
 .sample-page.theme-aero .sample-tabs .tab-content {
     background: rgba(255,255,255,0.8);
@@ -448,12 +532,12 @@ footer {
 .sample-page.theme-aero .sample-footer {
     background: rgba(210,230,255,0.18);
     color: #2d5fa8;
-    font-family: 'Manrope', Arial, sans-serif;
+    font-family: 'Manrope', Arial, sans-serif; /* Футер в Aero */
 }
 
-
+/* Gaming Theme */
 .sample-page.theme-gaming {
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'Share Tech Mono', monospace; /* Основной текст в Gaming */
     background: linear-gradient(120deg, #1a1b1f 0%, #320011 100%);
     color: #ff3c41;
     border: none;
@@ -463,7 +547,7 @@ footer {
 }
 .sample-page.theme-gaming h3,
 .sample-page.theme-gaming h4,
-.sample-page.theme-gaming .sample-tabs .tab-button {
+.sample-page.theme-gaming .sample-tabs .tab-button { /* Заголовки и кнопки вкладок в Gaming */
     font-family: 'Orbitron', Arial, sans-serif;
 }
 .sample-page.theme-gaming .sample-header {
@@ -474,18 +558,29 @@ footer {
 }
 .sample-page.theme-gaming .sample-header p {
     color: #ff6f83;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'Share Tech Mono', monospace; /* Подзаголовок хедера в Gaming */
 }
 .sample-page.theme-gaming .sample-content {
     background: linear-gradient(90deg, #1b1b2c 80%, #2c0014 100%);
     border-radius: 11px;
     color: #fff8;
     box-shadow: 0 0 18px #ff003f22;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'Share Tech Mono', monospace; /* Текст контента в Gaming */
 }
 .sample-page.theme-gaming .sample-content li::before {
-    color: #e51a4b;
+    content: '\203A'; /* Шеврон */
+    color: #e51a4b; /* ROG красный */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
 }
+.sample-page.theme-gaming .sample-content ul {
+    list-style: none; /* Убираем стандартные маркеры */
+    padding-left: 1.5em; /* Отступ для шеврона */
+}
+
+
 .sample-page.theme-gaming .sample-content h4,
 .sample-page.theme-gaming .sample-tabs .tab-button.active {
     color: #ff003f;
@@ -520,7 +615,7 @@ footer {
     font-family: 'Share Tech Mono', monospace;
 }
 
-
+/* Modern Theme */
 .sample-page.theme-modern {
     font-family: 'Manrope', Arial, sans-serif;
     background: #eef3fa;
@@ -540,7 +635,7 @@ footer {
 .sample-page.theme-modern .sample-tabs .tab-content { font-family: 'Manrope', Arial, sans-serif;}
 .sample-page.theme-modern .sample-footer { background: #f3f5f7; color: #1976d2; font-family: 'Manrope', Arial, sans-serif;}
 
-
+/* Neumorphism Theme */
 .sample-page.theme-neumorphism {
     font-family: 'Manrope', Arial, sans-serif;
     background: #e6eaf2;
@@ -556,154 +651,251 @@ footer {
 }
 .sample-page.theme-neumorphism .sample-header { background: #e6eaf2; color: #3868b0; border-bottom: 1px solid #d2d7e5; box-shadow: 0 2px 8px #d6dae4;}
 .sample-page.theme-neumorphism .sample-header p { color: #6a7b99; font-family: 'Manrope', Arial, sans-serif;}
-.sample-page.theme-neumorphism .sample-content { background: #f3f7fb; color: #3868b0; border-radius: 18px; box-shadow: 3px 3px 8px #d6dae4, -3px -3px 8px #444a58; font-family: 'Manrope', Arial, sans-serif;}
+.sample-page.theme-neumorphism .sample-content { background: #f3f7fb; color: #3868b0; border-radius: 18px; box-shadow: 3px 3px 8px #d6dae4, -3px -3px 8px #fff; font-family: 'Manrope', Arial, sans-serif;}
 .sample-page.theme-neumorphism .sample-tabs .tab-content { font-family: 'Manrope', Arial, sans-serif;}
 .sample-page.theme-neumorphism .sample-footer { background: #e6eaf2; color: #8ca1c1; border-top: 1px solid #d2d7e5; font-family: 'Manrope', Arial, sans-serif;}
 
 
-/* --- Темы для showcase (Темный режим) --- */
-.sample-page.mode-dark.theme-aero {
-    background: linear-gradient(135deg, #0a141e 0%, #1a2e3c 100%);
-    color: #e0f7fa;
-    box-shadow: 0 8px 32px 0 rgba(0, 121, 107, 0.4);
+/* --- Новая тема "Loft" (Светлый режим) --- */
+.sample-page.theme-loft {
+    font-family: 'Manrope', Arial, sans-serif;
+    background: #e0e0e0; /* Светло-серый бетон/штукатурка */
+    color: #333;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.15), -10px -10px 30px rgba(255,255,255,0.8); /* Неоднородная тень */
+    border: 2px solid #a0a0a0; /* Металлическая рамка */
+    border-radius: 5px; /* Острые углы */
+    overflow: visible; /* Позволить теням выходить за границы */
+    position: relative;
 }
-.sample-page.mode-dark.theme-aero h3,
-.sample-page.mode-dark.theme-aero h4 {
-    color: #80deea;
+/* Декоративные элементы как сварные швы или болты */
+.sample-page.theme-loft::before,
+.sample-page.theme-loft::after,
+.sample-page.theme-loft .sample-header::before, /* Болт в хедере слева */
+.sample-page.theme-loft .sample-header::after, /* Болт в хедере справа */
+.sample-page.theme-loft .sample-content::before, /* Болт в контенте слева */
+.sample-page.theme-loft .sample-content::after, /* Болт в контенте справа */
+.sample-page.theme-loft .sample-footer::before, /* Болт в футере слева */
+.sample-page.theme-loft .sample-footer::after /* Болт в футере справа */
+ {
+    content: '';
+    position: absolute;
+    width: 8px; /* Меньше размер */
+    height: 8px;
+    background-color: #555; /* Цвет "металла" */
+    border-radius: 2px;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+    z-index: 1; /* Над контентом */
 }
-.sample-page.mode-dark.theme-aero .sample-header {
-    background: rgba(0, 151, 167, 0.2);
-    color: #80deea;
-    border-bottom-color: rgba(0, 151, 167, 0.5);
+/* Верхний левый на блоке */
+.sample-page.theme-loft::before { top: -4px; left: -4px; } /* Половина размера для центрирования на границе */
+/* Нижний правый на блоке */
+.sample-page.theme-loft::after { bottom: -4px; right: -4px; }
+
+/* Болты на хедере */
+.sample-page.theme-loft .sample-header { position: relative; }
+.sample-page.theme-loft .sample-header::before { top: -4px; left: -4px; }
+.sample-page.theme-loft .sample-header::after { top: -4px; right: -4px; }
+
+/* Болты на контенте */
+.sample-page.theme-loft .sample-content { position: relative; }
+.sample-page.theme-loft .sample-content::before { top: -4px; left: -4px; }
+.sample-page.theme-loft .sample-content::after { top: -4px; right: -4px; }
+
+/* Болты на футере */
+.sample-page.theme-loft .sample-footer { position: relative; }
+.sample-page.theme-loft .sample-footer::before { top: -4px; left: -4px; }
+.sample-page.theme-loft .sample-footer::after { top: -4px; right: -4px; }
+
+
+.sample-page.theme-loft h3,
+.sample-page.theme-loft h4,
+.sample-page.theme-loft .sample-tabs .tab-button {
+    font-family: 'Oswald', sans-serif; /* Индустриальный шрифт для заголовков и кнопок вкладок */
+    font-weight: 700;
+    color: #222; /* Темный цвет */
+    letter-spacing: 0.05em;
+    text-transform: uppercase; /* В верхний регистр */
 }
-.sample-page.mode-dark.theme-aero .sample-header p {
-    color: #4db6ac;
+
+.sample-page.theme-loft .sample-header {
+    background: #c0c0c0; /* Серый металл */
+    color: #333;
+    border-bottom: 3px solid #808080; /* Темная граница */
+    text-align: left;
+    padding: 1rem 1.5rem; /* Увеличил паддинг хедера */
 }
-.sample-page.mode-dark.theme-aero .sample-content {
-    background: rgba(26, 46, 60, 0.7);
-    color: #b2ebf2;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+.sample-page.theme-loft .sample-header h3 {
+    color: #222;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
-.sample-page.mode-dark.theme-aero .sample-tabs .tab-button {
-    background: rgba(26, 46, 60, 0.5);
-    color: #80deea;
+.sample-page.theme-loft .sample-header p {
+    color: #555;
+    font-family: 'Manrope', Arial, sans-serif;
 }
-.sample-page.mode-dark.theme-aero .sample-tabs .tab-button:hover {
-     background-color: rgba(0, 151, 167, 0.4);
-     color: #e0f7fa;
+
+.sample-page.theme-loft .sample-content {
+    background: #f5f5f5; /* Очень светло-серый бетон */
+    color: #444;
+    padding: 1.8rem 1.5rem; /* Увеличил паддинг контента */
+    border-radius: 0; /* Убрал радиус */
+    box-shadow: none;
+    border: 1px dashed #a0a0a0; /* Пунктирная граница как разметка */
+    margin-bottom: 1.8rem;
+    font-family: 'Manrope', Arial, sans-serif;
 }
-.sample-page.mode-dark.theme-aero .sample-tabs .tab-button.active {
-    background-color: rgba(0, 151, 167, 0.6);
-    color: #e0f7fa;
-    border-bottom-color: #00bcd4;
+.sample-page.theme-loft .sample-content h4 {
+    color: #555;
+    margin-bottom: 1.2rem;
+    border-bottom: 2px solid #808080; /* Подчеркивание заголовка контента */
+    display: inline-block;
+    padding-bottom: 0.4rem;
 }
-.sample-page.mode-dark.theme-aero .sample-tabs .tab-content {
-     background: rgba(26, 46, 60, 0.8);
-     color: #b2ebf2;
+.sample-page.theme-loft .sample-content p {
+    line-height: 1.7;
+    color: #333;
 }
-.sample-page.mode-dark.theme-aero .sample-footer {
-    background: rgba(0, 151, 167, 0.2);
-    color: #80deea;
-    border-top-color: rgba(0, 151, 167, 0.5);
+.sample-page.theme-loft .sample-content ul {
+    list-style: square; /* Квадратные маркеры */
+    padding-left: 1.5em;
+}
+.sample-page.theme-loft .sample-content li {
+    margin-bottom: 0.6rem;
+    color: #444;
+}
+
+.sample-page.theme-loft .sample-tabs {
+    margin-top: 2.5rem;
+    border: 1px solid #a0a0a0; /* Металлическая рамка для вкладок */
+    border-radius: 4px;
+    overflow: hidden;
+}
+.sample-page.theme-loft .sample-tabs .tab-buttons {
+    border-bottom: 1px solid #a0a0a0;
+    background: #d0d0d0; /* Серый фон кнопок */
+}
+.sample-page.theme-loft .sample-tabs .tab-button {
+    background: #d0d0d0;
+    color: #444;
+    border-bottom: none;
+    transition: background 0.3s, color 0.3s;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+}
+.sample-page.theme-loft .sample-tabs .tab-button:hover {
+    background: #b0b0b0;
+    color: #222;
+}
+.sample-page.theme-loft .sample-tabs .tab-button.active {
+    background: #f5f5f5; /* Светлее активная кнопка */
+    color: #222;
+    border-bottom: 3px solid #808080; /* Темное подчеркивание активной вкладки */
+}
+.sample-page.theme-loft .sample-tabs .tab-content {
+    background: #f5f5f5;
+    color: #333;
+    padding: 1.5rem;
+    font-family: 'Manrope', Arial, sans-serif;
 }
 
 
-.sample-page.mode-dark.theme-gaming {
-    background: linear-gradient(120deg, #000000 0%, #20000a 100%);
-    color: #ff00ff;
-    box-shadow: 0 0 35px #ff00ffaa, 0 0 0 4px #000 inset;
+.sample-page.theme-loft .sample-footer {
+    background: #c0c0c0;
+    color: #555;
+    border-top: 1px solid #a0a0a0;
+    font-size: 0.9em;
+    font-family: 'Manrope', Arial, sans-serif;
+    padding: 0.8rem 1.5rem;
+    text-align: right;
 }
-.sample-page.mode-dark.theme-gaming .sample-header {
-    background: linear-gradient(90deg, #1d000d 60%, #000 100%);
-    color: #fff;
-    border-bottom: 3.5px solid #ff00ff;
-    box-shadow: 0 0 24px #ff00ff22;
+
+/* --- Новая тема "Loft" (Темный режим) --- */
+.sample-page.mode-dark.theme-loft {
+    background: #333; /* Темный бетон/металл */
+    color: #eee;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.5), -10px -10px 30px rgba(60,60,60,0.8);
+    border: 2px solid #555;
 }
-.sample-page.mode-dark.theme-gaming .sample-header h3 {
-    text-shadow: 0 0 10px #ff00ff;
-    color: #ff00ff;
-}
-.sample-page.mode-dark.theme-gaming .sample-header p {
-    color: #ff9900;
-}
-.sample-page.mode-dark.theme-gaming .sample-content {
-    background: linear-gradient(90deg, #0a0a11 80%, #1d000d 100%);
-    color: #ff9900;
-    box-shadow: 0 0 18px #ff00ff22;
-}
-.sample-page.mode-dark.theme-gaming .sample-content h4 {
-    color: #e51a4b;
-    text-shadow: 0 0 8px #e51a4b;
-    border-bottom-color: #e51a4b;
-}
-.sample-page.mode-dark.theme-gaming .sample-content li::before {
-     color: #ff9900;
-}
-.sample-page.mode-dark.theme-gaming .sample-tabs .tab-button {
-    background: #0d0d15;
-    color: #ff00ff;
-    border-bottom: 2px solid transparent;
-}
-.sample-page.mode-dark.theme-gaming .sample-tabs .tab-button:hover {
-     background: #15000a;
-     color: #fff;
-}
-.sample-page.mode-dark.theme-gaming .sample-tabs .tab-button.active {
-    background: #20000a;
-    color: #fff;
-    border-bottom: 2px solid #ff9900;
-    text-shadow: 0 0 10px #ff990099;
-}
-.sample-page.mode-dark.theme-gaming .sample-tabs .tab-content {
-    background: #0a0a11;
-    color: #ff9900;
-}
-.sample-page.mode-dark.theme-gaming .sample-footer {
-    background: #1d000d;
-    color: #ff00ff;
-    border-top: 2.5px solid #ff00ff;
-    box-shadow: 0 0 24px #ff00ff22;
+.sample-page.mode-dark.theme-loft::before,
+.sample-page.mode-dark.theme-loft::after,
+.sample-page.mode-dark.theme-loft .sample-header::before,
+.sample-page.mode-dark.theme-loft .sample-header::after,
+.sample-page.mode-dark.theme-loft .sample-content::before,
+.sample-page.mode-dark.theme-loft .sample-content::after,
+.sample-page.mode-dark.theme-loft .sample-footer::before,
+.sample-page.mode-dark.theme-loft .sample-footer::after {
+    background-color: #888; /* Светлее цвет металла */
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.8);
 }
 
 
-.sample-page.mode-dark.theme-modern {
-    background: #1a1d23;
-    color: #eef3fa;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+.sample-page.mode-dark.theme-loft h3,
+.sample-page.mode-dark.theme-loft h4,
+.sample-page.mode-dark.theme-loft .sample-tabs .tab-button {
+    color: #eee;
 }
-.sample-page.mode-dark.theme-modern .sample-header { background: #22272f; color: #0ebeff; border-bottom-color: #2a303b; }
-.sample-page.mode-dark.theme-modern .sample-header p { color: #bbb; }
-.sample-page.mode-dark.theme-modern .sample-content { background: #2a303b; color: #eef3fa; border-radius: 7px; }
-.sample-page.mode-dark.theme-modern .sample-footer { background: #22272f; color: #0ebeff; }
-.sample-page.mode-dark.theme-modern .sample-tabs .tab-button {
-    background: #1a1d23;
+
+.sample-page.mode-dark.theme-loft .sample-header {
+    background: #555;
+    color: #eee;
+    border-bottom: 3px solid #888;
+}
+.sample-page.mode-dark.theme-loft .sample-header h3 {
+    color: #eee;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+.sample-page.mode-dark.theme-loft .sample-header p {
     color: #bbb;
 }
-.sample-page.mode-dark.theme-modern .sample-tabs .tab-button:hover {
-    background: #2a303b;
-    color: #fff;
+
+.sample-page.mode-dark.theme-loft .sample-content {
+    background: #444;
+    color: #ddd;
+    border: 1px dashed #666;
 }
-.sample-page.mode-dark.theme-modern .sample-tabs .tab-button.active {
-    background: #22272f;
-    color: #fff;
-    border-bottom-color: #0ebeff;
+.sample-page.mode-dark.theme-loft .sample-content h4 {
+    color: #bbb;
+    border-bottom: 2px solid #666;
 }
-.sample-page.mode-dark.theme-modern .sample-tabs .tab-content {
-     background: #2a303b;
-     color: #eef3fa;
+.sample-page.mode-dark.theme-loft .sample-content p {
+    color: #ccc;
+}
+.sample-page.mode-dark.theme-loft .sample-content ul {
+    list-style: square;
+}
+.sample-page.mode-dark.theme-loft .sample-content li {
+    color: #bbb;
 }
 
-
-.sample-page.mode-dark.theme-neumorphism {
-    background: #2b303a;
-    color: #aeb7c9;
-    box-shadow: 8px 8px 24px #1d2129, -8px -8px 24px #393f4b;
-    border: none;
+.sample-page.mode-dark.theme-loft .sample-tabs {
+    border: 1px solid #666;
 }
-.sample-page.mode-dark.theme-neumorphism .sample-header { background: #2b303a; color: #aeb7c9; border-bottom: 1px solid #3a404c; box-shadow: 0 2px 8px #303540;}
-.sample-page.mode-dark.theme-neumorphism .sample-header p { color: #8a95a6; }
-.sample-page.mode-dark.theme-neumorphism .sample-content { background: #3a404c; color: #aeb7c9; border-radius: 18px; box-shadow: 3px 3px 8px #303540, -3px -3px 8px #444a58;}
-.sample-page.mode-dark.theme-neumorphism .sample-footer { background: #2b303a; color: #6f7a8b; border-top: 1px solid #3a404c; }
+.sample-page.mode-dark.theme-loft .sample-tabs .tab-buttons {
+    border-bottom: 1px solid #666;
+    background: #555;
+}
+.sample-page.mode-dark.theme-loft .sample-tabs .tab-button {
+    background: #555;
+    color: #bbb;
+}
+.sample-page.mode-dark.theme-loft .sample-tabs .tab-button:hover {
+    background: #666;
+    color: #fff;
+}
+.sample-page.mode-dark.theme-loft .sample-tabs .tab-button.active {
+    background: #444;
+    color: #fff;
+    border-bottom: 3px solid #888;
+}
+.sample-page.mode-dark.theme-loft .sample-tabs .tab-content {
+    background: #444;
+    color: #ddd;
+}
+
+.sample-page.mode-dark.theme-loft .sample-footer {
+    background: #555;
+    color: #bbb;
+    border-top: 1px solid #666;
+}
 
 
 .hidden { display: none; }
@@ -728,30 +920,67 @@ footer {
          margin-left: 0;
          margin-bottom: 1rem;
      }
+     header h1 { font-size: 2rem; }
+     header p { font-size: 1rem; }
 
+    /* Адаптация modern-block */
     .modern-block {
-        padding: 1.8rem 1.2rem 1.4rem 1.2rem; /* Скорректировал нижний паддинг */
+        padding: 2rem 1.5rem; /* Уменьшим паддинг */
         margin: 2rem auto;
-        border-radius: 10px; /* Скорректировал радиус */
-        border-bottom-width: 4px; /* Чуть тоньше граница */
+        border-radius: 6px; /* Немного меньше радиус */
+        border-width: 1px; /* Чуть тоньше граница */
     }
+     /* Скрываем болты на очень маленьких экранах или адаптируем */
+     .modern-block::before, .modern-block::after,
+     .modern-block > :first-child::before, .modern-block > :last-child::after {
+         width: 8px; height: 8px; top: -4px; left: -4px;
+         /* Адаптируем положение */
+         left: -4px; right: auto;
+     }
+      .modern-block::after { bottom: -4px; left: -4px; } /* Нижний левый */
+      .modern-block > :first-child::before { top: -4px; right: -4px; left: auto;} /* Верхний правый */
+      .modern-block > :last-child::after { bottom: -4px; right: -4px; left: auto; } /* Нижний правый */
+
+
     .modern-block h2 { font-size: 1.8rem; margin-bottom: 1.2rem; }
-    .modern-block h2::after { height: 2px; width: 50%; } /* Скорректировал подчеркивание */
+    .modern-block p { margin-bottom: 1em;} /* Уменьшаем нижний маржин */
+    .modern-block ul { margin-top: 1em; } /* Отступ сверху для списков */
+    .modern-block li { font-size: 0.9em; padding: 0.5em 1em; margin: 0 0.4em 0.6em 0; border-radius: 4px;} /* Адаптация списка */
 
-    .modern-block li { font-size: 0.9em; padding: 0.45em 1em; margin: 0 0.4em 0.6em 0; }
-    #skills li { font-weight: 700; }
-    #contact li, #contact a { font-size: 1em; }
-    .project-item { padding: 1rem 0.9rem; margin-bottom: 1rem; }
+    #skills li { font-weight: 600; }
+    #contact li, #contact a { font-size: 1em; display: block; text-align: left;}
+    #contact ul { text-align: left; }
+
+    .project-item { padding: 1rem 0.9rem; margin-bottom: 1rem; border-radius: 6px;}
     .project-item h3 { font-size: 1.1rem; }
-    .tech-badge { font-size: 0.85em; }
+    .project-item p { margin-bottom: 0.8em; }
+    .tech-badge { font-size: 0.8em; padding: 0.15em 0.6em; border-radius: 4px;}
     #portfolio .projects { gap: 1rem; }
-    footer { padding: 1.2rem; font-size: 1em; }
+    footer { padding: 1.2rem; font-size: 1em; border-radius: 15px 15px 0 0;}
 
+    /* Адаптация кнопки переключения */
+    .toggle-button.hi-tech-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        letter-spacing: 0.06em;
+    }
+
+
+    /* Адаптация design-showcase padding */
     #design-showcase {
-        padding: 2rem 1.5rem; /* Увеличены боковые отступы */
+        padding: 2rem;
         margin: 2rem auto;
         border-radius: 12px;
     }
+     /* Скорректировал паддинг для дизайн-рефов на мобильных */
+    .sample-page .sample-content .design-refs {
+        padding-left: 15px;
+    }
+     .sample-page .sample-content .design-refs li {
+         margin-bottom: 0.4em;
+     }
+
+
     #design-showcase h2 { font-size: 1.8rem; margin-bottom: 1.2rem;}
     .theme-controls { gap: 10px; margin-bottom: 1.5rem; }
     .theme-controls .base-themes button { font-size: 0.9rem; padding: 0.5rem 1rem; }
@@ -771,30 +1000,81 @@ footer {
     .sample-tabs .tab-button { padding: 0.7rem 0.8rem; font-size: 0.9em; }
     .sample-tabs .tab-content { padding: 0.9rem; }
     .sample-footer { padding: 0.8rem; font-size: 0.9em; }
+
+    /* Loft theme adjustments for mobile */
+    .sample-page.theme-loft { box-shadow: 6px 6px 18px rgba(0,0,0,0.15), -6px -6px 18px rgba(255,255,255,0.8); border-width: 1px; }
+     /* Меньше болтов или адаптация */
+    .sample-page.theme-loft::before, .sample-page.theme-loft::after,
+    .sample-page.theme-loft .sample-header::before, .sample-page.theme-loft .sample-header::after,
+    .sample-page.theme-loft .sample-content::before, .sample-page.theme-loft .sample-content::after,
+    .sample-page.theme-loft .sample-footer::before, .sample-page.theme-loft .sample-footer::after {
+        width: 6px; height: 6px; top: -3px; left: -3px;
+         left: -3px; right: auto;
+     }
+      .sample-page.theme-loft::after { bottom: -3px; left: -3px;}
+      .sample-page.theme-loft .sample-header::after { top: -3px; right: -3px; left: auto;}
+      .sample-page.theme-loft .sample-content::after { top: -3px; right: -3px; left: auto;}
+      .sample-page.theme-loft .sample-footer::after { top: -3px; right: -3px; left: auto;}
+
+
+    .sample-page.mode-dark.theme-loft { box-shadow: 6px 6px 18px rgba(0,0,0,0.5), -6px -6px 18px rgba(60,60,60,0.8); border-width: 1px;}
+     .sample-page.mode-dark.theme-loft::before, .sample-page.mode-dark.theme-loft::after,
+    .sample-page.mode-dark.theme-loft .sample-header::before, .sample-page.mode-dark.theme-loft .sample-header::after,
+    .sample-page.mode-dark.theme-loft .sample-content::before, .sample-page.mode-dark.theme-loft .sample-content::after,
+    .sample-page.mode-dark.theme-loft .sample-footer::before, .sample-page.mode-dark.theme-loft .sample-footer::after {
+        width: 6px; height: 6px; top: -3px; left: -3px;
+         left: -3px; right: auto;
+     }
+      .sample-page.mode-dark.theme-loft::after { bottom: -3px; left: -3px;}
+      .sample-page.mode-dark.theme-loft .sample-header::after { top: -3px; right: -3px; left: auto;}
+      .sample-page.mode-dark.theme-loft .sample-content::after { top: -3px; right: -3px; left: auto;}
+      .sample-page.mode-dark.theme-loft .sample-footer::after { bottom: -3px; right: -3px; left: auto;}
+
+
 }
 
 @media (max-width: 480px) {
-     header h1 { font-size: 2rem; }
-     header p { font-size: 1rem; }
+     header h1 { font-size: 1.8rem; letter-spacing: 0.04em;}
+     header p { font-size: 0.9em; }
      section h2 { font-size: 1.6rem; }
-     .modern-block { padding: 1.5rem 0.8rem 1.1rem 0.8rem; /* Скорректировал нижний паддинг */ margin: 1.5rem auto; }
-     .modern-block h2 { font-size: 1.6rem; margin-bottom: 1rem; }
-     .modern-block h2::after { width: 40%; } /* Скорректировал подчеркивание */
+     .modern-block { padding: 1.8rem 1rem; margin: 1.5rem auto; border-radius: 5px;}
+     .modern-block h2 { font-size: 1.4rem; margin-bottom: 1rem; }
+     /* Убираем болты на самых маленьких экранах */
+     .modern-block::before, .modern-block::after,
+     .modern-block > :first-child::before, .modern-block > :last-child::after {
+         content: none;
+     }
 
-     .modern-block li { font-size: 0.75em; padding: 0.4em 0.8em; margin: 0 0.3em 0.5em 0;}
-     #skills li { font-weight: 700; }
-     #contact li, #contact a { font-size: 0.9em; }
-     .project-item { padding: 0.8rem 0.7rem; margin-bottom: 0.8rem; }
-     .project-item h3 { font-size: 1em; }
-     .tech-badge { font-size: 0.8em; }
+     .modern-block li { font-size: 0.7em; padding: 0.4em 0.7em; margin: 0 0.3em 0.5em 0;}
+     #skills li { font-weight: 600; }
+     #contact li, #contact a { font-size: 0.85em; }
+     .project-item { padding: 1rem 0.8rem; margin-bottom: 0.8rem; border-radius: 5px;}
+     .project-item h3 { font-size: 0.95em; }
+     .tech-badge { font-size: 0.75em; padding: 0.1em 0.5em;}
      #portfolio .projects { gap: 0.8rem; }
-     footer { padding: 1rem; font-size: 0.9em; }
+     footer { padding: 1rem; font-size: 0.9em; border-radius: 10px 10px 0 0;}
+
+     /* Адаптация кнопки переключения */
+     .toggle-button.hi-tech-btn {
+        padding: 0.7rem 1.8rem;
+        font-size: 0.9rem;
+        letter-spacing: 0.05em;
+     }
+
 
      #design-showcase {
-        padding: 1.5rem 1rem; /* Увеличены боковые отступы */
+        padding: 1.5rem;
         margin: 1.5rem auto;
         border-radius: 10px;
      }
+     .sample-page .sample-content .design-refs {
+        padding-left: 10px;
+     }
+     .sample-page .sample-content .design-refs li {
+         margin-bottom: 0.3em;
+     }
+
+
      #design-showcase h2 { font-size: 1.6rem; margin-bottom: 1rem;}
      .theme-controls { gap: 8px; margin-bottom: 1.2rem; }
      .theme-controls .base-themes button { font-size: 0.8em; padding: 0.4rem 0.8rem; }
@@ -814,4 +1094,13 @@ footer {
      .sample-tabs .tab-button { padding: 0.5rem 0.6rem; font-size: 0.8em; }
      .sample-tabs .tab-content { padding: 0.8rem; }
      .sample-footer { padding: 0.6rem; font-size: 0.8em; }
+
+     /* Убираем болты в теме Loft на самых маленьких экранах */
+     .sample-page.theme-loft::before, .sample-page.theme-loft::after,
+     .sample-page.theme-loft .sample-header::before, .sample-page.theme-loft .sample-header::after,
+     .sample-page.theme-loft .sample-content::before, .sample-page.theme-loft .sample-content::after,
+     .sample-page.theme-loft .sample-footer::before, .sample-page.theme-loft .sample-footer::after {
+         content: none;
+     }
+
 }
