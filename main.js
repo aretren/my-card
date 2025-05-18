@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeLabel = document.querySelector('.theme-label'); // Лейбл для текста "Светлая/Тёмная"
 
     // Переменная для хранения текущего выбранного стиля
-    let currentBaseTheme = 'aero'; // Стиль по умолчанию (может быть изменен при инициализации)
+    // Установим Loft как стиль по умолчанию для примеров дизайнов при первой загрузке
+    let currentBaseTheme = 'loft';
 
     // Проверяем наличие основных элементов
     if (!sectionToggleButton || !mainContent || !designShowcase || !samplePage) {
@@ -38,10 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentBaseTheme && currentBaseTheme !== 'default') {
             samplePage.classList.add('theme-' + currentBaseTheme);
         } else {
-            // Fallback: если currentBaseTheme по какой-то причине пустой, ставим 'aero'
-             currentBaseTheme = 'aero';
-            samplePage.classList.add('theme-aero');
-            console.warn("currentBaseTheme пуст, установлен 'aero'.");
+            // Fallback: если currentBaseTheme по какой-то причине пустой, ставим 'loft'
+             currentBaseTheme = 'loft';
+            samplePage.classList.add('theme-loft');
+            console.warn("currentBaseTheme пуст, установлен 'loft'.");
         }
 
 
@@ -77,19 +78,18 @@ document.addEventListener('DOMContentLoaded', () => {
         sectionToggleButton.textContent = 'Вернуться к Портфолио';
         console.log("Текст кнопки переключен на 'Вернуться к Портфолио'.");
 
-
         // Перед показом секции, применяем текущий выбранный стиль и режим
+        // Находим активную кнопку темы или выбираем первую по умолчанию
         const activeBaseThemeButton = document.querySelector('.base-theme-switch.active');
          if (activeBaseThemeButton) {
               currentBaseTheme = activeBaseThemeButton.getAttribute('data-base-theme');
               console.log("Найдена активная базовая тема при переходе:", currentBaseTheme);
          } else if (baseThemeSwitches.length > 0) {
              currentBaseTheme = baseThemeSwitches[0].getAttribute('data-base-theme');
-             //baseThemeSwitches[0].classList.add('active'); // Активация кнопки делается в applyCurrentTheme
              console.log("Активная базовая тема не найдена, по умолчанию выбрана первая:", currentBaseTheme);
          } else {
-             currentBaseTheme = 'aero';
-             console.warn("Кнопки базовых тем не найдены, по умолчанию выбрана 'aero'.");
+             currentBaseTheme = 'loft'; // Fallback, если даже кнопки не найдены
+             console.warn("Кнопки базовых тем не найдены, по умолчанию выбрана 'loft'.");
          }
 
         applyCurrentTheme(); // applyCurrentTheme сама активирует нужную кнопку и режим
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
      console.log("Обработчик клика для объединенной кнопки переключения секций добавлен.");
 
 
-    // Переключение тем-примеров (Aero, Gaming, Modern, Neumorphism, Loft)
+    // Переключение тем-примеров (Loft, Tech, Minimal)
     if (baseThemeSwitches.length > 0) {
         baseThemeSwitches.forEach(button => {
             button.addEventListener('click', () => {
@@ -278,95 +278,47 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Проверка начального состояния страницы...");
     // Определяем, какая секция должна быть видна при загрузке
     if (mainContent && designShowcase && sectionToggleButton) {
-        if (!mainContent.classList.contains('hidden')) {
-             // Виден основной контент
-             console.log("Начальное состояние: основной контент видима.");
-             designShowcase.classList.add('hidden');
-             mainContent.style.opacity = 1;
-             designShowcase.style.opacity = 0;
-             sectionToggleButton.textContent = 'Показать Примеры Дизайнов';
-             console.log("Начальное состояние кнопки: 'Показать Примеры Дизайнов'.");
+        // При загрузке всегда показываем основной контент по умолчанию
+        console.log("Начальное состояние: основной контент видима.");
+        mainContent.classList.remove('hidden');
+        mainContent.style.opacity = 1;
 
-             // Инициализируем состояние тем, даже если designShowcase скрыт,
-             // чтобы при первом переключении на него тема применилась сразу.
-             // Находим активную кнопку темы или выбираем первую по умолчанию
-             const activeBaseThemeButton = document.querySelector('.base-theme-switch.active');
-             if (activeBaseThemeButton) {
-                 currentBaseTheme = activeBaseThemeButton.getAttribute('data-base-theme');
-                  console.log("Начальное состояние: найдена активная базовая тема:", currentBaseTheme);
-             } else if (baseThemeSwitches.length > 0) {
-                  currentBaseTheme = baseThemeSwitches[0].getAttribute('data-base-theme');
-                  baseThemeSwitches[0].classList.add('active'); // Активируем первую кнопку при загрузке
-                  console.log("Начальное состояние: активная тема не найдена, по умолчанию выбрана первая:", currentBaseTheme);
-             } else {
-                 currentBaseTheme = 'aero';
-                 console.warn("Начальное состояние: кнопки базовых тем не найдены, по умолчанию выбрана 'aero'.");
-             }
+        // Секция дизайнов должна быть скрыта и с opacity 0
+        designShowcase.classList.add('hidden');
+        designShowcase.style.opacity = 0;
 
-              // Режим читается из чекбокса. applyCurrentTheme вызовет initializeSampleTabs.
-              applyCurrentTheme(); // Применяем тему при загрузке, даже если дизайны скрыты.
+        // Устанавливаем начальный текст кнопки
+        sectionToggleButton.textContent = 'Показать Примеры Дизайнов';
+        console.log("Начальное состояние кнопки: 'Показать Примеры Дизайнов'.");
 
-        } else if (!designShowcase.classList.contains('hidden')) {
-             // Видны дизайны
-              console.log("Начальное состояние: секция дизайнов видима.");
-              mainContent.classList.add('hidden');
-             designShowcase.style.opacity = 1;
-             mainContent.style.opacity = 0;
-             sectionToggleButton.textContent = 'Вернуться к Портфолио';
-             console.log("Начальное состояние кнопки: 'Вернуться к Портфолио'.");
-
-             // Если дизайны видны при загрузке, применяем активную тему/режим и инициализируем вкладки
-             const activeBaseThemeButton = document.querySelector('.base-theme-switch.active');
-             if (activeBaseThemeButton) {
-                 currentBaseTheme = activeBaseThemeButton.getAttribute('data-base-theme');
-                 console.log("Начальное состояние: найдена активная базовая тема для видимых дизайнов:", currentBaseTheme);
-             } else if (baseThemeSwitches.length > 0) {
-                  currentBaseTheme = baseThemeSwitches[0].getAttribute('data-base-theme');
-                  baseThemeSwitches[0].classList.add('active');
-                  console.log("Начальное состояние: активная тема не найдена, по умолчанию выбрана первая для видимых дизайнов:", currentBaseTheme);
-             } else {
-                 currentBaseTheme = 'aero';
-                 console.warn("Начальное состояние: кнопки базовых тем не найдены, по умолчанию выбрана 'aero' для видимых дизайнов.");
-             }
-
-             // Режим читается из чекбокса. applyCurrentTheme все настроит.
-             applyCurrentTheme();
-             console.log("Начальное состояние: тема и вкладки инициализированы для видимой секции дизайнов.");
-
-
+        // Инициализируем состояние тем примеров, даже если они скрыты.
+        // Находим активную кнопку темы ИЛИ выбираем первую ("loft") по умолчанию
+        const activeBaseThemeButton = document.querySelector('.base-theme-switch.active');
+        if (activeBaseThemeButton) {
+            currentBaseTheme = activeBaseThemeButton.getAttribute('data-base-theme');
+             console.log("Начальное состояние: найдена активная базовая тема:", currentBaseTheme);
+        } else if (baseThemeSwitches.length > 0) {
+             // Если нет активных, активируем первую (которая теперь "loft" в HTML)
+             currentBaseTheme = baseThemeSwitches[0].getAttribute('data-base-theme');
+             baseThemeSwitches[0].classList.add('active');
+             console.log("Начальное состояние: активная тема не найдена, по умолчанию выбрана первая:", currentBaseTheme);
         } else {
-            // Если обе секции скрыты (неожиданно), показываем основной контент по умолчанию
-             console.log("Начальное состояние: обе секции скрыты. Показываем основной контент.");
-             if (mainContent) {
-                mainContent.classList.remove('hidden');
-                mainContent.style.opacity = 1;
-             }
-             if (designShowcase) {
-                designShowcase.classList.add('hidden');
-                designShowcase.style.opacity = 0;
-             }
-             sectionToggleButton.textContent = 'Показать Примеры Дизайнов';
-             console.log("Начальное состояние кнопки: 'Показать Примеры Дизайнов' (fallback).");
-
-             // Инициализируем состояние тем и вкладки, даже если designShowcase скрыт
-              // Находим активную кнопку темы или выбираем первую по умолчанию
-             const activeBaseThemeButton = document.querySelector('.base-theme-switch.active');
-             if (activeBaseThemeButton) {
-                 currentBaseTheme = activeBaseThemeButton.getAttribute('data-base-theme');
-                  console.log("Начальное состояние: найдена активная базовая тема (fallback):", currentBaseTheme);
-             } else if (baseThemeSwitches.length > 0) {
-                  currentBaseTheme = baseThemeSwitches[0].getAttribute('data-base-theme');
-                   baseThemeSwitches[0].classList.add('active'); // Активируем первую кнопку при загрузке
-                  console.log("Начальное состояние: активная тема не найдена, по умолчанию выбрана первая (fallback):", currentBaseTheme);
-             } else {
-                 currentBaseTheme = 'aero';
-                 console.warn("Начальное состояние: кнопки базовых тем не найдены, по умолчанию выбрана 'aero' (fallback).");
-             }
-
-              applyCurrentTheme(); // Применяем тему при загрузке, даже если дизайны скрыты.
-               console.log("Начальное состояние: тема и вкладки инициализированы (fallback).");
-
+            // Самый крайний случай, если даже кнопок тем нет
+            currentBaseTheme = 'loft';
+            console.warn("Начальное состояние: кнопки базовых тем не найдены, по умолчанию выбрана 'loft'.");
         }
+
+         // Убедимся, что чекбокс режима выключен для светлого режима по умолчанию
+          if (modeSwitchCheckbox) {
+              modeSwitchCheckbox.checked = false;
+          }
+
+        // applyCurrentTheme применит этот currentBaseTheme и режим к samplePage
+        // и вызовет initializeSampleTabs.
+        applyCurrentTheme(); // Применяем тему при загрузке, даже если дизайны скрыты.
+        console.log("Начальное состояние: тема и вкладки инициализированы.");
+
+
     } else {
          console.error("Не найдены все необходимые основные элементы DOM при загрузке!");
          // Попытка инициализации вкладок даже при ошибке, если samplePage найден
