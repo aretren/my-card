@@ -1,30 +1,65 @@
+/* Определение локальных шрифтов */
+@font-face {
+    font-family: 'CustomMainFont';
+    src: url('Main.ttf') format('truetype');
+    /* Если Main.ttf содержит только один вес, браузер синтезирует остальные */
+    /* Если у вас есть отдельные файлы для разных весов (например, Main-Regular.ttf, Main-Bold.ttf),
+       нужно добавить отдельные правила @font-face для каждого файла с указанием font-weight.
+       Например:
+       @font-face {
+           font-family: 'CustomMainFont';
+           src: url('Main-Regular.ttf') format('truetype');
+           font-weight: normal;
+           font-style: normal;
+       }
+       @font-face {
+           font-family: 'CustomMainFont';
+           src: url('Main-Bold.ttf') format('truetype');
+           font-weight: bold;
+           font-style: normal;
+       }
+    */
+}
+
+@font-face {
+    font-family: 'CustomTechFont';
+    src: url('Tech.ttf') format('truetype');
+    /* Аналогично, добавьте правила для разных весов, если доступны отдельные файлы */
+}
+
+@font-face {
+    font-family: 'CustomMinimalFont';
+    src: url('Minimal.ttf') format('truetype');
+     /* Аналогично, добавьте правила для разных весов, если доступны отдельные файлы */
+}
+
+
 /* Сброс стандартных стилей */
 body {
     margin: 0;
-    /* Основной шрифт для страницы - Manrope */
-    font-family: 'Manrope', Arial, sans-serif;
+    /* Основной шрифт для страницы - CustomMainFont */
+    font-family: 'CustomMainFont', Arial, sans-serif;
     background: linear-gradient(135deg, #f6f8fa 0%, #e4ebf5 100%);
     color: #222733;
     font-size: 17px;
     min-height: 100vh;
     padding-bottom: 70px;
     transition: background 0.3s, color 0.3s;
-    box-sizing: border-box; /* Учитываем padding в общей высоте */
+    box-sizing: border-box;
 }
 
 /* Переработанный стиль шапки (более "лофт" / темный) */
 header {
-    background: #222; /* Темно-серый фон */
+    background: #222;
     color: #fff;
     padding: 2.5rem 1.2rem 2.2rem 1.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 0 0 20px 20px; /* Слегка скругленные углы */
-    box-shadow: 0 6px 36px 0 rgba(0, 0, 0, 0.3); /* Более темная тень */
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 6px 36px 0 rgba(0, 0, 0, 0.3);
     position: relative;
     z-index: 10;
-    /* Добавим subtle текстуру */
     background-image: linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05)), linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05));
     background-size: 20px 20px;
     background-position: 0 0, 10px 10px;
@@ -54,21 +89,21 @@ header {
 }
 header h1 {
     margin: 0;
-    /* Шрифт для заголовка хедера - Oswald */
-    font-family: 'Oswald', sans-serif;
+    /* Шрифт для заголовка хедера - CustomMainFont */
+    font-family: 'CustomMainFont', sans-serif;
     font-size: 2.7rem;
-    font-weight: 700;
+    font-weight: bold; /* Используем bold, браузер синтезирует, если в Main.ttf нет отдельного файла */
     letter-spacing: .05em;
     text-transform: uppercase;
-    color: #fff; /* Белый текст */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Легкая тень */
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 header p {
     margin-top: 0.5rem;
     font-size: 1.12rem;
-    color: #ccc; /* Светло-серый для подзаголовка */
-    /* Шрифт для подзаголовка хедера - Manrope */
-    font-family: 'Manrope', Arial, sans-serif;
+    color: #ccc;
+    /* Шрифт для подзаголовка хедера - CustomMainFont */
+    font-family: 'CustomMainFont', Arial, sans-serif;
     letter-spacing: .02em;
 }
 .profile-photo {
@@ -77,7 +112,7 @@ header p {
     object-fit: cover;
     border: 4px solid #fff;
     margin-left: 1.2rem;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2); /* Более темная тень */
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     background: #f6faff;
 }
 @media (max-width: 768px) {
@@ -94,16 +129,16 @@ header p {
 
 /* Переработанный стиль кнопки переключения (стиль "Лофт") */
 .toggle-button.hi-tech-btn {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 400;
+    font-family: 'CustomMainFont', sans-serif; /* Шрифт CustomMainFont */
+    font-weight: normal;
     text-transform: uppercase;
     padding: 1rem 2.5rem;
     font-size: 1.1rem;
     letter-spacing: .08em;
-    color: #222; /* Темный цвет текста */
-    background: #ffffff; /* Белый фон */
-    border: 2px solid #222; /* Темная граница */
-    border-radius: 5px; /* Острые углы */
+    color: #222;
+    background: #ffffff;
+    border: 2px solid #222;
+    border-radius: 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: background 0.3s, box-shadow 0.3s, transform 0.18s, color 0.3s, border-color 0.3s;
@@ -117,7 +152,7 @@ header p {
 .toggle-button.hi-tech-btn:before { content: none; }
 
 .toggle-button.hi-tech-btn:hover {
-    background: #f0f0f0; /* Светло-серый при наведении */
+    background: #f0f0f0;
     color: #111;
     border-color: #111;
     transform: translateY(-2px);
@@ -165,9 +200,9 @@ header p {
 
 
 .modern-block h2 {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'CustomMainFont', sans-serif; /* Шрифт CustomMainFont */
     color: #222;
-    font-weight: 700;
+    font-weight: bold; /* Используем bold */
     margin-top: 0;
     margin-bottom: 1.8rem;
     letter-spacing: 0.05em;
@@ -179,7 +214,7 @@ header p {
 }
 
 .modern-block p {
-     font-family: 'Manrope', Arial, sans-serif;
+     font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
      color: #444;
      line-height: 1.7;
      margin-bottom: 1.5em;
@@ -199,13 +234,13 @@ header p {
     border-radius: 5px;
     color: #333333;
     font-size: 1em;
-    font-family: 'Manrope', Arial, sans-serif;
-    font-weight: 400;
+    font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
+    font-weight: normal;
     letter-spacing: normal;
     transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
-#skills li { font-weight: 600; background: #dddddd; border-color: #cccccc;}
+#skills li { font-weight: bold; background: #dddddd; border-color: #cccccc;} /* Используем bold */
 .modern-block li:hover {
     background: #dddddd;
     color: #222222;
@@ -221,7 +256,7 @@ header p {
     border: none;
     color: #333;
     font-size: 1.05em;
-    font-family: 'Manrope', Arial, sans-serif;
+    font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
 }
 #contact li:last-child { margin-bottom: 0; }
 
@@ -230,6 +265,7 @@ header p {
     text-decoration: none;
     font-weight: normal;
     transition: color 0.2s;
+    font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
 }
 #contact a:hover { text-decoration: underline; color: #0056b3; }
 
@@ -249,8 +285,8 @@ header p {
     border-color: #ccc;
 }
 .project-item h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
+    font-family: 'CustomMainFont', sans-serif; /* Шрифт CustomMainFont */
+    font-weight: bold; /* Используем bold */
     color: #333;
     font-size: 1.2rem;
     margin-bottom: .8rem;
@@ -259,13 +295,14 @@ header p {
     font-size: 1em;
     color: #555;
     margin-bottom: 1em;
-    font-family: 'Manrope', Arial, sans-serif;
+    font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
 }
 .project-item a {
      color: #007bff;
-     font-weight: 600;
+     font-weight: bold; /* Используем bold */
      text-decoration: none;
      transition: color 0.2s;
+     font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
 }
 .project-item a:hover {
      text-decoration: underline;
@@ -281,7 +318,7 @@ header p {
     padding: 0.15em 0.7em;
     font-weight: normal;
     white-space: nowrap;
-    font-family: 'Manrope', Arial, sans-serif;
+    font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
     border: 1px solid #cccccc;
 }
 #portfolio .projects { gap: 1.5rem; }
@@ -293,7 +330,7 @@ footer {
     color: #fff;
     margin-top: 3rem;
     border-radius: 22px 22px 0 0;
-    font-family: 'Montserrat', 'Manrope', Arial, sans-serif;
+    font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
     font-size: 1.10em;
     letter-spacing: .01em;
 }
@@ -316,8 +353,8 @@ footer {
 #design-showcase h2 {
     margin-top: 0; padding-top: 0; margin-bottom: 1.5rem;
     text-align: center;
-    color: #0ebeff; /* Яркий заголовок для раздела примеров */
-    font-family: 'Montserrat', 'Manrope', Arial, sans-serif;
+    color: #0ebeff;
+    font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
     font-size: 2.1rem;
     letter-spacing: .03em;
 }
@@ -345,8 +382,8 @@ footer {
     color: #0ebeff;
     cursor: pointer;
     font-size: 1rem;
-    font-family: 'Manrope', 'Montserrat', Arial, sans-serif;
-    font-weight: 600;
+    font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
+    font-weight: normal;
     outline: none;
     transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.19s;
 }
@@ -366,6 +403,7 @@ footer {
 .theme-controls .base-themes button[data-base-theme="loft"] {
     border-color: #333;
     color: #333;
+    font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
 }
 .theme-controls .base-themes button[data-base-theme="loft"].active {
     background: #333;
@@ -378,9 +416,10 @@ footer {
 }
 /* Специфичный стиль кнопки Tech в контролах */
 .theme-controls .base-themes button[data-base-theme="tech"] {
-    border-color: #00ffff; /* Cyan */
+    border-color: #00ffff;
     color: #00ffff;
-    background: #1a1a1a; /* Dark background */
+    background: #1a1a1a;
+    font-family: 'CustomTechFont', monospace; /* Шрифт CustomTechFont */
 }
 .theme-controls .base-themes button[data-base-theme="tech"].active {
     background: #00ffff;
@@ -395,6 +434,7 @@ footer {
 .theme-controls .base-themes button[data-base-theme="minimal"] {
     border-color: #555;
     color: #555;
+     font-family: 'CustomMinimalFont', Arial, sans-serif; /* Шрифт CustomMinimalFont */
 }
 .theme-controls .base-themes button[data-base-theme="minimal"].active {
     background: #555;
@@ -442,7 +482,8 @@ footer {
     transform: translateX(18px);
 }
 .theme-controls .mode-toggle-control label:focus { outline: 2px solid #0ebeff; }
-.theme-label { margin-left: 4px; font-weight: 700; color: #0ebeff; min-width: 60px; text-align: left;}
+.theme-label { margin-left: 4px; font-weight: bold; color: #0ebeff; min-width: 60px; text-align: left;}
+
 
 .sample-page {
     border: 1.5px solid #e6effa;
@@ -453,7 +494,7 @@ footer {
     background: #fff;
     color: #333;
     box-shadow: 0 0 15px rgba(40, 100, 200, 0.08);
-    font-family: 'Manrope', Arial, sans-serif;
+    font-family: 'CustomMainFont', Arial, sans-serif; /* Базовый шрифт для sample-page */
     position: relative;
     overflow: hidden;
     transition: all 0.7s cubic-bezier(.4,0,.2,1);
@@ -509,7 +550,7 @@ footer {
     font-size: 1rem;
     text-align: center;
     font-family: inherit;
-    font-weight: 600;
+    font-weight: bold; /* Используем bold */
     transition: background 0.3s, color 0.3s, border-bottom 0.3s;
     position: relative;
     outline: none;
@@ -534,19 +575,20 @@ footer {
     font-size: 1em;
     color: #7a90b2;
     letter-spacing: .01em;
+    font-family: inherit;
 }
 
 /* --- Темы для showcase (шрифты и цвета) --- */
 
 /* --- Тема "Loft" (Светлый режим) --- */
 .sample-page.theme-loft {
-    font-family: 'Manrope', Arial, sans-serif;
-    background: #e0e0e0; /* Светло-серый бетон/штукатурка */
+    font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
+    background: #e0e0e0;
     color: #333;
-    box-shadow: 10px 10px 30px rgba(0,0,0,0.15), -10px -10px 30px rgba(255,255,255,0.8); /* Неоднородная тень */
-    border: 2px solid #a0a0a0; /* Металлическая рамка */
-    border-radius: 5px; /* Острые углы */
-    overflow: visible; /* Позволить теням выходить за границы */
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.15), -10px -10px 30px rgba(255,255,255,0.8);
+    border: 2px solid #a0a0a0;
+    border-radius: 5px;
+    overflow: visible;
     position: relative;
 }
 /* Декоративные элементы как сварные швы или болты */
@@ -561,29 +603,21 @@ footer {
  {
     content: '';
     position: absolute;
-    width: 8px; /* Меньше размер */
+    width: 8px;
     height: 8px;
-    background-color: #555; /* Цвет "металла" */
+    background-color: #555;
     border-radius: 2px;
     box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
     z-index: 1;
 }
-/* Верхний левый на блоке */
 .sample-page.theme-loft::before { top: -4px; left: -4px; }
-/* Нижний правый на блоке */
 .sample-page.theme-loft::after { bottom: -4px; right: -4px; }
-
-/* Болты на хедере */
 .sample-page.theme-loft .sample-header { position: relative; }
 .sample-page.theme-loft .sample-header::before { top: -4px; left: -4px; }
 .sample-page.theme-loft .sample-header::after { top: -4px; right: -4px; }
-
-/* Болты на контенте */
 .sample-page.theme-loft .sample-content { position: relative; }
 .sample-page.theme-loft .sample-content::before { top: -4px; left: -4px; }
 .sample-page.theme-loft .sample-content::after { top: -4px; right: -4px; }
-
-/* Болты на футере */
 .sample-page.theme-loft .sample-footer { position: relative; }
 .sample-page.theme-loft .sample-footer::before { top: -4px; left: -4px; }
 .sample-page.theme-loft .sample-footer::after { top: -4px; right: -4px; }
@@ -592,8 +626,8 @@ footer {
 .sample-page.theme-loft h3,
 .sample-page.theme-loft h4,
 .sample-page.theme-loft .sample-tabs .tab-button {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
+    font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
+    font-weight: bold;
     color: #222;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -612,7 +646,7 @@ footer {
 }
 .sample-page.theme-loft .sample-header p {
     color: #555;
-    font-family: 'Manrope', Arial, sans-serif;
+    font-family: 'CustomMainFont', Arial, sans-serif;
 }
 
 .sample-page.theme-loft .sample-content {
@@ -623,7 +657,7 @@ footer {
     box-shadow: none;
     border: 1px dashed #a0a0a0;
     margin-bottom: 1.8rem;
-    font-family: 'Manrope', Arial, sans-serif;
+    font-family: 'CustomMainFont', Arial, sans-serif;
 }
 .sample-page.theme-loft .sample-content h4 {
     color: #555;
@@ -660,8 +694,8 @@ footer {
     color: #444;
     border-bottom: none;
     transition: background 0.3s, color 0.3s;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
+    font-family: 'CustomMainFont', Arial, sans-serif; /* Шрифт CustomMainFont */
+    font-weight: bold;
 }
 .sample-page.theme-loft .sample-tabs .tab-button:hover {
     background: #b0b0b0;
@@ -676,7 +710,7 @@ footer {
     background: #f5f5f5;
     color: #333;
     padding: 1.5rem;
-    font-family: 'Manrope', Arial, sans-serif;
+    font-family: 'CustomMainFont', Arial, sans-serif;
 }
 
 
@@ -685,7 +719,7 @@ footer {
     color: #555;
     border-top: 1px solid #a0a0a0;
     font-size: 0.9em;
-    font-family: 'Manrope', Arial, sans-serif;
+    font-family: 'CustomMainFont', Arial, sans-serif;
     padding: 0.8rem 1.5rem;
     text-align: right;
 }
@@ -758,11 +792,11 @@ footer {
     background: #555;
     color: #bbb;
 }
-.sample-page.mode-dark.theme-loft .sample-tabs .tab-button:hover {
+.sample-page.mode-dark.theme-loft .tab-button:hover {
     background: #666;
     color: #fff;
 }
-.sample-page.mode-dark.theme-loft .sample-tabs .tab-button.active {
+.sample-page.mode-dark.theme-loft .tab-button.active {
     background: #444;
     color: #fff;
     border-bottom: 3px solid #888;
@@ -781,16 +815,15 @@ footer {
 
 /* --- Новая тема "Tech" (Светлый режим) --- */
 .sample-page.theme-tech {
-    font-family: 'Share Tech Mono', monospace; /* Моноширинный шрифт */
-    background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%); /* Темный фон с градиентом */
-    color: #00ffff; /* Cyan акцент */
-    border: 1px solid #00ffff; /* Тонкая рамка */
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.1); /* Светящаяся тень */
+    font-family: 'CustomTechFont', monospace; /* Шрифт CustomTechFont */
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+    color: #00ffff;
+    border: 1px solid #00ffff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.1);
     border-radius: 5px;
     position: relative;
     overflow: hidden;
 }
-/* Декоративные линии / элементы интерфейса */
 .sample-page.theme-tech::before {
     content: '';
     position: absolute;
@@ -820,8 +853,8 @@ footer {
 .sample-page.theme-tech h3,
 .sample-page.theme-tech h4,
 .sample-page.theme-tech .sample-tabs .tab-button {
-    font-family: 'Orbitron', Arial, sans-serif; /* Футуристичный шрифт */
-    font-weight: 700;
+    font-family: 'CustomTechFont', monospace; /* Шрифт CustomTechFont */
+    font-weight: bold;
     color: #00ffff;
     text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
     text-transform: uppercase;
@@ -829,26 +862,26 @@ footer {
 }
 
 .sample-page.theme-tech .sample-header {
-    background: rgba(0, 255, 255, 0.1); /* Полупрозрачный фон */
+    background: rgba(0, 255, 255, 0.1);
     color: #00ffff;
-    border-bottom: 1px dashed #00ffff; /* Пунктирная граница */
+    border-bottom: 1px dashed #00ffff;
     text-align: center;
     padding: 1rem;
 }
 .sample-page.theme-tech .sample-header p {
-    color: #88ffff; /* Светлее Cyan */
-    font-family: 'Share Tech Mono', monospace;
+    color: #88ffff;
+    font-family: 'CustomTechFont', monospace; /* Шрифт CustomTechFont */
 }
 
 .sample-page.theme-tech .sample-content {
-    background: rgba(0, 0, 0, 0.3); /* Темный прозрачный фон */
-    color: #bbb; /* Светлый серый текст */
+    background: rgba(0, 0, 0, 0.3);
+    color: #bbb;
     padding: 1.5rem;
     border-radius: 0;
     box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1);
     border: none;
     margin-bottom: 1.5rem;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'CustomTechFont', monospace; /* Шрифт CustomTechFont */
 }
 .sample-page.theme-tech .sample-content h4 {
     color: #00ffff;
@@ -862,18 +895,18 @@ footer {
     color: #ccc;
 }
 .sample-page.theme-tech .sample-content ul {
-    list-style: none; /* Убираем стандартные маркеры */
+    list-style: none;
     padding-left: 1em;
 }
 .sample-page.theme-tech .sample-content li {
      margin-bottom: 0.5rem;
      color: #bbb;
      position: relative;
-     padding-left: 1.2em; /* Отступ для маркера */
+     padding-left: 1.2em;
 }
 .sample-page.theme-tech .sample-content li::before {
-    content: '\203A'; /* Шеврон */
-    color: #00ffff; /* Cyan маркер */
+    content: '\203A';
+    color: #00ffff;
     position: absolute;
     left: 0;
     top: 0;
@@ -894,8 +927,8 @@ footer {
     color: #88ffff;
     border-bottom: none;
     transition: background 0.3s, color 0.3s;
-    font-family: 'Orbitron', Arial, sans-serif;
-    font-weight: 700;
+    font-family: 'CustomTechFont', monospace; /* Шрифт CustomTechFont */
+    font-weight: bold;
 }
 .sample-page.theme-tech .tab-button:hover {
     background: rgba(0, 255, 255, 0.2);
@@ -910,7 +943,7 @@ footer {
     background: rgba(0, 0, 0, 0.4);
     color: #ddd;
     padding: 1.2rem;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'CustomTechFont', monospace; /* Шрифт CustomTechFont */
 }
 
 .sample-page.theme-tech .sample-footer {
@@ -918,7 +951,7 @@ footer {
     color: #00ffff;
     border-top: 1px dashed rgba(0, 255, 255, 0.5);
     font-size: 0.9em;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'CustomTechFont', monospace; /* Шрифт CustomTechFont */
     padding: 0.8rem;
     text-align: center;
 }
@@ -926,7 +959,7 @@ footer {
 /* --- Новая тема "Tech" (Темный режим) --- */
 .sample-page.mode-dark.theme-tech {
     background: linear-gradient(135deg, #000000 0%, #05050a 100%);
-    color: #00ff00; /* Green акцент */
+    color: #00ff00;
     border-color: #00ff00;
     box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 10px rgba(0, 255, 0, 0.1);
 }
@@ -934,10 +967,7 @@ footer {
 .sample-page.mode-dark.theme-tech::after {
     background: linear-gradient(90deg, transparent, #00ff00, transparent);
 }
-@keyframes tech-line-scan {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-} /* Переопределяем анимацию */
+/* @keyframes tech-line-scan уже определен */
 
 
 .sample-page.mode-dark.theme-tech h3,
@@ -986,7 +1016,7 @@ footer {
 .sample-page.mode-dark.theme-tech .tab-button.active {
     background: rgba(0, 255, 0, 0.2);
     color: #fff;
-    border-bottom-color: #00ff00;
+    border-bottom: 2px solid #00ff00;
 }
 .sample-page.mode-dark.theme-tech .sample-tabs .tab-content {
     background: rgba(0, 0, 0, 0.5);
@@ -996,53 +1026,53 @@ footer {
 .sample-page.mode-dark.theme-tech .sample-footer {
     background: rgba(0, 255, 0, 0.1);
     color: #00ff00;
-    border-top-color: rgba(0, 255, 0, 0.5);
+    border-top: 1px dashed rgba(0, 255, 0, 0.5);
 }
 
 
 /* --- Новая тема "Minimal" (Светлый режим) --- */
 .sample-page.theme-minimal {
-    font-family: 'Inter', Arial, sans-serif; /* Шрифт Inter */
-    background: #ffffff; /* Чистый белый фон */
+    font-family: 'CustomMinimalFont', Arial, sans-serif; /* Шрифт CustomMinimalFont */
+    background: #ffffff;
     color: #333;
     border: none;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05); /* Очень деликатная тень */
-    border-radius: 8px; /* Скругленные углы */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-radius: 8px;
     position: relative;
     overflow: hidden;
 }
 
 .sample-page.theme-minimal h3,
 .sample-page.theme-minimal h4 {
-    font-family: 'Inter', Arial, sans-serif;
-    font-weight: 700;
+    font-family: 'CustomMinimalFont', Arial, sans-serif; /* Шрифт CustomMinimalFont */
+    font-weight: bold;
     color: #222;
-    letter-spacing: normal; /* Сброс интервала */
-    text-transform: none; /* Сброс верхнего регистра */
+    letter-spacing: normal;
+    text-transform: none;
 }
 .sample-page.theme-minimal .sample-tabs .tab-button {
-     font-family: 'Inter', Arial, sans-serif;
-     font-weight: 600; /* Чуть менее жирный */
+     font-family: 'CustomMinimalFont', Arial, sans-serif; /* Шрифт CustomMinimalFont */
+     font-weight: normal;
      letter-spacing: normal;
      text-transform: none;
 }
 
 
 .sample-page.theme-minimal .sample-header {
-    background: #f8f8f8; /* Очень светло-серый фон */
+    background: #f8f8f8;
     color: #444;
-    border-bottom: 1px solid #eee; /* Очень тонкая граница */
+    border-bottom: 1px solid #eee;
     text-align: left;
     padding: 1.2rem 1.5rem;
 }
 .sample-page.theme-minimal .sample-header h3 {
-    font-size: 1.6rem; /* Меньше размер */
+    font-size: 1.6rem;
     margin-bottom: 0.4rem;
 }
 .sample-page.theme-minimal .sample-header p {
-    font-size: 0.9em; /* Меньше размер */
+    font-size: 0.9em;
     color: #666;
-    font-family: 'Inter', Arial, sans-serif;
+    font-family: 'CustomMinimalFont', Arial, sans-serif; /* Шрифт CustomMinimalFont */
 }
 
 .sample-page.theme-minimal .sample-content {
@@ -1053,15 +1083,15 @@ footer {
     box-shadow: none;
     border: none;
     margin-bottom: 1.8rem;
-    font-family: 'Inter', Arial, sans-serif;
+    font-family: 'CustomMinimalFont', Arial, sans-serif; /* Шрифт CustomMinimalFont */
 }
 .sample-page.theme-minimal .sample-content h4 {
     font-size: 1.3rem;
     color: #444;
     margin-bottom: 1rem;
-    border-bottom: 1px solid #ccc; /* Тонкое подчеркивание */
+    border-bottom: 1px solid #ccc;
     display: inline-block;
-    padding-bottom: 0.2rem; /* Меньше отступ */
+    padding-bottom: 0.2rem;
 }
 .sample-page.theme-minimal .sample-content p {
     line-height: 1.6;
@@ -1091,8 +1121,8 @@ footer {
     color: #555;
     border-bottom: none;
     transition: background 0.2s, color 0.2s;
-    font-family: 'Inter', Arial, sans-serif;
-    font-weight: 600;
+    font-family: 'CustomMinimalFont', Arial, sans-serif; /* Шрифт CustomMinimalFont */
+    font-weight: normal;
 }
 .sample-page.theme-minimal .tab-button:hover {
     background: #eee;
@@ -1101,13 +1131,13 @@ footer {
 .sample-page.theme-minimal .tab-button.active {
     background: #ffffff;
     color: #333;
-    border-bottom: 2px solid #555; /* Серое подчеркивание */
+    border-bottom: 2px solid #555;
 }
 .sample-page.theme-minimal .sample-tabs .tab-content {
     background: #ffffff;
     color: #333;
     padding: 1.5rem;
-    font-family: 'Inter', Arial, sans-serif;
+    font-family: 'CustomMinimalFont', Arial, sans-serif; /* Шрифт CustomMinimalFont */
 }
 
 .sample-page.theme-minimal .sample-footer {
@@ -1115,14 +1145,14 @@ footer {
     color: #666;
     border-top: 1px solid #eee;
     font-size: 0.9em;
-    font-family: 'Inter', Arial, sans-serif;
+    font-family: 'CustomMinimalFont', Arial, sans-serif; /* Шрифт CustomMinimalFont */
     padding: 0.8rem 1.5rem;
     text-align: center;
 }
 
 /* --- Новая тема "Minimal" (Темный режим) --- */
 .sample-page.mode-dark.theme-minimal {
-    background: #1c1c1c; /* Темно-серый */
+    background: #1c1c1c;
     color: #eee;
     box-shadow: 0 5px 20px rgba(0,0,0,0.3);
     border: none;
@@ -1242,7 +1272,7 @@ footer {
     .modern-block ul { margin-top: 1em; }
     .modern-block li { font-size: 0.9em; padding: 0.5em 1em; margin: 0 0.4em 0.6em 0; border-radius: 4px;}
 
-    #skills li { font-weight: 600; }
+    #skills li { font-weight: bold; }
     #contact li, #contact a { font-size: 1em; display: block; text-align: left;}
     #contact ul { text-align: left; }
 
@@ -1296,11 +1326,6 @@ footer {
     .sample-tabs .tab-content { padding: 0.9rem; }
     .sample-footer { padding: 0.8rem; font-size: 0.9em; }
 
-    /* Neumorphism theme adjustments for mobile (kept for completeness if user ever brings it back) */
-    .sample-page.theme-neumorphism { box-shadow: 6px 6px 18px #c5c9d7, -6px -6px 18px #fff; }
-    .sample-page.mode-dark.theme-neumorphism { box-shadow: 6px 6px 18px #1d2129, -6px -6px 18px #393f4b; }
-
-
      /* Loft theme adjustments for mobile */
      .sample-page.theme-loft { box-shadow: 8px 8px 24px rgba(0,0,0,0.15), -8px -8px 24px rgba(255,255,255,0.8); border-width: 1px; }
      /* Меньше болтов или адаптация */
@@ -1314,124 +1339,7 @@ footer {
       .sample-page.theme-loft::after { bottom: -3px; left: -3px;}
       .sample-page.theme-loft .sample-header::after { top: -3px; right: -3px; left: auto;}
       .sample-page.theme-loft .sample-content::after { top: -3px; right: -3px; left: auto;}
-      .sample-page.theme-loft .sample-footer::after { bottom: -3px; right: -3px; left: auto;}
+      .sample-page.theme-loft .sample-footer::after { top: -3px; right: -3px; left: auto;}
 
 
-    .sample-page.mode-dark.theme-loft { box-shadow: 6px 6px 18px rgba(0,0,0,0.5), -6px -6px 18px rgba(60,60,60,0.8); border-width: 1px;}
-     .sample-page.mode-dark.theme-loft::before, .sample-page.mode-dark.theme-loft::after,
-    .sample-page.mode-dark.theme-loft .sample-header::before, .sample-page.mode-dark.theme-loft .sample-header::after,
-    .sample-page.mode-dark.theme-loft .sample-content::before, .sample-page.mode-dark.theme-loft .sample-content::after,
-    .sample-page.mode-dark.theme-loft .sample-footer::before, .sample-page.mode-dark.theme-loft .sample-footer::after {
-        width: 6px; height: 6px; top: -3px; left: -3px;
-         left: -3px; right: auto;
-     }
-      .sample-page.mode-dark.theme-loft::after { bottom: -3px; left: -3px;}
-      .sample-page.mode-dark.theme-loft .sample-header::after { top: -3px; right: -3px; left: auto;}
-      .sample-page.mode-dark.theme-loft .sample-content::after { top: -3px; right: -3px; left: auto;}
-      .sample-page.mode-dark.theme-loft .sample-footer::after { bottom: -3px; right: -3px; left: auto;}
-
-    /* Tech theme adjustments for mobile */
-    .sample-page.theme-tech, .sample-page.mode-dark.theme-tech {
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.2), inset 0 0 8px rgba(0, 255, 255, 0.1);
-        border-width: 0.5px;
-    }
-    .sample-page.mode-dark.theme-tech {
-         box-shadow: 0 0 15px rgba(0, 255, 0, 0.2), inset 0 0 8px rgba(0, 255, 0, 0.1);
-         border-color: #00ff00;
-    }
-    .sample-page.theme-tech .sample-header { padding: 0.8rem; }
-    .sample-page.theme-tech .sample-content { padding: 1.2rem; margin-bottom: 1.2rem;}
-    .sample-page.theme-tech .sample-tabs .tab-content { padding: 1rem; }
-    .sample-page.theme-tech .sample-footer { padding: 0.6rem; }
-
-     .sample-page.mode-dark.theme-tech .sample-header { padding: 0.8rem; }
-     .sample-page.mode-dark.theme-tech .sample-content { padding: 1.2rem; margin-bottom: 1.2rem;}
-     .sample-page.mode-dark.theme-tech .sample-tabs .tab-content { padding: 1rem; }
-     .sample-page.mode-dark.theme-tech .sample-footer { padding: 0.6rem; }
-
-     /* Minimal theme adjustments for mobile */
-     .sample-page.theme-minimal { box-shadow: 0 3px 15px rgba(0,0,0,0.05); }
-     .sample-page.theme-minimal .sample-header { padding: 1rem 1.2rem; }
-     .sample-page.theme-minimal .sample-content { padding: 1.5rem 1.2rem; }
-     .sample-page.theme-minimal .sample-tabs .tab-content { padding: 1.2rem; }
-     .sample-page.theme-minimal .sample-footer { padding: 0.6rem 1.2rem; }
-
-     .sample-page.mode-dark.theme-minimal { box-shadow: 0 3px 15px rgba(0,0,0,0.3); }
-     .sample-page.mode-dark.theme-minimal .sample-header { padding: 1rem 1.2rem; }
-     .sample-page.mode-dark.theme-minimal .sample-content { padding: 1.5rem 1.2rem; }
-     .sample-page.mode-dark.theme-minimal .sample-tabs .tab-content { padding: 1.2rem; }
-     .sample-page.mode-dark.theme-minimal .sample-footer { padding: 0.6rem 1.2rem; }
-
-
-}
-
-@media (max-width: 480px) {
-     header h1 { font-size: 1.8rem; letter-spacing: 0.04em;}
-     header p { font-size: 0.9em; }
-     section h2 { font-size: 1.6rem; }
-     .modern-block { padding: 1.8rem 1rem; margin: 1.5rem auto; border-radius: 5px;}
-     .modern-block h2 { font-size: 1.4rem; margin-bottom: 1rem; }
-     /* Убираем болты на самых маленьких экранах */
-     .modern-block::before, .modern-block::after,
-     .modern-block > :first-child::before, .modern-block > :last-child::after {
-         content: none;
-     }
-
-     .modern-block li { font-size: 0.7em; padding: 0.4em 0.7em; margin: 0 0.3em 0.5em 0;}
-     #skills li { font-weight: 600; }
-     #contact li, #contact a { font-size: 0.85em; }
-     .project-item { padding: 1rem 0.8rem; margin-bottom: 0.8rem; border-radius: 5px;}
-     .project-item h3 { font-size: 0.95em; }
-     .tech-badge { font-size: 0.75em; padding: 0.1em 0.5em;}
-     #portfolio .projects { gap: 0.8rem; }
-     footer { padding: 1rem; font-size: 0.9em; border-radius: 10px 10px 0 0;}
-
-     /* Адаптация кнопки переключения */
-     .toggle-button.hi-tech-btn {
-        padding: 0.7rem 1.8rem;
-        font-size: 0.9rem;
-        letter-spacing: 0.05em;
-     }
-
-
-     #design-showcase {
-        padding: 1.5rem;
-        margin: 1.5rem auto;
-        border-radius: 10px;
-     }
-     .sample-page .sample-content .design-refs {
-        padding-left: 10px;
-     }
-     .sample-page .sample-content .design-refs li {
-         margin-bottom: 0.3em;
-     }
-
-
-     #design-showcase h2 { font-size: 1.6rem; margin-bottom: 1rem;}
-     .theme-controls { gap: 8px; margin-bottom: 1.2rem; }
-     .theme-controls .base-themes button { font-size: 0.8em; padding: 0.4rem 0.8rem; }
-     .theme-controls .mode-toggle-control { font-size: 0.8em; gap: 6px; }
-     .theme-controls .mode-toggle-control label { width: 30px; height: 18px; }
-     .theme-controls .mode-toggle-control label::before { width: 14px; height: 14px; top: 2px; left: 2px;}
-     .theme-controls .mode-toggle-control input[type="checkbox"]:checked + label::before { transform: translateX(12px); }
-     .theme-label { min-width: 40px; font-size: 0.9em; }
-
-     .sample-page { padding: 1.2rem; border-radius: 10px;}
-     .sample-header { padding: 0.6rem 0 0.8rem 0; margin-bottom: 1rem;}
-     .sample-header h3 { font-size: 1.4rem; }
-     .sample-header p { font-size: 0.9em; }
-     .sample-content { padding: 0.6rem 0; margin-bottom: 1rem; }
-     .sample-content h4 { font-size: 1.1rem; margin-bottom: 0.6rem; }
-     .sample-tabs { margin-top: 1.2rem; border-radius: 5px; }
-     .sample-tabs .tab-button { padding: 0.5rem 0.6rem; font-size: 0.8em; }
-     .sample-tabs .tab-content { padding: 0.8rem; }
-     .sample-footer { padding: 0.6rem; font-size: 0.8em; }
-
-     /* Убираем болты в теме Loft на самых маленьких экранах */
-     .sample-page.theme-loft::before, .sample-page.theme-loft::after,
-     .sample-page.theme-loft .sample-header::before, .sample-page.theme-loft .sample-header::after,
-     .sample-page.theme-loft .sample-content::before, .sample-page.theme-loft .sample-content::after,
-     .sample-page.theme-loft .sample-footer::before, .sample-page.theme-loft .sample-footer::after {
-         content: none;
-     }
-}
+    .sample-page.mode-dark.theme-loft { box-shadow: 8px 8
